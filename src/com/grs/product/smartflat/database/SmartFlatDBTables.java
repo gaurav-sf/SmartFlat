@@ -7,10 +7,22 @@ public class SmartFlatDBTables {
 	private SmartFlatDBTables(){
 
 	}
+	
+	public static final class TableNames{
+		public static final String FLAT_OWNER_DETAILS = "Flat_Owner_Details";
+		public static final String SOCIETY_DETAILS = "Society_Details";
+		public static final String FAMILY_DETAILS = "Family_Details";
+		public static final String VEHICLE_DETAILS = "Vehicle_Details";
+		public static final String COMPAINTS_DETAILS = "Complaint_Details";
+		public static final String REQUEST_DETAILS = "Request_Details";
+		public static final String QUERY_DETAILS = "Query_Details";
+		public static final String SOCIETY_NOTICES= "Society_Notices";
+		
+	}
 
-	public static final class TableFlatOwner implements BaseColumns
+	public static final class TableFlatOwnerDetails implements BaseColumns
 	{
-		private TableFlatOwner(){}
+		private TableFlatOwnerDetails(){}
 		public static final String ID = "ID";
 		public static final String USERNAME = "Username";	
 		public static final String PASSWORD = "Password";	

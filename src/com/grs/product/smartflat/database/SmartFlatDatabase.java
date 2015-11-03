@@ -19,8 +19,8 @@ public class SmartFlatDatabase {
 	private int openCount = 0;
 	private static final String DATABASE_NAME = "SmartFlat.db";
 	private static final int DATABASE_VERSION = 1; //
-	
-	
+
+
 	public static SmartFlatDatabase getInstance() 
 	{
 		if (instance == null) 
@@ -29,10 +29,10 @@ public class SmartFlatDatabase {
 		}
 		return instance;
 	}
-	
+
 	private SmartFlatDatabase(Context context){
 		helper = new SmartFlatDatabaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
-		
+
 	}
 
 	public synchronized void open() 
@@ -52,8 +52,8 @@ public class SmartFlatDatabase {
 			helper.close();
 		}
 	}
-	
-	
+
+
 	//This method will be used while altering the tables
 	private boolean checkIfColumnsExist(SQLiteDatabase db, String tableName,
 			String[] columns) {
@@ -67,14 +67,55 @@ public class SmartFlatDatabase {
 
 		return !(columnsToFindSet.size() > 0);
 	}
-	
-	private void createOwnerTable(SQLiteDatabase db){
+
+	private void createFlatOwnerDetailsTable(SQLiteDatabase db){
 		db.beginTransaction();
-		db.execSQL("TABLE CREATION QUERY WILL BE HERE");
-		db.setTransactionSuccessful();
-		
+		db.execSQL(SmartFlatDBTableCreation.TABLE_FLAT_OWNER_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
 	}
 	
+	private void createSocietyDetailsTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_SOCIETY_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+	
+	private void createFamilyDetailsTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_FAMILY_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+	
+	private void createVehicleDetailsTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_VEHICLE_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+	
+	private void createComplaintDetailsTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_COMPLAINT_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+	
+	private void createRequestDetailsTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_REQUEST_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+	
+	private void createQueryDetailsTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_QUERY_DETAILS_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+	
+	private void createSocietyNoticesTable(SQLiteDatabase db){
+		db.beginTransaction();
+		db.execSQL(SmartFlatDBTableCreation.TABLE_SOCIETY_NOTICES_CREATION_QUERY);
+		db.setTransactionSuccessful();	
+	}
+
 
 	//inner class
 	private class SmartFlatDatabaseHelper extends SQLiteOpenHelper{
@@ -85,16 +126,23 @@ public class SmartFlatDatabase {
 
 		@Override
 		public void onCreate(SQLiteDatabase db) {
-			createOwnerTable(db);
-			
+			createFlatOwnerDetailsTable(db);
+			createSocietyDetailsTable(db);
+			createFamilyDetailsTable(db);
+			createVehicleDetailsTable(db);
+			createComplaintDetailsTable(db);
+			createRequestDetailsTable(db);
+			createQueryDetailsTable(db);
+			createSocietyNoticesTable(db);
+
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
 
 }
