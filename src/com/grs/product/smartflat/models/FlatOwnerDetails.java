@@ -10,6 +10,7 @@ public class FlatOwnerDetails {
 	private String mFlatOwnerDOB;	
 	private String mFlatOwnerAge;	
 	private String mFlatOwnerContactNo;	
+	private String mFlatOwnerEmailId;
 	private String mBuildingName;	
 	private String mFloorNo;	
 	private String mFlatno;	
@@ -88,6 +89,14 @@ public class FlatOwnerDetails {
 		this.mFlatOwnerContactNo = mFlatOwnerContactNo;
 	}
 	
+	public String getmFlatOwnerEmailId() {
+		return mFlatOwnerEmailId;
+	}
+
+	public void setmFlatOwnerEmailId(String mFlatOwnerEmailId) {
+		this.mFlatOwnerEmailId = mFlatOwnerEmailId;
+	}
+
 	public String getmBuildingName() {
 		return mBuildingName;
 	}

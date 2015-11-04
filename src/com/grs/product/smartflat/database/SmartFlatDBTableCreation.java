@@ -23,6 +23,7 @@ public class SmartFlatDBTableCreation {
 			+ TableFlatOwnerDetails.FLAT_OWNER_DOB+ " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_AGE + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO + " TEXT, "
+			+ TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_BUILDING_NAME + " TEXT, "
 			+ TableFlatOwnerDetails.FLOOR_NO + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_NO + " TEXT, "

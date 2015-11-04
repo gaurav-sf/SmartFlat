@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="10dp"
-        android:hint="DOB" />
+        android:hint="DOB --- dd/mm/yyyy" />
 
     <EditText
         android:id="@+id/editTextAge"
@@ -50,6 +50,15 @@
         android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Contact Number" />
+    
+        <EditText
+        android:id="@+id/editTextEmailId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Email id" />
 
     <Spinner
         android:id="@+id/spinnertBuildingName"
@@ -96,6 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="NEXT" 
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:ems="10"/>
     

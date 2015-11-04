@@ -31,7 +31,8 @@ public class SmartFlatDBTables {
 		public static final String FLAT_OWNER_NAME = "Flat_Owner_Name"	;
 		public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";	
 		public static final String FLAT_OWNER_AGE = "Flat_Owner_Age";	
-		public static final String FLAT_OWNER_CONTACT_NO = "Flat_Owner_Contact_No";	
+		public static final String FLAT_OWNER_CONTACT_NO = "Flat_Owner_Contact_No";
+		public static final String FLAT_OWNER_EMAIL_ID = "Flat_Owner_Email_id";
 		public static final String FLAT_BUILDING_NAME = "Building_Name";	
 		public static final String FLOOR_NO = "Floor_No";	
 		public static final String FLAT_NO = "Flat_no";	

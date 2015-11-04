@@ -1,4 +1,9 @@
-package com.grs.product.smartflat;
+package com.grs.product.smartflat.activities;
+
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.R.id;
+import com.grs.product.smartflat.R.layout;
+import com.grs.product.smartflat.R.menu;
 
 import android.app.Activity;
 import android.os.Bundle;

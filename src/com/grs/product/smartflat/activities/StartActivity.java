@@ -7,6 +7,7 @@ import com.grs.product.smartflat.models.SocietyDetails;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -14,8 +15,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class StartActivity extends Activity {
-	Button button_continue;
-	EditText edittext_society_code;
+	private Button button_continue;
+	private EditText edittext_society_code;
+	private final String LOG = StartActivity.class.getName();
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +50,14 @@ public class StartActivity extends Activity {
 	}
 	
 	private void societyCodeValidation(String societyCode){
-		if(societyCode.equals("SM@GRS1001"))
+		if(societyCode.equals("SF@GRS1001"))
 		{
 			//Here will be web service call to check this code in cloud DB and fetch the society details and save in local DB
 			
-			//saveSocietyDetailsInDB();
+			saveSocietyDetailsInDB();
 			Intent registrationStep1 = new Intent(this, RegistrationStep1Activity.class);
 			startActivity(registrationStep1);
+			finish();
 			
 		}else{
 			edittext_society_code.setError("Please enter valid society code");
@@ -63,26 +67,29 @@ public class StartActivity extends Activity {
 	
 	private void saveSocietyDetailsInDB(){
 		SocietyDetails societyDetails = new SocietyDetails();
-		societyDetails.setSocietyCode("SM@GRS1001");
-		societyDetails.setSocietyOwnerName("Gaurav Lakade");
-		societyDetails.setSocietyOwnerAddressLine1("Mahendra Colony");
-		societyDetails.setSocietyOwnerAddressLine2("Behind VMV");
-		societyDetails.setSocietyOwnerCity("Amravati");
-		societyDetails.setSocietyOwnerState("Maharashtra");
-		societyDetails.setSocietyOwnerPin("444604");
-		societyDetails.setSocietyOwnerContactNo("9028848725");
-		societyDetails.setSocietyOwnerEmailId("gauravlakade@gmail.com");
-		societyDetails.setSocietyName("Destiny");
-		societyDetails.setBuildingName("A?B?C?D?E?F");
-		societyDetails.setTotalFloorNumber(7);
-		societyDetails.setSocietyAddressLine1("Vishal Nagar");
-		societyDetails.setSocietyAddressLine2("Pimple Nilakh");
-		societyDetails.setSocietyAddressCity("Pune");
-		societyDetails.setSocietyAddressState("Maharashtra");
-		societyDetails.setSocietyAddressPin("411027");
+		societyDetails.setmSocietyCode("SM@GRS1001");
+		societyDetails.setmSocietyOwnerName("Gaurav Lakade");
+		societyDetails.setmSocietyOwnerAddressLine1("Mahendra Colony");
+		societyDetails.setmSocietyOwnerAddressLine2("Behind VMV");
+		societyDetails.setmSocietyOwnerCity("Amravati");
+		societyDetails.setmSocietyOwnerState("Maharashtra");
+		societyDetails.setmSocietyOwnerPIN("444604");
+		societyDetails.setmSocietyOwnerContactNo("9028848725");
+		societyDetails.setmSocietyOwnerEmailId("gauravlakade@gmail.com");
+		societyDetails.setmSocietyName("Destiny");
+		societyDetails.setmBuildingName("A@B@C@D@E@F");
+		societyDetails.setmTotalFloorNumber(7);
+		societyDetails.setmSocietyAddressLine1("Vishal Nagar");
+		societyDetails.setmSocietyAddressLine2("Pimple Nilakh");
+		societyDetails.setmSocietyAddressCity("Pune");
+		societyDetails.setmSocietyAddressState("Maharashtra");
+		societyDetails.setmSocietyAddressPIN("411027");
 		
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
-		objManager.saveSocietyDetails(societyDetails);
+		boolean result = objManager.saveSocietyDetails(societyDetails);
+		if(result){
+			Log.e(LOG, "Society Details Insertion Successful");
+		}
 		
 		
 	}

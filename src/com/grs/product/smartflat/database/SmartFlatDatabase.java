@@ -4,16 +4,18 @@ package com.grs.product.smartflat.database;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.models.SocietyDetails;
-
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class SmartFlatDatabase {
 	private SQLiteDatabase mDb;
@@ -203,9 +205,46 @@ public class SmartFlatDatabase {
 	
 	public boolean saveSocietyDetails(SocietyDetails details)
 	{
-		
-		
-		return false;
+
+		boolean IsAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableSocietyDetails.SOCIETY_CODE,details.getmSocietyCode());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_NAME,details.getmSocietyOwnerName());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_ADDRESS_LINE1,details.getmSocietyOwnerAddressLine1());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_CITY,details.getmSocietyOwnerCity());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_STATE,details.getmSocietyOwnerState());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_PIN,details.getmSocietyOwnerPIN());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_CONTACT_NO,details.getmSocietyOwnerContactNo());
+		values.put(TableSocietyDetails.SOCIETY_OWNER_EMAIL_ID,details.getmSocietyOwnerEmailId());
+		values.put(TableSocietyDetails.SOCIETY_NAME,details.getmSocietyName());
+		values.put(TableSocietyDetails.BUILDING_NAME,details.getmBuildingName());
+		values.put(TableSocietyDetails.TOTAL_FLOOR_NUMBER,details.getmTotalFloorNumber());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE1,details.getmSocietyAddressLine1());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_CITY,details.getmSocietyAddressCity());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_STATE,details.getmSocietyAddressState());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_PIN,details.getmSocietyAddressPIN());	
+		try {
+			mDb.beginTransaction();
+
+			IsAdded = mDb.insert(TableNames.SOCIETY_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}
+		return IsAdded;		
+	}
+	
+	public Cursor getSocietyDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;
 		
 	}
 
