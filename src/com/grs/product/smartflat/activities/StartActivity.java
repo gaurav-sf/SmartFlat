@@ -5,6 +5,7 @@ import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.SocietyDetails;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,7 +51,9 @@ public class StartActivity extends Activity {
 		{
 			//Here will be web service call to check this code in cloud DB and fetch the society details and save in local DB
 			
-			saveSocietyDetailsInDB();
+			//saveSocietyDetailsInDB();
+			Intent registrationStep1 = new Intent(this, RegistrationStep1Activity.class);
+			startActivity(registrationStep1);
 			
 		}else{
 			edittext_society_code.setError("Please enter valid society code");

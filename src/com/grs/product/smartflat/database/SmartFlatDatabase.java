@@ -90,7 +90,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_SOCIETY_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -103,7 +102,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_FAMILY_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -116,7 +114,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_VEHICLE_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -129,7 +126,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_COMPLAINT_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -142,7 +138,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_REQUEST_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -155,7 +150,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_QUERY_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -168,7 +162,6 @@ public class SmartFlatDatabase {
 			db.execSQL(SmartFlatDBTableCreation.TABLE_SOCIETY_NOTICES_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			db.endTransaction();
@@ -196,7 +189,6 @@ public class SmartFlatDatabase {
 				createQueryDetailsTable(db);
 				createSocietyNoticesTable(db);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -204,7 +196,6 @@ public class SmartFlatDatabase {
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			// TODO Auto-generated method stub
 			onCreate(db);
 		}
 
@@ -212,6 +203,7 @@ public class SmartFlatDatabase {
 	
 	public boolean saveSocietyDetails(SocietyDetails details)
 	{
+		
 		
 		return false;
 		

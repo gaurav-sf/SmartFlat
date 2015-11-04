@@ -88,7 +88,7 @@ public class SmartFlatDBTables {
 		public static final String ID = "ID";
 		public static final String VEHICLE_TYPE = "Vehicle_Type";	
 		public static final String VEHICLE_NUMBER = "Vehicle_Number";	
-		public static final String VEHICLE_COMPANY = "Vehicle_Company"	;
+		public static final String VEHICLE_COMPANY = "Vehicle_Company";
 		public static final String VEHICLE_MODEL = "Vehicle_Model";	
 		public static final String VEHICLE_COLOR = "Vehicle_Color";																	
 	}
