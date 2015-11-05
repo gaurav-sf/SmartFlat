@@ -166,8 +166,8 @@ public class RegistrationStep1Activity extends Activity {
 		
 		//for now sending this in extra later on will access it from Application file using shared pref
 		intentRegistrationStep2.putExtra("societycode", mSocietyDetails.getmSocietyCode());
-
 		startActivity(intentRegistrationStep2);
+		finish();
 	}
 
 }

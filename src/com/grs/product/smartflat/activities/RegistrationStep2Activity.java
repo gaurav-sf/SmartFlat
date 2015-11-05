@@ -2,20 +2,23 @@ package com.grs.product.smartflat.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-
+import java.text.DateFormat;
+import java.util.Date;
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
-import com.grs.product.smartflat.utils.Utilities;
 
 public class RegistrationStep2Activity extends Activity {
 
 	private EditText mEditTextUsername, mEditTextPassword, mEditTextSecurityQue, mEditTextAnswer;
 	private Button buttonSubmit;
 	private Bundle extras;
+	private final String LOG = RegistrationStep2Activity.class.getName();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,13 @@ public class RegistrationStep2Activity extends Activity {
 		flatOwnerDetails.setmNoofVehicles(Integer.parseInt(extras.getString("noofvehicle")));
 		flatOwnerDetails.setmSocietyCode(extras.getString("societycode"));
 		flatOwnerDetails.setmFlatOwnerCode(extras.getString("username"));
-		flatOwnerDetails.setmFlatOwnerCreatedDateTime(Utilities.getUTCDateTime());
+		flatOwnerDetails.setmFlatOwnerCreatedDateTime(DateFormat.getDateTimeInstance().format(new Date()));
+		
+		SmartFlatDBManager objManager = new SmartFlatDBManager();
+		boolean result = objManager.saveFlatOwnerDeatils(flatOwnerDetails);
+		if(result){
+			Log.e(LOG, "Flat Owner Details Insertion Successful");
+		}
 	}
 
 }

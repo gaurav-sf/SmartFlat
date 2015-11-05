@@ -5,8 +5,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
+import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.SocietyDetails;
 import android.content.ContentValues;
 import android.content.Context;
@@ -202,11 +204,10 @@ public class SmartFlatDatabase {
 		}
 
 	}
-	
+
 	public boolean saveSocietyDetails(SocietyDetails details)
 	{
-
-		boolean IsAdded = false;
+		boolean isAdded = false;
 		ContentValues values = new ContentValues();
 		values.put(TableSocietyDetails.SOCIETY_CODE,details.getmSocietyCode());
 		values.put(TableSocietyDetails.SOCIETY_OWNER_NAME,details.getmSocietyOwnerName());
@@ -227,25 +228,69 @@ public class SmartFlatDatabase {
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_PIN,details.getmSocietyAddressPIN());	
 		try {
 			mDb.beginTransaction();
-
-			IsAdded = mDb.insert(TableNames.SOCIETY_DETAILS, null, values) > 0;
+			isAdded = mDb.insert(TableNames.SOCIETY_DETAILS, null, values) > 0;
 			mDb.setTransactionSuccessful();
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
 			mDb.endTransaction();
 		}
-		return IsAdded;		
+		return isAdded;		
 	}
-	
+
 	public Cursor getSocietyDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
 		}
-		return cursor;
-		
+		return cursor;		
+	}
+
+	public boolean saveFlatOwnerDeatils(FlatOwnerDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableFlatOwnerDetails.USERNAME, details.getmUsername());
+		values.put(TableFlatOwnerDetails.PASSWORD, details.getmPassword());
+		values.put(TableFlatOwnerDetails.SECURITY_QUESTION, details.getmSecurityQuestion());
+		values.put(TableFlatOwnerDetails.ANSWER, details.getmAnswer());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_NAME, details.getmFlatOwnerName());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_DOB, details.getmFlatOwnerDOB());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_AGE, details.getmFlatOwnerAge());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO, details.getmFlatOwnerContactNo());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID, details.getmFlatOwnerEmailId());
+		values.put(TableFlatOwnerDetails.FLAT_BUILDING_NAME, details.getmBuildingName());
+		values.put(TableFlatOwnerDetails.FLOOR_NO, details.getmFloorNo());		
+		values.put(TableFlatOwnerDetails.FLAT_NO, details.getmFlatno());
+		values.put(TableFlatOwnerDetails.SOCIETY_CODE, details.getmSocietyCode());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_CREATED_DATETIME, details.getmFlatOwnerCreatedDateTime());
+		values.put(TableFlatOwnerDetails.NO_OF_FAMILY_MEMBER, details.getmNoofFamilyMembers());
+		values.put(TableFlatOwnerDetails.NO_OF_VEHICLE, details.getmNoofVehicles());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_CODE, details.getmFlatOwnerCode());
+		values.put(TableFlatOwnerDetails.PUSH_TOKEN, details.getmPushToken());
+		values.put(TableFlatOwnerDetails.ACCESS_TOKEN, details.getmAccessToken());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_LATITUDE, details.getmLatitude());
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_LONGITUDE, details.getmLongitude());		
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+
+
+	public Cursor getFlatOwnerDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.FLAT_OWNER_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
 	}
 
 }
