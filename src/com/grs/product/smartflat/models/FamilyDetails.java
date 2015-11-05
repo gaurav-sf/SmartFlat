@@ -8,7 +8,7 @@ public class FamilyDetails {
 	private String mFamilyMemberDOB;
 	private String mFamilyMemberAge;
 	private String mFamilyMemberContactno;
-	private String mNeedLogin;
+	private boolean mNeedLogin;
 	
 	public String getmFlatOwnerCode() {
 		return mFlatOwnerCode;
@@ -57,12 +57,12 @@ public class FamilyDetails {
 	public void setmFamilyMemberContactno(String mFamilyMemberContactno) {
 		this.mFamilyMemberContactno = mFamilyMemberContactno;
 	}
-	
-	public String getmNeedLogin() {
+
+	public boolean ismNeedLogin() {
 		return mNeedLogin;
 	}
-	
-	public void setmNeedLogin(String mNeedLogin) {
+
+	public void setmNeedLogin(boolean mNeedLogin) {
 		this.mNeedLogin = mNeedLogin;
 	}
 

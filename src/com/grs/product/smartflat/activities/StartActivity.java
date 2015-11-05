@@ -1,6 +1,7 @@
 package com.grs.product.smartflat.activities;
 
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.SocietyDetails;
 
@@ -55,6 +56,7 @@ public class StartActivity extends Activity {
 			//Here will be web service call to check this code in cloud DB and fetch the society details and save in local DB
 			
 			saveSocietyDetailsInDB();
+			SmartFlatApplication.saveSocietyCodeInSharedPreferences(societyCode);
 			Intent registrationStep1 = new Intent(this, RegistrationStep1Activity.class);
 			startActivity(registrationStep1);
 			finish();

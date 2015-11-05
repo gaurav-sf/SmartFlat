@@ -5,11 +5,24 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerVehicleDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyNotices;
+import com.grs.product.smartflat.models.ComplaintDetails;
+import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.models.NoticeDetails;
+import com.grs.product.smartflat.models.QueryDetails;
+import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.SocietyDetails;
+import com.grs.product.smartflat.models.VehicleDetails;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -291,6 +304,185 @@ public class SmartFlatDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;		
+	}
+	
+	public boolean saveFamilyDetails(FamilyDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		
+		values.put(TableFlatOwnerFamilyDetails.FLAT_OWNER_CODE, details.getmFlatOwnerCode());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_NAME, details.getmFamilyMemberName());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_DOB, details.getmFamilyMemberDOB());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_RELATION, details.getmFamilyMemberRelation());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO, details.getmFamilyMemberContactno());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE, details.getmFamilyMemberAge());
+		values.put(TableFlatOwnerFamilyDetails.NEED_LOGIN, details.ismNeedLogin());
+		
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.FAMILY_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	public Cursor getFamilyDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.FAMILY_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
+	}
+	
+	public boolean saveVehicleDetails(VehicleDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableFlatOwnerVehicleDetails.VEHICLE_TYPE, details.getmVehicleType());
+		values.put(TableFlatOwnerVehicleDetails.VEHICLE_NUMBER, details.getmVehicleNumber());
+		values.put(TableFlatOwnerVehicleDetails.VEHICLE_COMPANY, details.getmVehicleCompany());
+		values.put(TableFlatOwnerVehicleDetails.VEHICLE_MODEL, details.getmVehicleModel());
+		values.put(TableFlatOwnerVehicleDetails.VEHICLE_COLOR, details.getmVehicleColor());
+
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.VEHICLE_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	public Cursor getVehicleDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.VEHICLE_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;	
+	}
+	
+	public boolean saveComplaintDetails(ComplaintDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_NUMBER, details.getmComplaintNumber());
+		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_TYPE, details.getmComplaintType());
+		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_STATUS, details.getmComplaintStatus());
+		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_DETAILS, details.getmComplaintDetails());
+		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_RAISED_DATETIME, details.getmComplaintRaisedDateTime());
+		
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.COMPLAINT_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	public Cursor getAllComplaintDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public boolean saveRequestDetails(RequestDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableFlatOwnerRequestDetails.REQUEST_NUMBER, details.getmRequestNumber());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_TYPE, details.getmRequestType());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_PRIORITY, details.getmRequestPriority());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_STATUS, details.getmRequestStatus());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_DETAILS, details.getmRequestDetails());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_DATETIME, details.getmRequestDateTime());
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.REQUEST_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	public Cursor getAllRequestDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public boolean saveQueryDetails(QueryDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableFlatOwnerQueryDetails.QUERY_NUMBER, details.getmQueryNumber());
+		values.put(TableFlatOwnerQueryDetails.QUERY_STATUS, details.getmQueryStatus());
+		values.put(TableFlatOwnerQueryDetails.QUERY_DETAILS, details.getmQueryDetails());
+		values.put(TableFlatOwnerQueryDetails.QUERY_DATETIME, details.getmQueryDateTime());
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.QUERY_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	public Cursor getAllQueryDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.QUERY_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public boolean saveSocietyNoticeDetails(NoticeDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableSocietyNotices.NOTICE_NUMBER, details.getmNoticeNumber());
+		values.put(TableSocietyNotices.NOTICE_PRIORITY, details.getmNoticePriority());
+		values.put(TableSocietyNotices.NOTICE_DETAILS, details.getmNoticeDetails());
+		values.put(TableSocietyNotices.NOTICE_DATETIME, details.getmNoticeDateTime());
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.SOCIETY_NOTICES, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;
+	}
+	
+	public Cursor getAllSocietyNoticeDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
 	}
 
 }

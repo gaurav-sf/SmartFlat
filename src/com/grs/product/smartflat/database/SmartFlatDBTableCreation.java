@@ -72,13 +72,13 @@ public class SmartFlatDBTableCreation {
 	public static final String TABLE_VEHICLE_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.VEHICLE_DETAILS
 			+"( "
 			+ TableFlatOwnerVehicleDetails.ID + " INTEGER PRIMARY KEY, "
-			+ TableFlatOwnerVehicleDetails.VEHICLE_TYPE + " INTEGER, "
+			+ TableFlatOwnerVehicleDetails.VEHICLE_TYPE + " TEXT, "
 			+ TableFlatOwnerVehicleDetails.VEHICLE_NUMBER + " TEXT, "
 			+ TableFlatOwnerVehicleDetails.VEHICLE_COMPANY + " TEXT, "
 			+ TableFlatOwnerVehicleDetails.VEHICLE_MODEL + " TEXT, "
 			+ TableFlatOwnerVehicleDetails.VEHICLE_COLOR + " TEXT);";
 	
-	public static final String TABLE_COMPLAINT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.COMPAINTS_DETAILS
+	public static final String TABLE_COMPLAINT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.COMPLAINT_DETAILS
 			+"( "
 			+ TableFlatOwnerComplaintDetails.ID + " INTEGER PRIMARY KEY, "
 			+ TableFlatOwnerComplaintDetails.COMPLAINT_NUMBER + " TEXT, "

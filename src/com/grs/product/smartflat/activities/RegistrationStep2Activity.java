@@ -1,6 +1,7 @@
 package com.grs.product.smartflat.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import java.text.DateFormat;
 import java.util.Date;
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 
@@ -48,6 +50,10 @@ public class RegistrationStep2Activity extends Activity {
 			public void onClick(View arg0) {
 				if(isValidateUiEntries()){
 					saveFlatOwnerDetails();
+					SmartFlatApplication.saveFlatOwnerCodeInSharedPreferences(mEditTextUsername.getText().toString());
+					Intent loginIntent = new Intent(RegistrationStep2Activity.this, LoginActivity.class);
+					startActivity(loginIntent);
+					finish();
 				}
 
 			}

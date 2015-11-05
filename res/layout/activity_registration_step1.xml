@@ -41,7 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Age" />
+        android:hint="Age"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/editTextContactNo"
@@ -90,7 +91,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="No Of Family Members" />
+        android:hint="No Of Family Members" 
+        android:inputType="number"/>
 
     <EditText
         android:id="@+id/editTextNoOfVehicle"
@@ -98,7 +100,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="No Of Vehicle" />
+        android:hint="No Of Vehicle"
+        android:inputType="number" />
     
     <Button
         android:id="@+id/buttonNext"

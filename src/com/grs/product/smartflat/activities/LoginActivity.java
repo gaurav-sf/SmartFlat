@@ -18,7 +18,7 @@ public class LoginActivity extends Activity{
 	
 	private EditText mEditTextUsername, mEditTextPassword;
 	private Button mButtonLogin;
-	private FlatOwnerDetails mFlatOwnerDetails;
+	private FlatOwnerDetails mFlatOwnerDetails = new FlatOwnerDetails();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class LoginActivity extends Activity{
 				if(username.equals(mFlatOwnerDetails.getmUsername())
 						&& password.equals(mFlatOwnerDetails.getmPassword()))
 				{
+					Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
 					
 				}else{
 					Toast.makeText(LoginActivity.this, "Invalid Login Details", Toast.LENGTH_LONG).show();

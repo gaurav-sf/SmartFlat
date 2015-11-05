@@ -13,7 +13,7 @@ public class SmartFlatDBTables {
 		public static final String SOCIETY_DETAILS = "Society_Details";
 		public static final String FAMILY_DETAILS = "Family_Details";
 		public static final String VEHICLE_DETAILS = "Vehicle_Details";
-		public static final String COMPAINTS_DETAILS = "Complaint_Details";
+		public static final String COMPLAINT_DETAILS = "Complaint_Details";
 		public static final String REQUEST_DETAILS = "Request_Details";
 		public static final String QUERY_DETAILS = "Query_Details";
 		public static final String SOCIETY_NOTICES= "Society_Notices";

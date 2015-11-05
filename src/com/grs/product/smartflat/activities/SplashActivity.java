@@ -19,12 +19,6 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         goToNextActivity();
     }
     
@@ -32,22 +26,25 @@ public class SplashActivity extends Activity {
     	/*First we check for society Code, if it is not null in SharedPreferences 
     	means society details are there with us so directly we can go to registration or home screen
     	otherwise launch society code screen*/
-    	if(SmartFlatApplication.getSocietyCodeFromSharedPreferences().equals(null))
+    	if(SmartFlatApplication.getSocietyCodeFromSharedPreferences() == null||SmartFlatApplication.getSocietyCodeFromSharedPreferences().equals(null))
     	{
     		Intent goToSocietyCode = new Intent(SplashActivity.this,StartActivity.class);
     		startActivity(goToSocietyCode);
+    		finish();
     		
     	}else{
     		//If we have Society code present. Then will check for flat owner code.
     		//If it is there means registration is done so that we can directly go to Login Page or we need to launch registration page
-    		if(SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences().equals(null)){
+    		if(SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences() == null || SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences().equals(null)){
         		Intent goToRegistration = new Intent(SplashActivity.this,RegistrationStep1Activity.class);
         		startActivity(goToRegistration);
+        		finish();
     			
     		}else{
     			//Need to call HomeActivity once it is created.
-        	//	Intent goToHomeScreen = new Intent(SplashActivity.this,StartActivity.class);
-        	//	startActivity(goToHomeScreen);
+        		Intent goToHomeScreen = new Intent(SplashActivity.this,LoginActivity.class);
+        		startActivity(goToHomeScreen);
+        		finish();
     			
     		}
     		
