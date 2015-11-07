@@ -4,9 +4,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
-
+import android.app.Dialog;
+import android.content.Context;
 import android.database.Cursor;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.models.SocietyDetails;
@@ -53,6 +59,28 @@ public class Utilities {
 		dateTime=converter.format(date);
 		
 		return dateTime;
+	}
+	
+	public static void ShowAlertBox(final Context context, String title,
+			String message) {
+		final Dialog mDialog = new Dialog(context,
+				android.R.style.Theme_Translucent_NoTitleBar);
+		View layout = LayoutInflater.from(context)
+				.inflate(R.layout.alert, null);
+		TextView tvAlert = (TextView) layout.findViewById(R.id.tvAlert);
+		TextView tvAlertMsg = (TextView) layout.findViewById(R.id.tvAlertMsg);
+		tvAlertMsg.setText(message);
+		tvAlert.setText(title);
+		mDialog.setContentView(layout);
+		Button btnOk = (Button) layout.findViewById(R.id.btnOk);
+		btnOk.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(final View view) {
+				mDialog.dismiss();
+			}
+		});
+		mDialog.show();
 	}
 
 }

@@ -7,4 +7,29 @@
     <string name="button_continue_text">Continue</string>
     <string name="society_code_hint">Enter Society Code</string>
 
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Family</item>
+        <item>Vehicle</item>
+        <item>Complaints</item>
+        <item>Requests</item>
+        <item>Queries</item>
+        <item>Notices</item>
+        <item>Contacts</item>
+        <item>About App</item>
+        <item>Help</item>
+        <item>Sign Out</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_people</item>
+        <item>@drawable/ic_photos</item>
+        <item>@drawable/ic_communities</item>
+        <item>@drawable/ic_pages</item>
+        <item>@drawable/ic_whats_hot</item>
+    </array>
+
 </resources>
