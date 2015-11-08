@@ -82,5 +82,9 @@ public class Utilities {
 		});
 		mDialog.show();
 	}
+	
+	public static String getCurrentDateTime(){
+		return DateFormat.getDateTimeInstance().format(new Date());
+	}
 
 }

@@ -2,14 +2,13 @@ package com.grs.product.smartflat.activities;
 
 
 import java.util.ArrayList;
-
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
@@ -18,12 +17,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.adapter.NavDrawerItem;
 import com.grs.product.smartflat.adapter.NavDrawerListAdapter;
+import com.grs.product.smartflat.fragments.HomeFragment;
+import com.grs.product.smartflat.fragments.MainComplaintsFragment;
 
-public class DashBoardActivity extends Activity {
+@SuppressWarnings("deprecation")
+public class DashBoardActivity extends FragmentActivity {
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
@@ -62,28 +63,27 @@ public class DashBoardActivity extends Activity {
 
 		// adding nav drawer items to array
 		// Home
-		//navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		// Find People/Accounts
+		// Family
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		// Photos/Maintenance
+		// Vehicle
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Communities, Will add a counter here/Payment
+		// Complaints
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		// Pages/Parking
+		// Requests
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		// What's hot, We  will add a counter here/Contact Us
+		// Queries
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-		
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6],-1));
-		
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7],-1));
-		
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8],-1));
-		
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9],-1));
-		
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10],-1));
+		//Notices
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		//Contacts
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
+		//About App
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
+		//Help
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
+		//Sign Out
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -173,50 +173,70 @@ public class DashBoardActivity extends Activity {
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
 	private void displayView(int position) {
-		// update the main content by replacing fragments
-		Fragment fragment = null;
+		String status = "";
 		switch (position) {
 		case 0:
-		//	fragment = new HomeFragment();
+			status = "created";
+			HomeFragment homeFragment = new HomeFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, homeFragment).commit();
 			break;
+			
 		case 1:
-		//	fragment = new AccountsFragment();
+			status = "created";
 			break;
+			
 		case 2:
-	//		fragment = new MaintenanceFragment();
+			status = "created";
 			break;
+			
 		case 3:
-	//		fragment = new PaymentFragment();
+			status = "created";
+			MainComplaintsFragment complaintsFragment = new MainComplaintsFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, complaintsFragment).commit();
 			break;
+			
 		case 4:
-	//		fragment = new ParkingFragment();
+			status = "created";
 			break;
+			
 		case 5:
-	//		fragment = new ContactUsFragment();
+			status = "created";
 			break;
 			
 		case 6:
+			status = "created";
+			break;
+			
+		case 7:
+			status = "created";
+			break;
+			
+		case 8:
+			status = "created";
+			break;
+			
+		case 9:
+			status = "created";
+			break;
+			
+		case 10:
+			status = "created";
     		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);	
 			finish();
 			break;
-
+			
 		default:
 			break;
 		}
 
-		if (fragment != null) {
-			FragmentManager fragmentManager = getFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-
-			// update selected item and title, then close the drawer
+		if (!status.equals("")) 
+		{
 			mDrawerList.setItemChecked(position, true);
 			mDrawerList.setSelection(position);
 			setTitle(navMenuTitles[position]);
 			mDrawerLayout.closeDrawer(mDrawerList);
-		} else {
-			// error in creating fragment
-			Log.e("MainActivity", "Error in creating fragment");
 		}
 	}
 
@@ -248,8 +268,7 @@ public class DashBoardActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		Toast.makeText(getApplicationContext(), "Use Sign out to go back", Toast.LENGTH_SHORT).show();
-	//	super.onBackPressed();
+		super.onBackPressed();
 	}
 
 }

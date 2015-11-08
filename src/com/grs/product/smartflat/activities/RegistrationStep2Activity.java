@@ -14,6 +14,7 @@ import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.utils.Utilities;
 
 public class RegistrationStep2Activity extends Activity {
 
@@ -93,7 +94,7 @@ public class RegistrationStep2Activity extends Activity {
 		flatOwnerDetails.setmNoofVehicles(Integer.parseInt(extras.getString("noofvehicle")));
 		flatOwnerDetails.setmSocietyCode(extras.getString("societycode"));
 		flatOwnerDetails.setmFlatOwnerCode(extras.getString("username"));
-		flatOwnerDetails.setmFlatOwnerCreatedDateTime(DateFormat.getDateTimeInstance().format(new Date()));
+		flatOwnerDetails.setmFlatOwnerCreatedDateTime(Utilities.getCurrentDateTime());
 		
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
 		boolean result = objManager.saveFlatOwnerDeatils(flatOwnerDetails);

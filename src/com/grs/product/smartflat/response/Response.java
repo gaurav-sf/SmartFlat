@@ -3,16 +3,16 @@ package com.grs.product.smartflat.response;
 public class Response {
 	private String mStatus;
 	private String mMessage;
-	private String mRole;
+	private String mUserCode;
 
 	public Response() {
 		super();
 	}
 
-	public Response(String status, String message, String role) {
+	public Response(String status, String message, String userCode) {
 		this.mStatus = status;
 		this.mMessage = message;
-		this.mRole = role;
+		this.mUserCode = userCode;
 
 	}
 
@@ -34,10 +34,10 @@ public class Response {
 	}
 
 	public void setRole(String role) {
-		this.mRole = role;
+		this.mUserCode = role;
 	}
 
 	public String getRole() {
-		return mRole;
+		return mUserCode;
 	}
 }
