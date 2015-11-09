@@ -20,7 +20,7 @@ import com.grs.product.smartflat.models.FamilyDetails;
 
 public class FamilyDetailsFragment extends Fragment{
 	private ExpandableListView mExpListViewFamilyDetails;
-	private List<FamilyDetails> mListFamilyDetails = new ArrayList<FamilyDetails>();
+	private List<FamilyDetails> mListFamilyDetails;
 	private FamilyDetailsLIstAdapter mFamilyDetailsLIstAdapter;
 	
 	@Override
@@ -49,7 +49,7 @@ public class FamilyDetailsFragment extends Fragment{
 	
 	private void initialiseUI(View rootView){
 		mExpListViewFamilyDetails = (ExpandableListView) rootView.findViewById(R.id.expandaleListViewFamilyDetails);
-		
+		mListFamilyDetails = new ArrayList<FamilyDetails>();
 	}
 	
 	private void createDataForList(){
