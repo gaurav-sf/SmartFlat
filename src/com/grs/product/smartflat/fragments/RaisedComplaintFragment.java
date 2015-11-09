@@ -52,7 +52,7 @@ public class RaisedComplaintFragment extends Fragment {
 	
 	private void createComplaintsList(){
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
-		Cursor cursor = objManager.getAllComplaintDetails();
+		Cursor cursor = objManager.getRaisedComplaintDetails();
 		if(cursor.getCount()==0){
 			textViewMessage.setVisibility(View.VISIBLE);
 			listViewComplaintDetails.setVisibility(View.GONE);

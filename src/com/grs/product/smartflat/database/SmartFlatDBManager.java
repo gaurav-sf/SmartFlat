@@ -132,4 +132,18 @@ public class SmartFlatDBManager {
 		SmartFlatDatabase.getInstance().close();
 		return details;
 	}
+	
+	public Cursor getRaisedComplaintDetails(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedComplaintDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getClosedComplaintDetails(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getClosedComplaintDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
 }

@@ -484,5 +484,24 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
+	
+	public Cursor getRaisedComplaintDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS + "WHERE "+TableFlatOwnerComplaintDetails.COMPLAINT_STATUS +" IN ('Raised','Processed')";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public Cursor getClosedComplaintDetails(){
+		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS + "WHERE "+TableFlatOwnerComplaintDetails.COMPLAINT_STATUS +" = 'Closed'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
 
 }

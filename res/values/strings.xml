@@ -36,5 +36,9 @@
     <string name="text_new">NEW</string>
     <string name="text_raised">RAISED</string>
     <string name="text_closed">CLOSED</string>
+    <string name="text_add_member">ADD MEMBER</string>
+    <string name="text_happy_Family">HAPPY FAMILY</string>
+    <string name="text_vehicle_details">VEHICLE DETAILS</string>
+    <string name="text_add_new_vehicle">NEW VEHICLE</string>
 
 </resources>

@@ -20,8 +20,14 @@ import android.widget.Toast;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.adapter.NavDrawerItem;
 import com.grs.product.smartflat.adapter.NavDrawerListAdapter;
+import com.grs.product.smartflat.fragments.FamilyMainFragment;
 import com.grs.product.smartflat.fragments.HomeFragment;
 import com.grs.product.smartflat.fragments.MainComplaintsFragment;
+import com.grs.product.smartflat.fragments.MainQueriesFragment;
+import com.grs.product.smartflat.fragments.MainRequestFragment;
+import com.grs.product.smartflat.fragments.MainVehicleFragment;
+import com.grs.product.smartflat.fragments.NoticeFragment;
+import com.grs.product.smartflat.fragments.VehicleDetailsFragment;
 
 @SuppressWarnings("deprecation")
 public class DashBoardActivity extends FragmentActivity {
@@ -175,6 +181,7 @@ public class DashBoardActivity extends FragmentActivity {
 	private void displayView(int position) {
 		String status = "";
 		switch (position) {
+		//Home
 		case 0:
 			status = "created";
 			HomeFragment homeFragment = new HomeFragment();
@@ -182,14 +189,23 @@ public class DashBoardActivity extends FragmentActivity {
 	        .replace(R.id.fragment_container, homeFragment).commit();
 			break;
 			
+		//Family	
 		case 1:
 			status = "created";
+			FamilyMainFragment familyFragment = new FamilyMainFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, familyFragment).commit();
 			break;
 			
+		//Vehicle	
 		case 2:
 			status = "created";
+			MainVehicleFragment vehicleFragment = new MainVehicleFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, vehicleFragment).commit();
 			break;
 			
+		//Complaint	
 		case 3:
 			status = "created";
 			MainComplaintsFragment complaintsFragment = new MainComplaintsFragment();
@@ -197,30 +213,46 @@ public class DashBoardActivity extends FragmentActivity {
 	        .replace(R.id.fragment_container, complaintsFragment).commit();
 			break;
 			
+		//Request	
 		case 4:
 			status = "created";
+			MainRequestFragment requestFragment = new MainRequestFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, requestFragment).commit();
 			break;
 			
+		//Query	
 		case 5:
 			status = "created";
+			MainQueriesFragment queryFragment = new MainQueriesFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, queryFragment).commit();
 			break;
 			
+		//Notice	
 		case 6:
 			status = "created";
+			NoticeFragment noticeFragment = new NoticeFragment();
+	        getSupportFragmentManager().beginTransaction()
+	        .replace(R.id.fragment_container, noticeFragment).commit();
 			break;
-			
+		
+		//Contacts	
 		case 7:
 			status = "created";
 			break;
 			
+		//	AboutApp
 		case 8:
 			status = "created";
 			break;
 			
+		//Help	
 		case 9:
 			status = "created";
 			break;
 			
+		//Sign Out	
 		case 10:
 			status = "created";
     		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);	

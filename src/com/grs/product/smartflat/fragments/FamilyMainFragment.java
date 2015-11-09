@@ -4,7 +4,6 @@ import com.grs.product.smartflat.R;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -12,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainComplaintsFragment extends Fragment {
+public class FamilyMainFragment extends Fragment {
 	
 	private FragmentTabHost mTabHost;
 
@@ -29,14 +28,11 @@ public class MainComplaintsFragment extends Fragment {
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentContent);
      
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab1").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_new, android.R.drawable.star_on)),
-                NewComplaintFragment.class, null);
+                mTabHost.newTabSpec("tab1").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_happy_Family, android.R.drawable.star_on)),
+                FamilyDetailsFragment.class, null);
         mTabHost.addTab(
-                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_raised, android.R.drawable.star_on)),
-                RaisedComplaintFragment.class, null);
-        mTabHost.addTab(
-                mTabHost.newTabSpec("tab3").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_closed, android.R.drawable.star_on)),
-                ClosedComplaintFragment.class, null);
+                mTabHost.newTabSpec("tab2").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_add_member, android.R.drawable.star_on)),
+                AddFamilyMemberFragment.class, null);
         return rootView;
 	}
 	
@@ -46,5 +42,7 @@ public class MainComplaintsFragment extends Fragment {
         tv.setText(title);
         return view;
     }
+
+
 
 }
