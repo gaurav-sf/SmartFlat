@@ -32,8 +32,7 @@ public class AddFamilyMemberFragment extends Fragment {
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_add_family_member, container, false);
 		initialiseUI(rootView);
 		addListener();
         return rootView;
@@ -56,7 +55,6 @@ public class AddFamilyMemberFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				if(validateUIEntries()){
 					saveFamilyDetails();
 					clearAllFields();
@@ -92,9 +90,7 @@ public class AddFamilyMemberFragment extends Fragment {
 		{
 			mEditTextFMemberContactNo.setError("Please enter contact no");
 			return false;
-		}
-		
-	
+		}	
 		return true;
 	}
 	
@@ -118,11 +114,11 @@ public class AddFamilyMemberFragment extends Fragment {
 		}
 	
 	private void clearAllFields(){
-		mEditTextFMemberName.setError("");
-		mEditTextFMemberRelation.setError("");
-		mEditTextFMemberDOB.setError("");
-		mEditTextFMemberAge.setError("");
-		mEditTextFMemberContactNo.setError("");
+		mEditTextFMemberName.setText("");
+		mEditTextFMemberRelation.setText("");
+		mEditTextFMemberDOB.setText("");
+		mEditTextFMemberAge.setText("");
+		mEditTextFMemberContactNo.setText("");
 		mRadioButtonNo.setChecked(true);
 	}
 
