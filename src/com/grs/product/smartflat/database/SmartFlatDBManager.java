@@ -146,4 +146,32 @@ public class SmartFlatDBManager {
 		SmartFlatDatabase.getInstance().close();
 		return details;
 	}
+		
+	public Cursor getRaisedRequestDetails(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedRequestDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getClosedRequestDetails(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getClosedRequestDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedQueryDetails(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedQueryDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getClosedQueryDetails(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getClosedQueryDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
 }

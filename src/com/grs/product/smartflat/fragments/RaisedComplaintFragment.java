@@ -56,7 +56,7 @@ public class RaisedComplaintFragment extends Fragment {
 		if(cursor.getCount()==0){
 			textViewMessage.setVisibility(View.VISIBLE);
 			listViewComplaintDetails.setVisibility(View.GONE);
-			textViewMessage.setText("NO Complaints to display");
+			textViewMessage.setText("No Complaints to display");
 		}else{
 			for(int i = 0; i<=cursor.getCount();i++){
 				boolean isdata = cursor.moveToPosition(i);

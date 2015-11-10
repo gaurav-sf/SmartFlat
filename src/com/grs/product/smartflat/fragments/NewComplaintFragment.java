@@ -73,7 +73,6 @@ public class NewComplaintFragment extends Fragment {
 	}
 	
 	private void saveComplaintDetails(){
-		getComplaintNumber();
 		ComplaintDetails complaintDetails = new ComplaintDetails();
 		complaintDetails.setmComplaintType(mEditTextCopmType.getText().toString());
 		complaintDetails.setmComplaintDetails(mEditTextCopmDetails.getText().toString());
