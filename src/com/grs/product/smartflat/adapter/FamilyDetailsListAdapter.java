@@ -13,12 +13,12 @@ import android.widget.TextView;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.models.FamilyDetails;
 
-public class FamilyDetailsLIstAdapter extends BaseExpandableListAdapter {
+public class FamilyDetailsListAdapter extends BaseExpandableListAdapter {
 
 	private Context mContext;
 	private List<FamilyDetails> listFamilyDetails;
 	
-	public FamilyDetailsLIstAdapter(Context mContext, List<FamilyDetails> listFamilyDetails) {
+	public FamilyDetailsListAdapter(Context mContext, List<FamilyDetails> listFamilyDetails) {
 		this.mContext = mContext;
 		this.listFamilyDetails = listFamilyDetails;
 	}
@@ -56,7 +56,7 @@ public class FamilyDetailsLIstAdapter extends BaseExpandableListAdapter {
 	@Override
 	public int getChildrenCount(int groupPosition) {
 		// TODO Auto-generated method stub
-		return listFamilyDetails.size();
+		return 1;
 	}
 
 	@Override

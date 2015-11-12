@@ -3,10 +3,14 @@ package com.grs.product.smartflat.fragments;
 import java.util.ArrayList;
 import java.util.List;
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.activities.ComplaintDetailsActivity;
+import com.grs.product.smartflat.activities.QueryDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedQueryListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
 import com.grs.product.smartflat.models.QueryDetails;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,8 +18,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class RaisedQueryFragment extends Fragment {
 
@@ -34,6 +40,7 @@ public class RaisedQueryFragment extends Fragment {
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_raised_complaint, container, false);
 		initializeUI(rootView);
+		addListener();
 		return rootView;
 	}
 	
@@ -68,7 +75,19 @@ public class RaisedQueryFragment extends Fragment {
 		}
 	}
 
+	private void addListener(){
+	listViewQueryDetails.setOnItemClickListener(new OnItemClickListener() {
 
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+				long arg3) {
+			Intent singleRequestDetails = new Intent(getActivity(), QueryDetailsActivity.class);
+			singleRequestDetails.putExtra("queryno", listQueryDetails.get(position).getmQueryNumber());
+			startActivity(singleRequestDetails);
+			
+		}
+	});
+	}
 
 
 }

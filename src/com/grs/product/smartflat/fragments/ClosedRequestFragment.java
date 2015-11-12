@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.activities.ComplaintDetailsActivity;
+import com.grs.product.smartflat.activities.RequestDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedComplaintListAdapter;
 import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
@@ -12,6 +14,7 @@ import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerReques
 import com.grs.product.smartflat.models.ComplaintDetails;
 import com.grs.product.smartflat.models.RequestDetails;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,8 +22,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class ClosedRequestFragment extends Fragment {
 
@@ -41,6 +46,7 @@ public class ClosedRequestFragment extends Fragment {
 		// TODO Auto-generated method stub
 		View rootView = inflater.inflate(R.layout.fragment_closed_complaint, container, false);
 		initializeUI(rootView);
+		addListener();
 		return rootView;
 	}
 	
@@ -55,7 +61,7 @@ public class ClosedRequestFragment extends Fragment {
 	
 	private void createComplaintsList(){
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
-		Cursor cursor = objManager.getClosedComplaintDetails();
+		Cursor cursor = objManager.getClosedRequestDetails();
 		if(cursor.getCount()==0){
 			textViewMessage.setVisibility(View.VISIBLE);
 			listViewRequestDetails.setVisibility(View.GONE);
@@ -74,10 +80,18 @@ public class ClosedRequestFragment extends Fragment {
 			}
 		}
 	}
+	
+	private void addListener(){
+	listViewRequestDetails.setOnItemClickListener(new OnItemClickListener() {
 
-
-
-
-
-
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+				long arg3) {
+			Intent singleRequestDetails = new Intent(getActivity(), RequestDetailsActivity.class);
+			singleRequestDetails.putExtra("requestno", listRequestDetails.get(position).getmRequestNumber());
+			startActivity(singleRequestDetails);
+			
+		}
+	});
+	}
 }

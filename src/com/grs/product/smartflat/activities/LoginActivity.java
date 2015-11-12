@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflat.asynctasks.LoginTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
@@ -41,6 +42,7 @@ public class LoginActivity extends Activity{
 	private void initializeUI()
 	{
 		mEditTextUsername = (EditText) findViewById(R.id.editTextUsername); 
+		mEditTextUsername.setText(SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences());
 		mEditTextPassword = (EditText) findViewById(R.id.editTextPassword); 
 		mButtonLogin = (Button) findViewById(R.id.buttonLogin);	
 	}
@@ -57,8 +59,10 @@ public class LoginActivity extends Activity{
 				if(username.equals(mFlatOwnerDetails.getmUsername())
 						&& password.equals(mFlatOwnerDetails.getmPassword()))
 				{
+					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences("TEMP ACCESS CODE");
 					Intent intentDashboard = new Intent(LoginActivity.this,DashBoardActivity.class);
-					startActivity(intentDashboard);					
+					startActivity(intentDashboard);	
+					finish();
 				}else{
 					Toast.makeText(LoginActivity.this, "Invalid Login Details", Toast.LENGTH_LONG).show();
 				}

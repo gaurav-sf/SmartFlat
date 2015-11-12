@@ -2,32 +2,33 @@ package com.grs.product.smartflat.activities;
 
 
 import java.util.ArrayList;
-import android.app.Fragment;
-import android.app.FragmentManager;
+
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.adapter.NavDrawerItem;
 import com.grs.product.smartflat.adapter.NavDrawerListAdapter;
+import com.grs.product.smartflat.fragments.AboutAppFragment;
+import com.grs.product.smartflat.fragments.ContactsFragment;
 import com.grs.product.smartflat.fragments.FamilyMainFragment;
+import com.grs.product.smartflat.fragments.HelpFragment;
 import com.grs.product.smartflat.fragments.HomeFragment;
 import com.grs.product.smartflat.fragments.MainComplaintsFragment;
 import com.grs.product.smartflat.fragments.MainQueriesFragment;
 import com.grs.product.smartflat.fragments.MainRequestFragment;
 import com.grs.product.smartflat.fragments.MainVehicleFragment;
 import com.grs.product.smartflat.fragments.NoticeFragment;
-import com.grs.product.smartflat.fragments.VehicleDetailsFragment;
 
 @SuppressWarnings("deprecation")
 public class DashBoardActivity extends FragmentActivity {
@@ -240,22 +241,32 @@ public class DashBoardActivity extends FragmentActivity {
 		//Contacts	
 		case 7:
 			status = "created";
+			ContactsFragment contactsFragment = new ContactsFragment();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, contactsFragment).commit();
 			break;
 			
 		//	AboutApp
 		case 8:
 			status = "created";
+			AboutAppFragment aboutAppFragment = new AboutAppFragment();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, aboutAppFragment).commit();
 			break;
 			
 		//Help	
 		case 9:
 			status = "created";
+			HelpFragment helpFragment = new HelpFragment();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, helpFragment).commit();
 			break;
 			
 		//Sign Out	
 		case 10:
 			status = "created";
-    		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);	
+    		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
+    		SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(null);
 			finish();
 			break;
 			

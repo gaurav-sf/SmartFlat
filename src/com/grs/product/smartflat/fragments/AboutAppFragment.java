@@ -9,7 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class NoticeFragment extends Fragment {
+public class AboutAppFragment extends Fragment {
+
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,7 @@ public class NoticeFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_notice, container, false);
+		View rootView = inflater.inflate(R.layout.fragment_about_app, container, false);
 		initialiseUI(rootView);
 		addListener();
 
@@ -34,5 +35,7 @@ public class NoticeFragment extends Fragment {
 	private void addListener(){
 		
 	}
+
+
 
 }

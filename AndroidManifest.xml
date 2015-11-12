@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.grs.product.smartflat.activities.DashBoardActivity"
+            android:name="com.grs.product.smartflat.activities.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -44,11 +44,29 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
-<!--  		<activity
+        <activity
             android:name="com.grs.product.smartflat.activities.DashBoardActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
-        </activity> -->
+        </activity>
+        <activity
+            android:name="com.grs.product.smartflat.activities.ComplaintDetailsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
+        </activity>
+        <activity
+            android:name="com.grs.product.smartflat.activities.RequestDetailsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
+        </activity>      
+        <activity
+            android:name="com.grs.product.smartflat.activities.QueryDetailsActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>

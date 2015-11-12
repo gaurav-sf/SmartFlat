@@ -40,10 +40,15 @@ public class SplashActivity extends Activity {
         		startActivity(goToRegistration);
         		finish();
     			
-    		}else{
+    		}else if(SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences()==null || SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences().equals(null)){
     			//Need to call HomeActivity once it is created.
-        		Intent goToHomeScreen = new Intent(SplashActivity.this,LoginActivity.class);
-        		startActivity(goToHomeScreen);
+        		Intent goToLoginScreen = new Intent(SplashActivity.this,LoginActivity.class);
+        		startActivity(goToLoginScreen);
+        		finish();
+    			
+    		}else{
+        		Intent goToDashboardScreen = new Intent(SplashActivity.this,DashBoardActivity.class);
+        		startActivity(goToDashboardScreen);
         		finish();
     			
     		}

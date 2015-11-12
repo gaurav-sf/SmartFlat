@@ -44,7 +44,9 @@ public class NewQueryFragment extends Fragment {
 		mTextViewTitle = (TextView) rootview.findViewById(R.id.textView1);
 		mTextViewTitle.setText("RAISE NEW QUERY");
 		mEditTextQueryDetails = (EditText) rootview.findViewById(R.id.editTextComplaintTDetails);
-		mButtonRaised = (Button) rootview.findViewById(R.id.buttonRaise);	
+		mEditTextQueryDetails.setHint("Query Details");
+		mButtonRaised = (Button) rootview.findViewById(R.id.buttonRaise);
+		mButtonRaised.setText("RAISE QUERY");
 		mEditTextCopmType = (EditText) rootview.findViewById(R.id.editTextComplaintType);
 		mEditTextCopmType.setVisibility(View.GONE);
 	}

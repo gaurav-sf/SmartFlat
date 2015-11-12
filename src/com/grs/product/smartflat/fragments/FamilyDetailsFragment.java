@@ -13,7 +13,7 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
 
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.adapter.FamilyDetailsLIstAdapter;
+import com.grs.product.smartflat.adapter.FamilyDetailsListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
@@ -21,7 +21,7 @@ import com.grs.product.smartflat.models.FamilyDetails;
 public class FamilyDetailsFragment extends Fragment{
 	private ExpandableListView mExpListViewFamilyDetails;
 	private List<FamilyDetails> mListFamilyDetails;
-	private FamilyDetailsLIstAdapter mFamilyDetailsLIstAdapter;
+	private FamilyDetailsListAdapter mFamilyDetailsLIstAdapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class FamilyDetailsFragment extends Fragment{
 		View rootView = inflater.inflate(R.layout.fragment_family_details, container, false);
 		initialiseUI(rootView);
 		createDataForList();
-		mFamilyDetailsLIstAdapter = new FamilyDetailsLIstAdapter(getActivity(), mListFamilyDetails);
+		mFamilyDetailsLIstAdapter = new FamilyDetailsListAdapter(getActivity(), mListFamilyDetails);
 		mExpListViewFamilyDetails.setAdapter(mFamilyDetailsLIstAdapter);
 		mExpListViewFamilyDetails.setOnGroupExpandListener(new OnGroupExpandListener() {
 			
