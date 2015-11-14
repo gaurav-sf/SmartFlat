@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
+
+import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
@@ -85,6 +88,16 @@ public class Utilities {
 	
 	public static String getCurrentDateTime(){
 		return DateFormat.getDateTimeInstance().format(new Date());
+	}
+	
+	public static void addCustomActionBar(Activity activity){
+		ActionBar actionBar = activity.getActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(false);
+		LayoutInflater inflater = LayoutInflater.from(activity);
+		View mCustomView = inflater.inflate(R.layout.actionbar, null);
+		actionBar.setCustomView(mCustomView);
+		actionBar.setDisplayShowCustomEnabled(true);
 	}
 
 }

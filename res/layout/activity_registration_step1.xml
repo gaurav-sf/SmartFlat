@@ -1,120 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_margin="10dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="20sp" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registration Step 1/2"
-        android:layout_gravity="center" />
-    
-    <ScrollView 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="10dp"
-        android:hint="Name" />
-    
-        <EditText
-        android:id="@+id/editTextDOB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginTop="10dp"
-        android:hint="DOB --- dd/mm/yyyy" />
+        android:text="Registration Step 1/2"
+        android:textColor="#595959"
+        android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/editTextAge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="number" />
-
-    <EditText
-        android:id="@+id/editTextContactNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Contact Number" />
-    
-        <EditText
-        android:id="@+id/editTextEmailId"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="Email id" />
-
-    <Spinner
-        android:id="@+id/spinnertBuildingName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Building Name" />
-
-    <Spinner
-        android:id="@+id/spinnerTextFloorNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Floor Number" />
-
-    <EditText
-        android:id="@+id/editTextFlatNo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="Flat Number" />
-    
-        <EditText
-        android:id="@+id/editTextNoOfFamilyMembers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="No Of Family Members" 
-        android:inputType="number"/>
-
-    <EditText
-        android:id="@+id/editTextNoOfVehicle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:hint="No Of Vehicle"
-        android:inputType="number" />
-    
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="NEXT" 
-        android:layout_marginTop="10dp"
+    <View
+        android:id="@+id/view1"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/textView1"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-        android:ems="10"/>
-    
-    </LinearLayout>
-    
+        android:layout_marginTop="18dp"
+        android:background="#469196" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view1"
+        android:layout_above="@+id/buttonNext"
+        android:layout_marginTop="20sp" 
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Name"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextDOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="DOB --- dd/mm/yyyy"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextAge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Age"
+                android:inputType="number"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextContactNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Contact Number"
+                android:inputType="number"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Email id"
+                android:inputType="textEmailAddress"
+                android:padding="10sp" />
+
+            <Spinner
+                android:id="@+id/spinnertBuildingName"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
+                android:hint="Building Name"
+                android:popupBackground="#f2f2f2" />
+
+            <Spinner
+                android:id="@+id/spinnerTextFloorNo"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
+                android:ems="10"
+                android:hint="Floor Number" />
+
+            <EditText
+                android:id="@+id/editTextFlatNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="Flat Number"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextNoOfFamilyMembers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="No Of Family Members"
+                android:inputType="number"
+                android:padding="10sp" />
+
+            <EditText
+                android:id="@+id/editTextNoOfVehicle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/edittext_bg"
+                android:ems="10"
+                android:hint="No Of Vehicle"
+                android:inputType="number"
+                android:padding="10sp" />
+        </LinearLayout>
     </ScrollView>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btnbg"
+        android:ems="10"
+        android:text="NEXT"
+        android:textColor="#ffffff" />
+
+</RelativeLayout>

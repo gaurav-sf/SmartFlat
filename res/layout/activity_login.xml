@@ -2,40 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="20sp" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp" />
+        android:layout_marginTop="50dp"
+        android:text="Login"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="50dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:background="#000000" />
 
     <EditText
         android:id="@+id/editTextUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edittext_bg"
+        android:padding="10sp"
         android:ems="10"
-        android:layout_marginTop="10dp"/>
-
+        android:hint="Id"
+         />
 
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edittext_bg"
         android:ems="10"
-        android:layout_marginTop="30dp"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:padding="10sp" />
 
     <Button
         android:id="@+id/buttonLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_marginTop="20dp"
-        android:text="LOGIN" />
+        android:background="@drawable/btnbg"
+        android:ems="10"
+        android:text="LOGIN"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

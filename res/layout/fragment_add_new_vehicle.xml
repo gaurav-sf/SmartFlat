@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="20sp">
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="ADD VEHICLE"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000" />
+		android:textSize="25sp"
+        android:textColor="#595959" />
+    
+    <View
+        android:id="@+id/view1"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_below="@id/textView1"
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:background="#469196" />
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp" 
+        android:layout_below="@id/view1"
+        android:paddingBottom="5dp"
+        android:layout_above="@+id/buttonAddVehicle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+    
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
         android:text="Vehicle Type" />
 
     <RadioGroup
@@ -27,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioButton2Wheeler"
@@ -52,7 +78,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Vehicle Number" />
+        android:hint="Vehicle Number" 
+        android:padding="10sp"
+        android:background="@drawable/edittext_bg"/>
 
     <EditText
         android:id="@+id/editTextManfaturerName"
@@ -60,7 +88,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Manufacturer Name" />
+        android:hint="Manufacturer Name" 
+        android:padding="10sp"
+        android:background="@drawable/edittext_bg"/>
 
     <EditText
         android:id="@+id/editTextModelName"
@@ -68,7 +98,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Model Name" />
+        android:hint="Model Name" 
+        android:padding="10sp"
+        android:background="@drawable/edittext_bg"/>
 
     <EditText
         android:id="@+id/editTextVehicleColor"
@@ -76,14 +108,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Vehicle Color" />
-
-    <Button
+        android:hint="Vehicle Color" 
+        android:padding="10sp"
+        android:background="@drawable/edittext_bg"/>
+    
+    </LinearLayout>
+    </ScrollView>
+    
+<Button
         android:id="@+id/buttonAddVehicle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="ADD VEHICLE" />
-
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:text="ADD VEHICLE" 
+        android:background="@drawable/btnbg"
+        android:textColor="#ffffff"/>
+</RelativeLayout>

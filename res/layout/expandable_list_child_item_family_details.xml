@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
-        android:textColor="#000000"
+        android:textColor="#595959"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
     
         <TextView
@@ -17,10 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
-        android:textColor="#000000"
+        android:textColor="#595959"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
-    
-    
-    
-
+   
 </LinearLayout>

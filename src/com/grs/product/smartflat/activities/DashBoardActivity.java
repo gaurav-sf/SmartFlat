@@ -29,6 +29,7 @@ import com.grs.product.smartflat.fragments.MainQueriesFragment;
 import com.grs.product.smartflat.fragments.MainRequestFragment;
 import com.grs.product.smartflat.fragments.MainVehicleFragment;
 import com.grs.product.smartflat.fragments.NoticeFragment;
+import com.grs.product.smartflat.utils.Utilities;
 
 @SuppressWarnings("deprecation")
 public class DashBoardActivity extends FragmentActivity {
@@ -53,6 +54,8 @@ public class DashBoardActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
+		Utilities.addCustomActionBar(this);
+		
 
 		mTitle = mDrawerTitle = getTitle();
 
@@ -146,7 +149,7 @@ public class DashBoardActivity extends FragmentActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
+		//getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 		return true;
 	}
 
@@ -172,7 +175,7 @@ public class DashBoardActivity extends FragmentActivity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// if nav drawer is opened, hide the action items
 		boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-		menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
+		//menu.findItem(R.id.action_settings).setVisible(!drawerOpen);
 		return super.onPrepareOptionsMenu(menu);
 	}
 
