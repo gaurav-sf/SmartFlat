@@ -3,9 +3,12 @@ package com.grs.product.smartflat.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.R.layout;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -30,11 +33,22 @@ public class RegistrationStep1Activity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_registration_step1);
+		Utilities.addCustomActionBar(this);
 		initializeUI();
 		mSocietyDetails = Utilities.getSocietyDetails();
 		createSpinnerData();
 		addListeners();
 	}
+	
+	/*private void addCustomActionBar(){
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowTitleEnabled(false);
+		LayoutInflater inflater = LayoutInflater.from(this);
+		View mCustomView = inflater.inflate(R.layout.actionbar, null);
+		actionBar.setCustomView(mCustomView);
+		actionBar.setDisplayShowCustomEnabled(true);
+	}*/
 
 	private void initializeUI(){
 

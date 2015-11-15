@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="20sp">
 
     <TextView
         android:id="@+id/textView1"
@@ -12,21 +13,31 @@
         android:layout_marginTop="10dp"
         android:text="NEW REQUEST"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000" />
+        android:textColor="#595959" />
+    
+    <View
+        android:id="@+id/view1"
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="18dp"
+        android:background="#469196" />
+    
 
     <Spinner
         android:id="@+id/spinnertRequestType"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:ems="10" />
+        android:layout_height="35sp"
+        android:layout_marginTop="30sp"
+        android:ems="10" 
+        android:background="@drawable/spinner_bg"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20sp"
         android:text="Priority" />
 
     <RadioGroup
@@ -34,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radioButtonHigh"
@@ -63,16 +74,20 @@
         android:id="@+id/editTextRequestDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20sp"
         android:ems="10"
+        android:padding="10sp"
+        android:background="@drawable/edittext_bg"
         android:hint="Request Details" />
     
         <Button
         android:id="@+id/buttonRaiseRequest"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="RAISE REQUEST" />
+        android:layout_marginTop="35sp"
+        android:text="RAISE REQUEST" 
+        android:textColor="#ffffff"
+        android:background="@drawable/btnbg"/>
 
 </LinearLayout>
