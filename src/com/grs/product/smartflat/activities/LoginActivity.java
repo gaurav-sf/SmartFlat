@@ -84,7 +84,7 @@ public class LoginActivity extends Activity{
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(), "", "").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);;
+			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(), "", "").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
 		{
@@ -114,12 +114,12 @@ public class LoginActivity extends Activity{
 
 		@Override
 		public void onStoped() {
-			//CustomProgressDialog.removeDialog();	
+			CustomProgressDialog.removeDialog();	
 		}
 
 		@Override
 		public void onStopedWithError(SmartFlatError e) {
-		//	CustomProgressDialog.removeDialog();	
+			CustomProgressDialog.removeDialog();	
 		}
 		
 	}

@@ -14,6 +14,7 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.Param;
 import android.content.Context;
@@ -29,6 +30,11 @@ public class SmartFlatAPI {
 	public Response getLogin(String username, String password)
 			throws SmartFlatError{
 		return getLoginCall(username, password);
+	}
+	
+	public SocietyDetails getSocietyDetails(String societyCode)
+	throws SmartFlatError{
+		return getSocietyDetailsCall(societyCode);
 	}
 
 	private Response getLoginCall(String username, String password)
@@ -69,6 +75,48 @@ public class SmartFlatAPI {
 			//throw new SmartFlatError("Error parsing data return from server", "JSON Parser");
 			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
 		}
+	}
+	
+	private SocietyDetails getSocietyDetailsCall(String societyCode)
+	throws SmartFlatError{
+
+		try{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("societyCode", societyCode);
+			HttpPost postMethod = new HttpPost(Param.baseURL
+					+ "getSocietyDetails");
+			String jsonResponse = null;
+			postMethod.setEntity(new StringEntity(jsonObject.toString()));
+			postMethod.addHeader("Content-Type", "application/json");
+			postMethod.setHeader("Accept", "application/json");
+			HttpResponse response = HttpClientSingleton.getHttpClientInstace().execute(postMethod);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) 
+			{
+				HttpEntity resEntity = response.getEntity();
+				jsonResponse = EntityUtils.toString(resEntity);
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				return objectjson.getSocietyDetails(jsonResponse);		
+			}else {
+				throw new SmartFlatError(
+						response.getStatusLine().getReasonPhrase(),
+						"Server Error");
+			}
+		} catch (ClientProtocolException e) {
+			throw new SmartFlatError("Server is unavailable.", "Server Error");
+		} catch (ConnectTimeoutException e) {
+			throw new SmartFlatError("Server timeout.", "Server Error");
+		} catch (SocketTimeoutException e) {
+			throw new SmartFlatError("Server timeout.", "Server Error");
+		} catch (MalformedURLException e) {
+			throw new SmartFlatError(e.toString(), "MalformedURLException");
+		} catch (IOException e) {
+			throw new SmartFlatError("Server is unavailable.", "Server Error");
+		} catch (JSONException e) {
+			//throw new SmartFlatError("Error parsing data return from server", "JSON Parser");
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+	
+		
 	}
 
 }

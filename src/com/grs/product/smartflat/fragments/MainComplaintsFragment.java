@@ -27,7 +27,7 @@ public class MainComplaintsFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_tab_hosting,container, false);
         mTabHost = (FragmentTabHost)rootView.findViewById(R.id.tabhost);
         mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentContent);
-     
+        
         mTabHost.addTab(
                 mTabHost.newTabSpec("tab1").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_new, android.R.drawable.star_on)),
                 NewComplaintFragment.class, null);

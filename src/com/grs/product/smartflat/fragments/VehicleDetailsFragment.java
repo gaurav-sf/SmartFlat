@@ -43,9 +43,13 @@ public class VehicleDetailsFragment extends Fragment {
 		mExpListViewVehicleDetails.setOnGroupExpandListener(new OnGroupExpandListener() {
 			
 			@Override
-			public void onGroupExpand(int arg0) {
-				// TODO Auto-generated method stub
+			public void onGroupExpand(int position) {
 				
+				for (int i = 0; i < mListVehicleDetails.size(); i++) {
+					if(i!=position){
+						mExpListViewVehicleDetails.collapseGroup(i);
+					}
+				}			
 			}
 		});
         return rootView;

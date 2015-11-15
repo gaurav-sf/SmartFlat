@@ -39,9 +39,12 @@ public class FamilyDetailsFragment extends Fragment{
 		mExpListViewFamilyDetails.setOnGroupExpandListener(new OnGroupExpandListener() {
 			
 			@Override
-			public void onGroupExpand(int arg0) {
-				// TODO Auto-generated method stub
-				
+			public void onGroupExpand(int position) {
+				for (int i = 0; i < mListFamilyDetails.size(); i++) {
+					if(i!=position){
+						mExpListViewFamilyDetails.collapseGroup(i);
+					}
+				}
 			}
 		});
         return rootView;

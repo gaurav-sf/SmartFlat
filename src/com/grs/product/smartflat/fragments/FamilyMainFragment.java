@@ -3,6 +3,7 @@ package com.grs.product.smartflat.fragments;
 import com.grs.product.smartflat.R;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
@@ -25,8 +26,8 @@ public class FamilyMainFragment extends Fragment {
 			 ViewGroup container,  Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_tab_hosting,container, false);
         mTabHost = (FragmentTabHost)rootView.findViewById(R.id.tabhost);
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentContent);
-     
+        mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.fragmentContent);      
+        
         mTabHost.addTab(
                 mTabHost.newTabSpec("tab1").setIndicator(getTabIndicator(mTabHost.getContext(), R.string.text_happy_Family, android.R.drawable.star_on)),
                 FamilyDetailsFragment.class, null);
