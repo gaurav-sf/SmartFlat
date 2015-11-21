@@ -14,6 +14,8 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,9 +25,11 @@ import com.grs.product.smartflat.utils.Utilities;
 
 public class RegistrationStep1Activity extends Activity {
 
-	EditText mEditTextName, mEditTextDOB, mEditTextAge, mEditTextContactNo, mEditTextEmailId, mEditTextNoOfFamilyMembers, mEditTextNoOfVehicle, mEditTextFlatNo;
-	Spinner mSpinnerBuildingName, mSpinnerFloorNo;
-	Button mButtonNext;
+	private EditText mEditTextName, mEditTextDOB, mEditTextAge, mEditTextContactNo, mEditTextEmailId, mEditTextNoOfFamilyMembers, mEditTextNoOfVehicle, mEditTextFlatNo;
+	private Spinner mSpinnerBuildingName, mSpinnerFloorNo;
+	private Button mButtonNext;
+	private RadioButton mRadioButtonMale, mRadioButtonFemale;
+	private RadioGroup mRadioGroupGender;
 	private SocietyDetails mSocietyDetails;
 
 	@Override
@@ -63,7 +67,9 @@ public class RegistrationStep1Activity extends Activity {
 		mSpinnerBuildingName = (Spinner) findViewById(R.id.spinnertBuildingName);
 		mSpinnerFloorNo = (Spinner) findViewById(R.id.spinnerTextFloorNo);
 		mButtonNext = (Button) findViewById(R.id.buttonNext);
-
+		mRadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
+		mRadioButtonMale = (RadioButton) findViewById(R.id.radioButtonMale);
+		mRadioButtonFemale = (RadioButton) findViewById(R.id.radioButtonFemale);
 	}
 
 	private void createSpinnerData(){
@@ -177,9 +183,15 @@ public class RegistrationStep1Activity extends Activity {
 		intentRegistrationStep2.putExtra("flatno", mEditTextFlatNo.getText().toString());
 		intentRegistrationStep2.putExtra("nooffamilymem", mEditTextNoOfFamilyMembers.getText().toString());
 		intentRegistrationStep2.putExtra("noofvehicle", mEditTextNoOfVehicle.getText().toString());
-		
+		String gender = "Male";
+		int id = mRadioGroupGender.getCheckedRadioButtonId();
+		if(id == mRadioButtonFemale.getId()){
+			gender = "Female";
+		}
 		//for now sending this in extra later on will access it from Application file using shared pref
 		intentRegistrationStep2.putExtra("societycode", mSocietyDetails.getmSocietyCode());
+		intentRegistrationStep2.putExtra("gender", gender);
+
 		startActivity(intentRegistrationStep2);
 		finish();
 	}

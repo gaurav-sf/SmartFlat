@@ -2,18 +2,12 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.activities.ComplaintDetailsActivity;
 import com.grs.product.smartflat.activities.RequestDetailsActivity;
-import com.grs.product.smartflat.adapter.RaisedComplaintListAdapter;
 import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
-import com.grs.product.smartflat.models.ComplaintDetails;
 import com.grs.product.smartflat.models.RequestDetails;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -72,8 +66,8 @@ public class ClosedRequestFragment extends Fragment {
 				if(isdata)
 				{
 					RequestDetails tempRequestDetails = new RequestDetails();
-					tempRequestDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_NUMBER)));
-					tempRequestDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_DATETIME)));
+					tempRequestDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+					tempRequestDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
 					listRequestDetails.add(tempRequestDetails);
 				}
 				

@@ -7,9 +7,7 @@ import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.activities.ComplaintDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedComplaintListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.models.ComplaintDetails;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -23,7 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class ClosedComplaintFragment extends Fragment {
+public class ClosedComplaintFragment extends Fragment {/*
 	private ListView listViewComplaintDetails;
 	private TextView textViewMessage;
 	private List<ComplaintDetails> listComplaintDetails;
@@ -93,4 +91,4 @@ public class ClosedComplaintFragment extends Fragment {
 
 
 
-}
+*/}

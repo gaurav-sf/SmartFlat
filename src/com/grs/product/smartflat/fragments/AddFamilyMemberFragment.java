@@ -20,9 +20,11 @@ import android.widget.RadioGroup;
 
 public class AddFamilyMemberFragment extends Fragment {
 	
-	private EditText mEditTextFMemberName, mEditTextFMemberRelation, mEditTextFMemberDOB,  mEditTextFMemberAge,  mEditTextFMemberContactNo;
+	private EditText mEditTextFMemberName/*, mEditTextFMemberRelation*/, mEditTextFMemberDOB,  mEditTextFMemberAge,  mEditTextFMemberContactNo,mEditTextFMemberEmailId;
 	private RadioGroup mRadioGroupLogin;
 	private RadioButton mRadioButtonYes, mRadioButtonNo;
+	private RadioButton mRadioButtonMale, mRadioButtonFemale;
+	private RadioGroup mRadioGroupGender;
 	private Button mButtonAddMember;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,12 +44,17 @@ public class AddFamilyMemberFragment extends Fragment {
 		mEditTextFMemberName = (EditText) rootView.findViewById(R.id.editTextFmemberName);
 		mEditTextFMemberDOB = (EditText) rootView.findViewById(R.id.editTextFmemberDOB);
 		mEditTextFMemberAge = (EditText) rootView.findViewById(R.id.editTextFmemberAge);
-		mEditTextFMemberRelation = (EditText) rootView.findViewById(R.id.editTextFmemberRelation);
+		//mEditTextFMemberRelation = (EditText) rootView.findViewById(R.id.editTextFmemberRelation);
 		mEditTextFMemberContactNo = (EditText) rootView.findViewById(R.id.editTextFmemberContactNo);
 		mRadioGroupLogin = (RadioGroup) rootView.findViewById(R.id.RadioGroupLogin);
 		mButtonAddMember = (Button) rootView.findViewById(R.id.buttonAddMember);
 		mRadioButtonYes = (RadioButton) rootView.findViewById(R.id.radioButtonYes);
 		mRadioButtonNo = (RadioButton) rootView.findViewById(R.id.radioButtonNo);
+		mRadioGroupGender = (RadioGroup) rootView.findViewById(R.id.RadioGroupGender);
+		mRadioButtonMale = (RadioButton) rootView.findViewById(R.id.radioButtonMale);
+		mRadioButtonFemale = (RadioButton) rootView.findViewById(R.id.radioButtonFemale);
+		mEditTextFMemberEmailId =  (EditText) rootView.findViewById(R.id.editTextFmemberEmailId);
+
 	}
 	
 	private void addListener(){
@@ -71,11 +78,11 @@ public class AddFamilyMemberFragment extends Fragment {
 			mEditTextFMemberName.setError("Please enter member name");
 			return false;
 		}
-		if(mEditTextFMemberRelation.getText().toString().equals(""))
+/*		if(mEditTextFMemberRelation.getText().toString().equals(""))
 		{
 			mEditTextFMemberRelation.setError("Please enter relation with member");
 			return false;
-		}
+		}*/
 		if(mEditTextFMemberDOB.getText().toString().equals(""))
 		{
 			mEditTextFMemberDOB.setError("Please enter DOB");
@@ -90,17 +97,31 @@ public class AddFamilyMemberFragment extends Fragment {
 		{
 			mEditTextFMemberContactNo.setError("Please enter contact no");
 			return false;
-		}	
+		}
+		if(mEditTextFMemberEmailId.getText().toString().equals(""))
+		{
+			mEditTextFMemberEmailId.setError("Please enter email id");
+			return false;
+		}
+		
 		return true;
 	}
 	
 	private void saveFamilyDetails(){
 		FamilyDetails tempFamilyDetails = new FamilyDetails();
 		tempFamilyDetails.setmFamilyMemberName(mEditTextFMemberName.getText().toString());
-		tempFamilyDetails.setmFamilyMemberRelation(mEditTextFMemberRelation.getText().toString());
+		//tempFamilyDetails.setmFamilyMemberRelation(mEditTextFMemberRelation.getText().toString());
 		tempFamilyDetails.setmFamilyMemberDOB(mEditTextFMemberDOB.getText().toString());
 		tempFamilyDetails.setmFamilyMemberAge(mEditTextFMemberAge.getText().toString());
 		tempFamilyDetails.setmFamilyMemberContactno(mEditTextFMemberContactNo.getText().toString());
+		tempFamilyDetails.setmFamilyMemberEmailId(mEditTextFMemberEmailId.getText().toString());
+		String gender = "Male";
+		int idgender = mRadioGroupGender.getCheckedRadioButtonId();
+		if(idgender == mRadioButtonFemale.getId()){
+			gender = "Female";
+		}
+		tempFamilyDetails.setmGender(gender);
+		
 		boolean needLogin=false;
 		int id = mRadioGroupLogin.getCheckedRadioButtonId();
 		if(id == mRadioButtonYes.getId()){
@@ -115,7 +136,7 @@ public class AddFamilyMemberFragment extends Fragment {
 	
 	private void clearAllFields(){
 		mEditTextFMemberName.setText("");
-		mEditTextFMemberRelation.setText("");
+		//mEditTextFMemberRelation.setText("");
 		mEditTextFMemberDOB.setText("");
 		mEditTextFMemberAge.setText("");
 		mEditTextFMemberContactNo.setText("");

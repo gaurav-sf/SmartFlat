@@ -5,15 +5,13 @@
     android:orientation="vertical"
     android:padding="20sp" >
     
-    <TextView
+<TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="Registration Step 2/2"
-        android:textColor="#595959"
-        android:textSize="25sp" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Society Registration \n Step 2/2" />
 
     <View
         android:id="@+id/view1"

@@ -23,12 +23,36 @@
         android:layout_marginTop="18dp"
         android:background="#469196" />
     
+    
+        <RadioGroup
+        android:id="@+id/RadioGroupType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonRequest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Request"
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioButtonComplaint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Complaint" />
+
+    </RadioGroup>
 
     <Spinner
         android:id="@+id/spinnertRequestType"
         android:layout_width="match_parent"
         android:layout_height="35sp"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="20sp"
         android:ems="10" 
         android:background="@drawable/spinner_bg"/>
 
@@ -44,7 +68,7 @@
         android:id="@+id/RadioGroupPriority"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <RadioButton

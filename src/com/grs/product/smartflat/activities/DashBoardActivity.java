@@ -78,22 +78,24 @@ public class DashBoardActivity extends FragmentActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
 		// Vehicle
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		// Complaints
+/*		// Complaints
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+*/		
 		// Requests
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		// Queries
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));
+/*		// Queries
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+*/		
 		//Notices
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(6, -1)));
 		//Contacts
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(6, -1)));
 		//About App
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 		//Help
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
 		//Sign Out
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -209,32 +211,32 @@ public class DashBoardActivity extends FragmentActivity {
 	        .replace(R.id.fragment_container, vehicleFragment).commit();
 			break;
 			
-		//Complaint	
+/*		//Complaint	
 		case 3:
 			status = "created";
 			MainComplaintsFragment complaintsFragment = new MainComplaintsFragment();
 	        getSupportFragmentManager().beginTransaction()
 	        .replace(R.id.fragment_container, complaintsFragment).commit();
-			break;
+			break;*/
 			
 		//Request	
-		case 4:
+		case 3:
 			status = "created";
 			MainRequestFragment requestFragment = new MainRequestFragment();
 	        getSupportFragmentManager().beginTransaction()
 	        .replace(R.id.fragment_container, requestFragment).commit();
 			break;
 			
-		//Query	
+/*		//Query	
 		case 5:
 			status = "created";
 			MainQueriesFragment queryFragment = new MainQueriesFragment();
 	        getSupportFragmentManager().beginTransaction()
 	        .replace(R.id.fragment_container, queryFragment).commit();
-			break;
+			break;*/
 			
 		//Notice	
-		case 6:
+		case 4:
 			status = "created";
 			NoticeFragment noticeFragment = new NoticeFragment();
 	        getSupportFragmentManager().beginTransaction()
@@ -242,7 +244,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 		
 		//Contacts	
-		case 7:
+		case 5:
 			status = "created";
 			ContactsFragment contactsFragment = new ContactsFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -250,7 +252,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 			
 		//	AboutApp
-		case 8:
+		case 6:
 			status = "created";
 			AboutAppFragment aboutAppFragment = new AboutAppFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -258,7 +260,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 			
 		//Help	
-		case 9:
+		case 7:
 			status = "created";
 			HelpFragment helpFragment = new HelpFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -266,7 +268,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 			
 		//Sign Out	
-		case 10:
+		case 8:
 			status = "created";
     		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
     		SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(null);

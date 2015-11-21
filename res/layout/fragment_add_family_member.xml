@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp" 
         android:layout_below="@id/view1"
+        android:layout_above="@+id/buttonAddMember"
         android:paddingBottom="5dp">
 
         <LinearLayout
@@ -43,11 +44,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Member name" 
+        android:hint="Name" 
         android:padding="10sp"
         android:background="@drawable/edittext_bg"/>
 
-    <EditText
+<!--     <EditText
         android:id="@+id/editTextFmemberRelation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +56,7 @@
         android:ems="10"
         android:hint="Relation with member" 
         android:padding="10sp"
-        android:background="@drawable/edittext_bg"/>
+        android:background="@drawable/edittext_bg"/> -->
 
     <EditText
         android:id="@+id/editTextFmemberDOB"
@@ -63,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Member DOB" 
+        android:hint="DOB" 
         android:padding="10sp"
         android:background="@drawable/edittext_bg"/>
 
@@ -73,22 +74,65 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Member Age"
+        android:hint="Age"
         android:padding="10sp"
         android:background="@drawable/edittext_bg" />
     
-        <EditText
+    <EditText
         android:id="@+id/editTextFmemberContactNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Member Contact No" 
+        android:hint="Contact No" 
         android:padding="10sp"
         android:background="@drawable/edittext_bg"/>
     
-        <TextView
+    <EditText
+        android:id="@+id/editTextFmemberEmailId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Email Id" 
+        android:padding="10sp"
+        android:background="@drawable/edittext_bg"/>
+    
+    <TextView
         android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="25dp"
+        android:text="Gender" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroupGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radioButtonMale"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Male"
+             android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/radioButtonFemale"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Female" />
+    </RadioGroup>
+    
+        
+    
+        <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

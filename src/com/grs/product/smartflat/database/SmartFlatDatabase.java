@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
@@ -137,7 +136,7 @@ public class SmartFlatDatabase {
 		}	
 	}
 
-	private void createComplaintDetailsTable(SQLiteDatabase db){
+/*	private void createComplaintDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
 			db.execSQL(SmartFlatDBTableCreation.TABLE_COMPLAINT_DETAILS_CREATION_QUERY);
@@ -147,12 +146,12 @@ public class SmartFlatDatabase {
 		}finally{
 			db.endTransaction();
 		}	
-	}
+	}*/
 
 	private void createRequestDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
-			db.execSQL(SmartFlatDBTableCreation.TABLE_REQUEST_DETAILS_CREATION_QUERY);
+			db.execSQL(SmartFlatDBTableCreation.TABLE_REQUEST_COMPLAINT_DETAILS_CREATION_QUERY);
 			db.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -201,7 +200,7 @@ public class SmartFlatDatabase {
 				createSocietyDetailsTable(db);
 				createFamilyDetailsTable(db);
 				createVehicleDetailsTable(db);
-				createComplaintDetailsTable(db);
+				//createComplaintDetailsTable(db);
 				createRequestDetailsTable(db);
 				createQueryDetailsTable(db);
 				createSocietyNoticesTable(db);
@@ -270,6 +269,7 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_NAME, details.getmFlatOwnerName());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_DOB, details.getmFlatOwnerDOB());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_AGE, details.getmFlatOwnerAge());
+		values.put(TableFlatOwnerDetails.GENDER, details.getmGender());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO, details.getmFlatOwnerContactNo());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID, details.getmFlatOwnerEmailId());
 		values.put(TableFlatOwnerDetails.FLAT_BUILDING_NAME, details.getmBuildingName());
@@ -283,7 +283,8 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerDetails.PUSH_TOKEN, details.getmPushToken());
 		values.put(TableFlatOwnerDetails.ACCESS_TOKEN, details.getmAccessToken());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_LATITUDE, details.getmLatitude());
-		values.put(TableFlatOwnerDetails.FLAT_OWNER_LONGITUDE, details.getmLongitude());		
+		values.put(TableFlatOwnerDetails.FLAT_OWNER_LONGITUDE, details.getmLongitude());
+		
 		try {
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
@@ -369,7 +370,7 @@ public class SmartFlatDatabase {
 		return cursor;	
 	}
 	
-	public boolean saveComplaintDetails(ComplaintDetails details){
+/*	public boolean saveComplaintDetails(ComplaintDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
 		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_NUMBER, details.getmComplaintNumber());
@@ -388,7 +389,7 @@ public class SmartFlatDatabase {
 			mDb.endTransaction();
 		}	
 		return isAdded;
-	}
+	}*/
 	
 	public Cursor getAllComplaintDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS;
@@ -402,12 +403,13 @@ public class SmartFlatDatabase {
 	public boolean saveRequestDetails(RequestDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
-		values.put(TableFlatOwnerRequestDetails.REQUEST_NUMBER, details.getmRequestNumber());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_TYPE, details.getmRequestType());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_PRIORITY, details.getmRequestPriority());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_STATUS, details.getmRequestStatus());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_DETAILS, details.getmRequestDetails());
-		values.put(TableFlatOwnerRequestDetails.REQUEST_DATETIME, details.getmRequestDateTime());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER, details.getmRequestNumber());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE, details.getmRequestType());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY, details.getmRequestCategory());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY, details.getmRequestPriority());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS, details.getmRequestStatus());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS, details.getmRequestDetails());
+		values.put(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME, details.getmRequestDateTime());
 		try {
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.REQUEST_DETAILS, null, values) > 0;
@@ -485,7 +487,7 @@ public class SmartFlatDatabase {
 		return cursor;			
 	}
 	
-	public Cursor getRaisedComplaintDetails(){
+/*	public Cursor getRaisedComplaintDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS + " WHERE "+TableFlatOwnerComplaintDetails.COMPLAINT_STATUS +" IN ('Raised','Processed')";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
@@ -501,10 +503,10 @@ public class SmartFlatDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;			
-	}
+	}*/
 	
 	public Cursor getRaisedRequestDetails(){
-		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_STATUS +" IN ('Raised','Processed')";
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
@@ -512,8 +514,46 @@ public class SmartFlatDatabase {
 		return cursor;			
 	}
 	
+	public Cursor getRaisedRequestDetailsByType(){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE + "  ASC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public Cursor getRaisedRequestDetailsByCategory(){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY + "  ASC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public Cursor getRaisedRequestDetailsByPriorityHtoL(){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY + "  ASC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public Cursor getRaisedRequestDetailsByPriorityLtoH(){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY + "  DESC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	
+	
 	public Cursor getClosedRequestDetails(){
-		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_STATUS +" = 'Closed'";
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" = 'Closed'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();

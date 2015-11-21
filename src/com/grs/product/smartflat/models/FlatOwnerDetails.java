@@ -7,6 +7,7 @@ public class FlatOwnerDetails {
 	private String mSecurityQuestion;	
 	private String mAnswer;	
 	private String mFlatOwnerName;
+	private String mGender;
 	private String mFlatOwnerDOB;	
 	private String mFlatOwnerAge;	
 	private String mFlatOwnerContactNo;	
@@ -191,6 +192,14 @@ public class FlatOwnerDetails {
 	
 	public void setmLongitude(String mLongitude) {
 		this.mLongitude = mLongitude;
-	}		
+	}	
+	
+	public String getmGender() {
+		return mGender;
+	}
+
+	public void setmGender(String mGender) {
+		this.mGender = mGender;
+	}
 	
 }

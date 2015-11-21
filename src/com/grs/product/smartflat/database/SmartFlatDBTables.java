@@ -14,7 +14,7 @@ public class SmartFlatDBTables {
 		public static final String FAMILY_DETAILS = "Family_Details";
 		public static final String VEHICLE_DETAILS = "Vehicle_Details";
 		public static final String COMPLAINT_DETAILS = "Complaint_Details";
-		public static final String REQUEST_DETAILS = "Request_Details";
+		public static final String REQUEST_DETAILS = "Request_Complaint_Details";
 		public static final String QUERY_DETAILS = "Query_Details";
 		public static final String SOCIETY_NOTICES= "Society_Notices";
 		
@@ -29,7 +29,8 @@ public class SmartFlatDBTables {
 		public static final String SECURITY_QUESTION = "Security_Question";	
 		public static final String ANSWER = "Answer";	
 		public static final String FLAT_OWNER_NAME = "Flat_Owner_Name"	;
-		public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";	
+		public static final String FLAT_OWNER_DOB = "Flat_Owner_DOB";
+		public static final String GENDER = "Gender";
 		public static final String FLAT_OWNER_AGE = "Flat_Owner_Age";	
 		public static final String FLAT_OWNER_CONTACT_NO = "Flat_Owner_Contact_No";
 		public static final String FLAT_OWNER_EMAIL_ID = "Flat_Owner_Email_id";
@@ -79,7 +80,9 @@ public class SmartFlatDBTables {
 		public static final String FAMILY_MEMBER_RELATION = "Family_Member_Relation";
 		public static final String FAMILY_MEMBER_DOB = "Family_Member_DOB";
 		public static final String FAMILY_MEMBER_AGE = "Family_Member_Age";
+		public static final String GENDER = "Gender";
 		public static final String FAMILY_MEMBER_CONTACT_NO = "Family_Member_Contact_no";
+		public static final String FAMILY_MEMBER_EMAIL_ID = "Family_Member_Email_Id";
 		public static final String NEED_LOGIN = "Need_Login";
 	}
 
@@ -93,29 +96,31 @@ public class SmartFlatDBTables {
 		public static final String VEHICLE_MODEL = "Vehicle_Model";	
 		public static final String VEHICLE_COLOR = "Vehicle_Color";																	
 	}
-
+/*
 	public static final class TableFlatOwnerComplaintDetails implements BaseColumns
 	{
 		private TableFlatOwnerComplaintDetails(){}
 		public static final String ID = "ID";	
 		public static final String COMPLAINT_NUMBER = "Complaint_Number";	
-		public static final String COMPLAINT_TYPE = "Complaint_Type";	
+		public static final String COMPLAINT_TYPE = "Complaint_Type";
+		public static final String COMPLAINT_PRIORITY = "Complaint_Priority";
 		public static final String COMPLAINT_STATUS = "Complaint_Status";	
 		public static final String COMPLAINT_RAISED_DATETIME = "Complaint_Raised_DateTime";	
 		public static final String COMPLAINT_DETAILS = "Complaint_Details";
 
-	}
+	}*/
 
 	public static final class TableFlatOwnerRequestDetails implements BaseColumns
 	{
 		private TableFlatOwnerRequestDetails(){}
 		public static final String ID = "ID";
-		public static final String REQUEST_NUMBER = "Request_Number";
-		public static final String REQUEST_TYPE = "Request_Type";	
-		public static final String REQUEST_PRIORITY = "Request_Priority";	
-		public static final String REQUEST_DATETIME = "Request_DateTime";	
-		public static final String REQUEST_STATUS = "Request_Status";
-		public static final String REQUEST_DETAILS = "Request_Details";
+		public static final String REQUEST_COMPLAINT_NUMBER = "Request_Complaint_Number";
+		public static final String REQUEST_COMPLAINT_TYPE = "Request_Complaint_Type";	
+		public static final String REQUEST_COMPLAINT_PRIORITY = "Request_Complaint_Priority";	
+		public static final String REQUEST_COMPLAINT_DATETIME = "Request_Complaint_DateTime";	
+		public static final String REQUEST_COMPLAINT_STATUS = "Request_Complaint_Status";
+		public static final String REQUEST_COMPLAINT_DETAILS = "Request_Complaint_Details";
+		public static final String REQUEST_COMPLAINT_CATEGORY = "Request_Complaint_Category";
 
 	}
 

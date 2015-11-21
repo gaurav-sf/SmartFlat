@@ -5,11 +5,9 @@ import java.util.List;
 
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
 import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.utils.Utilities;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,7 +25,9 @@ import android.widget.Spinner;
 
 public class NewRequestFragment extends Fragment {
 	
-	private Spinner mSpinnerRequestType;
+	private Spinner mSpinnerRequestCategory;
+	private RadioButton mRadioButtonRequest, mRadioButtonComplaint;
+	private RadioGroup mRadioGroupType;
 	private RadioButton mRadioButtonHigh, mRadioButtonMedium, mRadioButtonLow;
 	private RadioGroup mRadioGroupPriority;
 	private EditText mEditTextRequestDetails;
@@ -49,7 +49,10 @@ public class NewRequestFragment extends Fragment {
 	}
 	
 	private void initialiseUI(View rootView){
-		mSpinnerRequestType = (Spinner) rootView.findViewById(R.id.spinnertRequestType);
+		mSpinnerRequestCategory = (Spinner) rootView.findViewById(R.id.spinnertRequestType);
+		mRadioGroupType = (RadioGroup) rootView.findViewById(R.id.RadioGroupType);
+		mRadioButtonRequest = (RadioButton) rootView.findViewById(R.id.radioButtonRequest);
+		mRadioButtonComplaint = (RadioButton) rootView.findViewById(R.id.radioButtonComplaint);
 		mRadioGroupPriority = (RadioGroup) rootView.findViewById(R.id.RadioGroupPriority);
 		mRadioButtonHigh = (RadioButton) rootView.findViewById(R.id.radioButtonHigh);
 		mRadioButtonMedium = (RadioButton) rootView.findViewById(R.id.radioButtonMedium);
@@ -69,7 +72,7 @@ public class NewRequestFragment extends Fragment {
 		ArrayAdapter<String> adapterBuildingName = new ArrayAdapter<String>
 		(getActivity(), android.R.layout.simple_dropdown_item_1line, listRequestType);
 		adapterBuildingName.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
-		mSpinnerRequestType.setAdapter(adapterBuildingName);
+		mSpinnerRequestCategory.setAdapter(adapterBuildingName);
 	}
 	
 	private void addListener(){
@@ -98,7 +101,13 @@ public class NewRequestFragment extends Fragment {
 	private void saveRequestData(){
 		RequestDetails temp = new RequestDetails();
 		temp.setmRequestNumber(getRequestNumber());
-		temp.setmRequestType(mSpinnerRequestType.getSelectedItem().toString());
+		String type = "Request";
+		int idtype = mRadioGroupType.getCheckedRadioButtonId();
+		if(idtype == mRadioButtonComplaint.getId()){
+			type = "Complaint";
+		}
+		temp.setmRequestType(type);
+		temp.setmRequestCategory(mSpinnerRequestCategory.getSelectedItem().toString());
 		String priority = "Low";
 		int id = mRadioGroupPriority.getCheckedRadioButtonId();
 		if(id == mRadioButtonHigh.getId()){
@@ -127,7 +136,7 @@ public class NewRequestFragment extends Fragment {
 			requestNumber = "REQ100";
 		}else{
 			cursor.moveToLast();
-			String id = cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_NUMBER));
+			String id = cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER));
 			int nextid = Integer.parseInt(id.replace("REQ", ""))+1;
 			requestNumber = "REQ"+nextid;		
 		}
@@ -138,6 +147,7 @@ public class NewRequestFragment extends Fragment {
 	private void clearUiFields(){
 		mEditTextRequestDetails.setText("");
 		mRadioButtonLow.setChecked(true);
+		mRadioButtonRequest.setChecked(true);
 		createSpinnerData();
 	}
 

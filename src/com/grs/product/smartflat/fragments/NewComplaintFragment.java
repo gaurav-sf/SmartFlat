@@ -12,13 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDatabase;
 import com.grs.product.smartflat.database.SmartFlatDatabase.SmartFlatDatabaseHelper;
 import com.grs.product.smartflat.models.ComplaintDetails;
 import com.grs.product.smartflat.utils.Utilities;
 
-public class NewComplaintFragment extends Fragment {
+public class NewComplaintFragment extends Fragment {/*
 	private EditText mEditTextCopmType, mEditTextCopmDetails;
 	private Button mButtonRaised;
 	
@@ -103,4 +102,4 @@ public class NewComplaintFragment extends Fragment {
 		return compalintNumber;
 	}
 
-}
+*/}

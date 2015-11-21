@@ -6,8 +6,10 @@ public class FamilyDetails {
 	private String mFamilyMemberName;
 	private String mFamilyMemberRelation;
 	private String mFamilyMemberDOB;
+	private String mGender;
 	private String mFamilyMemberAge;
 	private String mFamilyMemberContactno;
+	private String mFamilyMemberEmailId;
 	private boolean mNeedLogin;
 	
 	public String getmFlatOwnerCode() {
@@ -64,6 +66,22 @@ public class FamilyDetails {
 
 	public void setmNeedLogin(boolean mNeedLogin) {
 		this.mNeedLogin = mNeedLogin;
+	}
+
+	public String getmGender() {
+		return mGender;
+	}
+
+	public void setmGender(String mGender) {
+		this.mGender = mGender;
+	}
+
+	public String getmFamilyMemberEmailId() {
+		return mFamilyMemberEmailId;
+	}
+
+	public void setmFamilyMemberEmailId(String mFamilyMemberEmailId) {
+		this.mFamilyMemberEmailId = mFamilyMemberEmailId;
 	}
 
 }

@@ -2,12 +2,9 @@ package com.grs.product.smartflat.fragments;
 
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
-import com.grs.product.smartflat.models.ComplaintDetails;
 import com.grs.product.smartflat.models.QueryDetails;
 import com.grs.product.smartflat.utils.Utilities;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

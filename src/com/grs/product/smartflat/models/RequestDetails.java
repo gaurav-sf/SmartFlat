@@ -4,6 +4,7 @@ public class RequestDetails {
 	
 	private String mRequestNumber;
 	private String mRequestType;	
+	private String mRequestCategory;
 	private String mRequestPriority;	
 	private String mRequestDateTime;	
 	private String mRequestStatus;
@@ -25,6 +26,14 @@ public class RequestDetails {
 		this.mRequestType = mRequestType;
 	}
 	
+	public String getmRequestCategory() {
+		return mRequestCategory;
+	}
+
+	public void setmRequestCategory(String mRequestCategory) {
+		this.mRequestCategory = mRequestCategory;
+	}
+
 	public String getmRequestPriority() {
 		return mRequestPriority;
 	}

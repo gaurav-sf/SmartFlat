@@ -94,6 +94,7 @@ public class RegistrationStep2Activity extends Activity {
 		flatOwnerDetails.setmNoofVehicles(Integer.parseInt(extras.getString("noofvehicle")));
 		flatOwnerDetails.setmSocietyCode(extras.getString("societycode"));
 		flatOwnerDetails.setmFlatOwnerCode(extras.getString("username"));
+		flatOwnerDetails.setmGender(extras.getString("gender"));
 		flatOwnerDetails.setmFlatOwnerCreatedDateTime(Utilities.getCurrentDateTime());
 		
 		SmartFlatDBManager objManager = new SmartFlatDBManager();

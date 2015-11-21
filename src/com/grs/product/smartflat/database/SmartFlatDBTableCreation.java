@@ -1,7 +1,6 @@
 package com.grs.product.smartflat.database;
 
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerComplaintDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
@@ -20,6 +19,7 @@ public class SmartFlatDBTableCreation {
 			+ TableFlatOwnerDetails.SECURITY_QUESTION + " TEXT, "
 			+ TableFlatOwnerDetails.ANSWER + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_NAME + " TEXT, "
+			+ TableFlatOwnerDetails.GENDER+ " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_DOB+ " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_AGE + " TEXT, "
 			+ TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO + " TEXT, "
@@ -64,9 +64,11 @@ public class SmartFlatDBTableCreation {
 			+ TableFlatOwnerFamilyDetails.FLAT_OWNER_CODE + " TEXT, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_NAME + " TEXT, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_RELATION + " TEXT, "
+			+ TableFlatOwnerFamilyDetails.GENDER+ " TEXT, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_DOB + " TEXT, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE + " INTEGER, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO + " TEXT, "
+			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_EMAIL_ID + " TEXT, "
 			+ TableFlatOwnerFamilyDetails.NEED_LOGIN + " BOOLEAN);";
 	
 	public static final String TABLE_VEHICLE_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.VEHICLE_DETAILS
@@ -77,25 +79,27 @@ public class SmartFlatDBTableCreation {
 			+ TableFlatOwnerVehicleDetails.VEHICLE_COMPANY + " TEXT, "
 			+ TableFlatOwnerVehicleDetails.VEHICLE_MODEL + " TEXT, "
 			+ TableFlatOwnerVehicleDetails.VEHICLE_COLOR + " TEXT);";
-	
+/*	
 	public static final String TABLE_COMPLAINT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.COMPLAINT_DETAILS
 			+"( "
 			+ TableFlatOwnerComplaintDetails.ID + " INTEGER PRIMARY KEY, "
 			+ TableFlatOwnerComplaintDetails.COMPLAINT_NUMBER + " TEXT, "
 			+ TableFlatOwnerComplaintDetails.COMPLAINT_STATUS + " TEXT, "
+			+ TableFlatOwnerComplaintDetails.COMPLAINT_PRIORITY + " TEXT, "
 			+ TableFlatOwnerComplaintDetails.COMPLAINT_TYPE + " TEXT, "
 			+ TableFlatOwnerComplaintDetails.COMPLAINT_RAISED_DATETIME + " TEXT, "
-			+ TableFlatOwnerComplaintDetails.COMPLAINT_DETAILS + " TEXT);";
+			+ TableFlatOwnerComplaintDetails.COMPLAINT_DETAILS + " TEXT);";*/
 	
-	public static final String TABLE_REQUEST_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.REQUEST_DETAILS
+	public static final String TABLE_REQUEST_COMPLAINT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.REQUEST_DETAILS
 			+"( "
 			+ TableFlatOwnerRequestDetails.ID + " INTEGER PRIMARY KEY, "
-			+ TableFlatOwnerRequestDetails.REQUEST_NUMBER + " TEXT, "
-			+ TableFlatOwnerRequestDetails.REQUEST_PRIORITY + " TEXT, "
-			+ TableFlatOwnerRequestDetails.REQUEST_STATUS + " TEXT, "
-			+ TableFlatOwnerRequestDetails.REQUEST_TYPE + " TEXT, "
-			+ TableFlatOwnerRequestDetails.REQUEST_DATETIME + " TEXT, "
-			+ TableFlatOwnerRequestDetails.REQUEST_DETAILS + " TEXT);";
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER + " TEXT, "
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY + " TEXT, "
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS + " TEXT, "
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE + " TEXT, "
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY + " TEXT, "
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME + " TEXT, "
+			+ TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS + " TEXT);";
 	
 	public static final String TABLE_QUERY_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.QUERY_DETAILS
 			+"( "
@@ -112,85 +116,4 @@ public class SmartFlatDBTableCreation {
 			+ TableSocietyNotices.NOTICE_PRIORITY + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DATETIME + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DETAILS + " TEXT);";
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-}
+	}

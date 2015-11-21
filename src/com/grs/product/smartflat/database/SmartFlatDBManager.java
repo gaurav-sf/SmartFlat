@@ -73,13 +73,13 @@ public class SmartFlatDBManager {
 		return details;
 	}
 	
-	public boolean saveComplaintDetails(ComplaintDetails details){
+/*	public boolean saveComplaintDetails(ComplaintDetails details){
 		boolean isAdded = false;
 		SmartFlatDatabase.getInstance().open();
 		isAdded = SmartFlatDatabase.getInstance().saveComplaintDetails(details);
 		SmartFlatDatabase.getInstance().close();
 		return isAdded;
-	}
+	}*/
 	
 	public Cursor getAllComplaintDetails(){
 		SmartFlatDatabase.getInstance().open();
@@ -133,7 +133,7 @@ public class SmartFlatDBManager {
 		return details;
 	}
 	
-	public Cursor getRaisedComplaintDetails(){
+/*	public Cursor getRaisedComplaintDetails(){
 		SmartFlatDatabase.getInstance().open();
 		Cursor details = SmartFlatDatabase.getInstance().getRaisedComplaintDetails();
 		SmartFlatDatabase.getInstance().close();
@@ -145,11 +145,39 @@ public class SmartFlatDBManager {
 		Cursor details = SmartFlatDatabase.getInstance().getClosedComplaintDetails();
 		SmartFlatDatabase.getInstance().close();
 		return details;
-	}
+	}*/
 		
 	public Cursor getRaisedRequestDetails(){
 		SmartFlatDatabase.getInstance().open();
 		Cursor details = SmartFlatDatabase.getInstance().getRaisedRequestDetails();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByType(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedRequestDetailsByType();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByCategory(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedRequestDetailsByCategory();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByPriorityHtoL(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedRequestDetailsByPriorityHtoL();
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public Cursor getRaisedRequestDetailsByPriorityLtoH(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getRaisedRequestDetailsByPriorityLtoH();
 		SmartFlatDatabase.getInstance().close();
 		return details;
 	}
