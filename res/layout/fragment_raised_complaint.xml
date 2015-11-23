@@ -2,10 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="10dp"
+    android:background="#e1e1e1">
     
 
-    <TextView
+     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,14 +15,12 @@
         android:layout_marginTop="60dp"
         android:layout_gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" 
-        android:visibility="gone"/>
+        android:visibility="gone"/> 
     
         <Spinner
         android:id="@+id/spinnertSorting"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="35sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginRight="10dp"
         android:ems="10" 
         android:layout_gravity="right"
         android:background="@drawable/spinner_bg"/>
@@ -28,7 +28,12 @@
     <ListView
         android:id="@+id/listViewRaisedComplaints"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="5dp"
+         >
     </ListView>
 
 </LinearLayout>

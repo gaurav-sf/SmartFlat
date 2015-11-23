@@ -23,12 +23,14 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_home</item>
-        <item>@drawable/ic_people</item>
-        <item>@drawable/ic_photos</item>
-        <item>@drawable/ic_communities</item>
-        <item>@drawable/ic_pages</item>
-        <item>@drawable/ic_whats_hot</item>
-        <item>@drawable/ic_launcher</item>
+        <item>@drawable/ic_family</item>
+        <item>@drawable/ic_vehicle</item>
+        <item>@drawable/ic_request</item>
+        <item>@drawable/ic_notice</item>
+        <item>@drawable/ic_contact</item>
+        <item>@drawable/ic_aboutapp</item>
+        <item>@drawable/ic_help</item>
+        <item>@drawable/ic_logout</item>
     </array>
     
     <string name="text_new">NEW</string>
