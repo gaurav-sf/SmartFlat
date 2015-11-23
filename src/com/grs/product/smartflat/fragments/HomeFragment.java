@@ -7,18 +7,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.adapter.CustomGridAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 
 public class HomeFragment extends Fragment {
-	
-	private FlatOwnerDetails mFlatOwnerDetails = new FlatOwnerDetails();
-	private TextView mTextViewUsername, mTextViewOwnername, mTextViewContactNo, mTextViewEmailId;
-	
+	GridView grid;
+	  String HALLOWEEN_ORANGE="#ffffff";
+	  final CharSequence[] items = {" Engineering "," Polytechnic "," GATE "," CAT "," Aptitude "};
+	  public static final String MY_PREFS_NAME = "MyPrefsFile";
+	  String[] item = {
+	        "User Profile",
+	      "Pending Request",
+	      "Request",
+	      "Unread Notice"} ;
+	  
+	  int[] imageId = {
+		      R.drawable.ic_launcher,
+		      R.drawable.ic_launcher,
+		      R.drawable.ic_launcher,
+		      R.drawable.ic_launcher} ;
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -29,36 +44,20 @@ public class HomeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-		getUserLoginDetailsFromDB();
 		initialiseUI(rootView);
-		
-
         return rootView;
 	}
 	
-	private void getUserLoginDetailsFromDB(){
-		SmartFlatDBManager objManager = new SmartFlatDBManager();
-		Cursor cursor = objManager.getFlatOwnerDetails();
-		if(cursor!=null && cursor.getCount()>0){
-			mFlatOwnerDetails.setmUsername(cursor.getString(cursor.getColumnIndex(TableFlatOwnerDetails.USERNAME)));
-			mFlatOwnerDetails.setmFlatOwnerName(cursor.getString(cursor.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_NAME)));
-			mFlatOwnerDetails.setmFlatOwnerContactNo(cursor.getString(cursor.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_CONTACT_NO)));
-			mFlatOwnerDetails.setmFlatOwnerEmailId(cursor.getString(cursor.getColumnIndex(TableFlatOwnerDetails.FLAT_OWNER_EMAIL_ID)));
-		}		
-	}
 	
 	private void initialiseUI(View rootview){
-		mTextViewUsername = (TextView) rootview.findViewById(R.id.textViewUsername);
-		mTextViewUsername.setText(mFlatOwnerDetails.getmUsername());
 		
-		mTextViewOwnername = (TextView) rootview.findViewById(R.id.textViewOwnerName);
-		mTextViewOwnername.setText("Welcome \n"+mFlatOwnerDetails.getmFlatOwnerName());
-		
-		mTextViewContactNo = (TextView) rootview.findViewById(R.id.textViewOwnerContactNo);
-		mTextViewContactNo.setText("Contact No - "+mFlatOwnerDetails.getmFlatOwnerContactNo());
-		
-		mTextViewEmailId = (TextView) rootview.findViewById(R.id.textViewOwnerEmaidId);
-		mTextViewEmailId.setText("Email id - " +mFlatOwnerDetails.getmFlatOwnerEmailId());			
+	    grid=(GridView)rootview.findViewById(R.id.grid);
+	    CustomGridAdapter cGridAdapter = new CustomGridAdapter(getActivity(), item, imageId);
+        grid.setAdapter(cGridAdapter);
+        
+        
+        
 	}
 
+	
 }

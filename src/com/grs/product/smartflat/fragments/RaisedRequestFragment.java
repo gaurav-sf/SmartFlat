@@ -56,6 +56,7 @@ public class RaisedRequestFragment extends Fragment {
 		textViewMessage = (TextView) rootview.findViewById(R.id.textView1);
 		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
 		listRequestDetails = new ArrayList<RequestDetails>();
+		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
 		createRequestComplaintsList();
 		mRequestListAdapter = new RaisedRequestListAdapter(getActivity(), listRequestDetails);
 		listViewRequestDetails.setAdapter(mRequestListAdapter);
