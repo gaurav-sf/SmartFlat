@@ -34,8 +34,7 @@ public class SmartFlatApplication extends Application{
            editor.commit();	
 	}
 	
-	public static String getSocietyCodeFromSharedPreferences(){	
-		
+	public static String getSocietyCodeFromSharedPreferences(){		
 		String restoredText = sharedpreferences.getString("SocietyCode", null);		
 		return restoredText;	
 	}
@@ -46,8 +45,7 @@ public class SmartFlatApplication extends Application{
         editor.commit();	
 	}
 	
-	public static String getFlatOwnerCodeFromSharedPreferences(){	
-		
+	public static String getFlatOwnerCodeFromSharedPreferences(){		
 		String restoredText = sharedpreferences.getString("FlatOwnerCode", null);		
 		return restoredText;	
 	}
@@ -58,9 +56,30 @@ public class SmartFlatApplication extends Application{
         editor.commit();	
 	}
 	
-	public static String getFlatOwnerAccessCodeFromSharedPreferences(){	
-		
+	public static String getFlatOwnerAccessCodeFromSharedPreferences(){		
 		String restoredText = sharedpreferences.getString("FlatOwnerAccessCode", null);		
+		return restoredText;	
+	}
+	
+	public static void saveRequestLastSyncTime(String time){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("RequestLastSyncTime", time);
+        editor.commit();	
+	}
+	
+	public static String getRequestLastSyncTime(){		
+		String restoredText = sharedpreferences.getString("RequestLastSyncTime", null);		
+		return restoredText;	
+	}
+	
+	public static void saveNoticeLastSyncTime(String time){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("NoticeLastSyncTime", time);
+        editor.commit();	
+	}
+	
+	public static String getNoticeLastSyncTime(){		
+		String restoredText = sharedpreferences.getString("NoticeLastSyncTime", null);		
 		return restoredText;	
 	}
 

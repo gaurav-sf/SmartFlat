@@ -54,11 +54,11 @@ public class RaisedRequestFragment extends Fragment {
 	private void initializeUI(View rootview){
 		listViewRequestDetails = (ListView) rootview.findViewById(R.id.listViewRaisedComplaints);
 		textViewMessage = (TextView) rootview.findViewById(R.id.textView1);
+		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
 		listRequestDetails = new ArrayList<RequestDetails>();
 		createRequestComplaintsList();
 		mRequestListAdapter = new RaisedRequestListAdapter(getActivity(), listRequestDetails);
 		listViewRequestDetails.setAdapter(mRequestListAdapter);
-		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
 		createSortingSpinnerData();
 	}
 

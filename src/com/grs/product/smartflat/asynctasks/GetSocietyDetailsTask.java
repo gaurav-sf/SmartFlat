@@ -11,15 +11,15 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class FetchSocietyDetailsTask extends AsyncTask<Void, Void, SmartFlatError>{
+public class GetSocietyDetailsTask extends AsyncTask<Void, Void, SmartFlatError>{
 	
-	private static final String TAG = FetchSocietyDetailsTask.class.getName();
+	private static final String TAG = GetSocietyDetailsTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<SocietyDetails> listener = null;
 	String societyCode;
 	SocietyDetails mSocietyDetails;
 	
-	public FetchSocietyDetailsTask(Context context , AsyncTaskCompleteListener<SocietyDetails> listener, String societyCode){
+	public GetSocietyDetailsTask(Context context , AsyncTaskCompleteListener<SocietyDetails> listener, String societyCode){
 		this.context = context;
 		this.societyCode= societyCode; 
 		this.listener = listener;
