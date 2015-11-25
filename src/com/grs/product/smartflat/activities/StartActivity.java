@@ -3,7 +3,7 @@ package com.grs.product.smartflat.activities;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.asynctasks.FetchSocietyDetailsTask;
+import com.grs.product.smartflat.asynctasks.GetSocietyDetailsTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.SocietyDetails;
@@ -95,11 +95,11 @@ public class StartActivity extends Activity {
 		}	
 	}
 
-	private void societyDetailsFetchCall(String societyCode){
+	private void getSocietyDetails(String societyCode){
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new FetchSocietyDetailsTask(getApplicationContext(), new FetchSocietyDetailsListener(), societyCode).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+			new GetSocietyDetailsTask(getApplicationContext(), new GetSocietyDetailsListener(), societyCode).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
 		{
@@ -107,7 +107,7 @@ public class StartActivity extends Activity {
 		}
 	}
 
-	public class FetchSocietyDetailsListener implements AsyncTaskCompleteListener<SocietyDetails>{
+	public class GetSocietyDetailsListener implements AsyncTaskCompleteListener<SocietyDetails>{
 
 		@Override
 		public void onStarted() {
