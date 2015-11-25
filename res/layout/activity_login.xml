@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:text="Login"
-        android:textColor="#000000"
+        android:textColor="#595959"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -22,7 +22,7 @@
         android:layout_height="1dp"
         android:layout_gravity="center"
         android:layout_marginTop="18dp"
-        android:background="#000000" />
+        android:background="#469196" />
 
     <EditText
         android:id="@+id/editTextUsername"
@@ -32,8 +32,7 @@
         android:background="@drawable/edittext_bg"
         android:padding="10sp"
         android:ems="10"
-        android:hint="Id"
-         />
+        android:hint="Id" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -55,5 +54,14 @@
         android:ems="10"
         android:text="LOGIN"
         android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password"
+        android:textColor="#469196"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

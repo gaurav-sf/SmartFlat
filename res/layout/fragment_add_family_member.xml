@@ -76,6 +76,7 @@
         android:ems="10"
         android:hint="Age"
         android:padding="10sp"
+        android:inputType="number"
         android:background="@drawable/edittext_bg" />
     
     <EditText
@@ -86,6 +87,7 @@
         android:ems="10"
         android:hint="Contact No" 
         android:padding="10sp"
+        android:inputType="number"
         android:background="@drawable/edittext_bg"/>
     
     <EditText

@@ -3,6 +3,7 @@ package com.grs.product.smartflat.activities;
 
 import java.util.ArrayList;
 
+import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -54,9 +55,10 @@ public class DashBoardActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
-		Utilities.addCustomActionBar(this);
+		//Utilities.addCustomActionBar(this);
 		
-
+ActionBar action = getActionBar();
+action.setDisplayShowHomeEnabled(false);
 		mTitle = mDrawerTitle = getTitle();
 
 		// load slide menu items

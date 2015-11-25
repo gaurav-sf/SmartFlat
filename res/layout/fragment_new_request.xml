@@ -54,6 +54,7 @@
         android:layout_height="35sp"
         android:layout_marginTop="20sp"
         android:ems="10" 
+        android:popupBackground="#469196"
         android:background="@drawable/spinner_bg"/>
 
     <TextView

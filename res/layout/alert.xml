@@ -9,8 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#ffffff"
+        android:background="@drawable/edittext_bg"
         android:gravity="center"
+        android:padding="10dp"
         android:orientation="vertical" >
 
 
@@ -18,7 +19,7 @@
             android:id="@+id/tvAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:text="TEXT "
 			android:textColor="#595959"
             android:textSize="22sp"
@@ -41,8 +42,8 @@
             android:id="@+id/btnOk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="35dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btnbg" 
             android:textColor="#ffffff"
             android:text="OK"/>

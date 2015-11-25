@@ -4,43 +4,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20sp" >
-    
-<TextView
+
+    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:text="Society Registration Step"
         android:textColor="#595959"
-        android:textSize="23sp"
-        android:text="Society Registration Step" />
+        android:textSize="23sp" />
 
-<TextView
+    <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="#595959"
         android:layout_below="@id/textView1"
-        android:textSize="23sp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="Step 2/2" />
-
+        android:text="Step 2/2"
+        android:textColor="#595959"
+        android:textSize="23sp" />
 
     <View
         android:id="@+id/view1"
         android:layout_width="150dp"
         android:layout_height="1dp"
-        android:layout_marginTop="18dp"
-        android:background="#469196" 
         android:layout_below="@id/textView7"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="#469196" />
 
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp" 
-        android:layout_below="@id/view1">
+        android:layout_below="@id/view1"
+        android:layout_marginTop="20sp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,17 +69,15 @@
                 android:inputType="textPassword"
                 android:padding="10sp" />
 
-            <EditText
-                android:id="@+id/editTextSecurityQuestion"
+            <Spinner
+                android:id="@+id/spinnerSecurityQue"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/edittext_bg"
-                android:editable="false"
+                android:layout_height="40sp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:inputType="none"
-                android:padding="10sp"
-                android:text="What is your nick name?" />
+                android:hint="Floor Number"
+                android:popupBackground="@color/spinner_popup" />
 
             <EditText
                 android:id="@+id/editTextAnswer"
@@ -91,20 +88,27 @@
                 android:ems="10"
                 android:hint="answer"
                 android:padding="10sp" />
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btnbg"
+                android:ems="10"
+                android:text="SUBMIT"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/textview_forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:text="Forgot Password"
+                android:textColor="#469196"
+                android:textSize="25sp" />
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/buttonSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/btnbg"
-        android:ems="10"
-        android:text="SUBMIT"
-        android:textColor="#ffffff" />
-
-    
 
 </RelativeLayout>

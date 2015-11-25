@@ -90,7 +90,7 @@ public class Utilities {
 		return DateFormat.getDateTimeInstance().format(new Date());
 	}
 	
-	public static void addCustomActionBar(Activity activity){
+	/*public static void addCustomActionBar(Activity activity){
 		ActionBar actionBar = activity.getActionBar();
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowTitleEnabled(false);
@@ -99,5 +99,5 @@ public class Utilities {
 		actionBar.setCustomView(mCustomView);
 		actionBar.setDisplayShowCustomEnabled(true);
 	}
-
+*/
 }
