@@ -4,11 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.activities.LoginActivity;
+import com.grs.product.smartflat.activities.LoginActivity.LoginTaskCompleteListener;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.LoginTask;
+import com.grs.product.smartflat.asynctasks.SendRequestAndComplaintTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.RequestDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -81,8 +93,9 @@ public class NewRequestFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if(validateUiEntries()){
-					saveRequestData();
-					clearUiFields();
+					sendDataToServer();
+					//saveRequestData();
+					//clearUiFields();
 				}
 				
 			}
@@ -98,29 +111,35 @@ public class NewRequestFragment extends Fragment {
 		return true;
 	}
 	
-	private void saveRequestData(){
+	private RequestDetails getRequestData(){
 		RequestDetails temp = new RequestDetails();
-		temp.setmRequestNumber(getRequestNumber());
-		String type = "Request";
+		//temp.setmRequestNumber(getRequestNumber());
+		String type = "request";
 		int idtype = mRadioGroupType.getCheckedRadioButtonId();
 		if(idtype == mRadioButtonComplaint.getId()){
-			type = "Complaint";
+			type = "complaint";
 		}
 		temp.setmRequestType(type);
 		temp.setmRequestCategory(mSpinnerRequestCategory.getSelectedItem().toString());
-		String priority = "Low";
+		String priority = "3";
 		int id = mRadioGroupPriority.getCheckedRadioButtonId();
 		if(id == mRadioButtonHigh.getId()){
-			priority = "High";
+			priority = "1";
 		}
 		if(id == mRadioButtonMedium.getId()){
-			priority = "Medium";
+			priority = "2";
 		}
 		temp.setmRequestPriority(priority);
 		temp.setmRequestDetails(mEditTextRequestDetails.getText().toString());
 		temp.setmRequestStatus("Raised");
 		temp.setmRequestDateTime(Utilities.getCurrentDateTime());
 		
+		return temp;
+	}
+	
+	private void saveRequestDataInDB(String number){
+		RequestDetails temp = getRequestData();
+		temp.setmRequestNumber(number);
 		SmartFlatDBManager dbManager = new SmartFlatDBManager();
 		boolean status = dbManager.saveRequestDetails(temp);
 		if(status){
@@ -128,7 +147,7 @@ public class NewRequestFragment extends Fragment {
 		}
 	}
 	
-	private String getRequestNumber(){
+	private String getRequestNumber11(){
 		String requestNumber = "";
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
 		Cursor cursor = objManager.getAllRequestDetails();
@@ -149,6 +168,53 @@ public class NewRequestFragment extends Fragment {
 		mRadioButtonLow.setChecked(true);
 		mRadioButtonRequest.setChecked(true);
 		createSpinnerData();
+	}
+	
+	private void sendDataToServer()
+	{
+		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
+		{
+			new SendRequestAndComplaintTask(getActivity(), new SendRequestAndComplaintTaskListener(),getRequestData())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(getActivity(),"Error", "Please check your Internet");
+		}			
+	}
+	
+	public class SendRequestAndComplaintTaskListener implements AsyncTaskCompleteListener<Response> {
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(getActivity(), "", false);		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					saveRequestDataInDB(result.getMessage());
+					clearUiFields();
+					
+				}else{
+					Utilities.ShowAlertBox(getActivity(),"Error",result.getMessage());		
+				}
+			}	
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();	
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			CustomProgressDialog.removeDialog();	
+		}
+		
 	}
 
 

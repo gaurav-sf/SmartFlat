@@ -1,29 +1,28 @@
 package com.grs.product.smartflat.asynctasks;
 
-import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.apicall.SmartFlatAPI;
-import com.grs.product.smartflat.error.SmartFlatError;
-import com.grs.product.smartflat.response.Response;
-import com.grs.product.smartflat.utils.Utilities;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.apicall.SmartFlatAPI;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.Utilities;
 
-public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
+public class FlatOwnerRegistrationTask  extends AsyncTask<Void, Void, SmartFlatError> {
 
 	private static final String TAG = LoginTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<Response> listener = null;
-	String username;
-	String password;
-	Response mLoginStatus;
+	private FlatOwnerDetails mFlatOwnerDetails;
+	Response mRegistrationStatus;
 	
-	public LoginTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String username, String password) 
+	public FlatOwnerRegistrationTask(Context ctx, AsyncTaskCompleteListener<Response> listener, FlatOwnerDetails mFlatOwnerDetails) 
 	{
 		this.context = ctx;
 		this.listener = listener;
-		this.username = username;
-		this.password = password;	
+		this.mFlatOwnerDetails=mFlatOwnerDetails;
 	}
 	
 	@Override
@@ -38,7 +37,7 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 		SmartFlatAPI smartFlatAPI = new SmartFlatAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAPI.getLogin(username, password);
+			mRegistrationStatus =  smartFlatAPI.getFlatOwnerRegistration(mFlatOwnerDetails);
 		}
 		catch (SmartFlatError e) 
 		{
@@ -52,12 +51,12 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 	@Override
 	protected void onPostExecute(SmartFlatError error) {
 		
-		if(mLoginStatus!=null)
+		if(mRegistrationStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(mLoginStatus);
+				listener.onTaskComplete(mRegistrationStatus);
 				listener = null;
 			}
 		}
@@ -67,6 +66,7 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 			{
 				if(error!=null)
 				{
+					Utilities.ShowAlertBox(context, error.errorType, error.errorMessage);
 					listener.onStopedWithError(error);
 				}
 				
