@@ -54,21 +54,25 @@ public class LoginActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				
-				String username = mEditTextUsername.getText().toString();
-				String password = mEditTextPassword.getText().toString();
-				if(username.equals(mFlatOwnerDetails.getmUsername())
-						&& password.equals(mFlatOwnerDetails.getmPassword()))
+				if(validateUiEntries())
 				{
-					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences("TEMP ACCESS CODE");
-					Intent intentDashboard = new Intent(LoginActivity.this,DashBoardActivity.class);
-					startActivity(intentDashboard);	
-					finish();
-				}else{
-					Toast.makeText(LoginActivity.this, "Invalid Login Details", Toast.LENGTH_LONG).show();
-				}
-				
+					getLoginCall();
+				}			
 			}
 		});
+	}
+	
+	private boolean validateUiEntries(){
+		if(mEditTextUsername.getText().toString().equals("")){
+			mEditTextUsername.setError("Please enter username");
+			return false;
+		}
+		if(mEditTextPassword.getText().toString().equals("")){
+			mEditTextPassword.setError("Please enter password");
+			return false;
+		}
+		return true;
+			
 	}
 	
 	private void getUserLoginDetailsFromDB(){
@@ -80,11 +84,12 @@ public class LoginActivity extends Activity{
 		}		
 	}
 	
-	private void loginCall(){
+	private void getLoginCall(){
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(), "", "").executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(),mEditTextUsername.getText().toString(), mEditTextPassword.getText().toString())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
 		{
@@ -105,9 +110,11 @@ public class LoginActivity extends Activity{
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
+					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(result.getMessage());
+					goToNextActivity();
 					
 				}else{
-					
+					Utilities.ShowAlertBox(LoginActivity.this,"Error",result.getMessage());		
 				}
 			}	
 		}
@@ -119,9 +126,16 @@ public class LoginActivity extends Activity{
 
 		@Override
 		public void onStopedWithError(SmartFlatError e) {
+			Utilities.ShowAlertBox(LoginActivity.this,"Error",e.getMessage());		
 			CustomProgressDialog.removeDialog();	
 		}
 		
+	}
+	
+	private void goToNextActivity(){
+		Intent intentDashboard = new Intent(LoginActivity.this,DashBoardActivity.class);
+		startActivity(intentDashboard);	
+		finish();
 	}
 
 }

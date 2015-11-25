@@ -46,48 +46,21 @@ public class StartActivity extends Activity {
 			public void onClick(View v) {
 				if(edittext_society_code.getText().toString().equals("")){
 					edittext_society_code.setError("Please enter society code");
-				}else{
-					societyCodeValidation(edittext_society_code.getText().toString());
+				}else{		
+					getSocietyDetails(edittext_society_code.getText().toString());
 				}
 			}
 		});
 	}
 
-	private void societyCodeValidation(String societyCode){
-		if(societyCode.equals("SF@GRS1001"))
-		{
-			//Here will be web service call to check this code in cloud DB and fetch the society details and save in local DB
-			saveSocietyDetailsInDB();
-			SmartFlatApplication.saveSocietyCodeInSharedPreferences(societyCode);
+	private void gotoNextActivity(){
 			Intent registrationStep1 = new Intent(this, RegistrationStep1Activity.class);
 			startActivity(registrationStep1);
-			finish();	
-		}else{
-			edittext_society_code.setError("Please enter valid society code");
-		}
-
+			finish();
 	}
 
-	private void saveSocietyDetailsInDB(){
-		SocietyDetails societyDetails = new SocietyDetails();
-		societyDetails.setmSocietyCode("SM@GRS1001");
-		societyDetails.setmSocietyOwnerName("Gaurav Lakade");
-		societyDetails.setmSocietyOwnerAddressLine1("Mahendra Colony");
-		societyDetails.setmSocietyOwnerAddressLine2("Behind VMV");
-		societyDetails.setmSocietyOwnerCity("Amravati");
-		societyDetails.setmSocietyOwnerState("Maharashtra");
-		societyDetails.setmSocietyOwnerPIN("444604");
-		societyDetails.setmSocietyOwnerContactNo("9028848725");
-		societyDetails.setmSocietyOwnerEmailId("gauravlakade@gmail.com");
-		societyDetails.setmSocietyName("Destiny");
-		societyDetails.setmBuildingName("A@B@C@D@E@F");
-		societyDetails.setmTotalFloorNumber(7);
-		societyDetails.setmSocietyAddressLine1("Vishal Nagar");
-		societyDetails.setmSocietyAddressLine2("Pimple Nilakh");
-		societyDetails.setmSocietyAddressCity("Pune");
-		societyDetails.setmSocietyAddressState("Maharashtra");
-		societyDetails.setmSocietyAddressPIN("411027");
-
+	private void saveSocietyDetailsInDB(SocietyDetails societyDetails)
+	{
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
 		boolean result = objManager.saveSocietyDetails(societyDetails);
 		if(result){
@@ -99,11 +72,12 @@ public class StartActivity extends Activity {
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new GetSocietyDetailsTask(getApplicationContext(), new GetSocietyDetailsListener(), societyCode).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+			new GetSocietyDetailsTask(StartActivity.this, new GetSocietyDetailsListener(), societyCode)
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
 		{
-			Utilities.ShowAlertBox(getApplicationContext(),"Error", "Please check your Internet");
+			Utilities.ShowAlertBox(StartActivity.this,"Error", "Please check your Internet");
 		}
 	}
 
@@ -111,14 +85,17 @@ public class StartActivity extends Activity {
 
 		@Override
 		public void onStarted() {
-			CustomProgressDialog.showProgressDialog(getApplicationContext(), "", false);
+			CustomProgressDialog.showProgressDialog(StartActivity.this, "", false);
 		}
 
 		@Override
 		public void onTaskComplete(SocietyDetails result) {
 			if(result != null){
-				saveSocietyDetailsInDB();
+				saveSocietyDetailsInDB(result);
 				SmartFlatApplication.saveSocietyCodeInSharedPreferences(result.getmSocietyCode());
+				gotoNextActivity();
+			}else{
+				Utilities.ShowAlertBox(StartActivity.this, "Message", "Null aala na be....");
 			}
 		}
 
@@ -129,10 +106,10 @@ public class StartActivity extends Activity {
 
 		@Override
 		public void onStopedWithError(SmartFlatError e) {
-			Utilities.ShowAlertBox(getApplicationContext(), "Error", e.getMessage());
 			CustomProgressDialog.removeDialog();
+			if (e!=null)
+			Utilities.ShowAlertBox(StartActivity.this, "Error", e.getMessage());		
 		}
-
 
 	}
 

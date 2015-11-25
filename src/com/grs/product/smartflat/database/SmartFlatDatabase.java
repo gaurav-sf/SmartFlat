@@ -13,7 +13,6 @@ import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerVehicl
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyNotices;
-import com.grs.product.smartflat.models.ComplaintDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.NoticeDetails;

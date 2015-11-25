@@ -1,19 +1,14 @@
 package com.grs.product.smartflat.apicall;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.ConnectTimeoutException;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.util.EntityUtils;
+import java.util.ArrayList;
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.Param;
@@ -31,92 +26,142 @@ public class SmartFlatAPI {
 			throws SmartFlatError{
 		return getLoginCall(username, password);
 	}
-	
+
 	public SocietyDetails getSocietyDetails(String societyCode)
-	throws SmartFlatError{
+			throws SmartFlatError{
 		return getSocietyDetailsCall(societyCode);
 	}
+	
+	public Response getFlatOwnerRegistration(FlatOwnerDetails flatOwnerDetails) 
+			throws SmartFlatError{
+		return getFlatOwnerRegistrationCall(flatOwnerDetails);
+		
+	}
+	
+	public Response sendRequestAndComplaintDetails(RequestDetails requestDetails) 
+			throws SmartFlatError{
+		return sendRequestAndComplaintDetailsCall(requestDetails);
+	}
+	
 
 	private Response getLoginCall(String username, String password)
 			throws SmartFlatError{
 		try{
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("username", username);
-			jsonObject.put("password", password);
-			HttpPost postMethod = new HttpPost(Param.baseURL
-					+ "authenticateuser");
-			String jsonResponse = null;
-			postMethod.setEntity(new StringEntity(jsonObject.toString()));
-			postMethod.addHeader("Content-Type", "application/json");
-			postMethod.setHeader("Accept", "application/json");
-			HttpResponse response = HttpClientSingleton.getHttpClientInstace().execute(postMethod);
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) 
-			{
-				HttpEntity resEntity = response.getEntity();
-				jsonResponse = EntityUtils.toString(resEntity);
-				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
-				return objectjson.getStatus(jsonResponse);		
-			}else {
-				throw new SmartFlatError(
-						response.getStatusLine().getReasonPhrase(),
-						"Server Error");
-			}
-		} catch (ClientProtocolException e) {
-			throw new SmartFlatError("Server is unavailable.", "Server Error");
-		} catch (ConnectTimeoutException e) {
-			throw new SmartFlatError("Server timeout.", "Server Error");
-		} catch (SocketTimeoutException e) {
-			throw new SmartFlatError("Server timeout.", "Server Error");
-		} catch (MalformedURLException e) {
-			throw new SmartFlatError(e.toString(), "MalformedURLException");
-		} catch (IOException e) {
-			throw new SmartFlatError("Server is unavailable.", "Server Error");
-		} catch (JSONException e) {
-			//throw new SmartFlatError("Error parsing data return from server", "JSON Parser");
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("username", username));
+			object.add(new BasicNameValuePair("password",password));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
+			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "FlatOwnerLogin.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
 			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
 		}
 	}
-	
-	private SocietyDetails getSocietyDetailsCall(String societyCode)
-	throws SmartFlatError{
 
-		try{
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("societyCode", societyCode);
-			HttpPost postMethod = new HttpPost(Param.baseURL
-					+ "getSocietyDetails");
-			String jsonResponse = null;
-			postMethod.setEntity(new StringEntity(jsonObject.toString()));
-			postMethod.addHeader("Content-Type", "application/json");
-			postMethod.setHeader("Accept", "application/json");
-			HttpResponse response = HttpClientSingleton.getHttpClientInstace().execute(postMethod);
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) 
+	private SocietyDetails getSocietyDetailsCall(String societyCode)
+			throws SmartFlatError
 			{
-				HttpEntity resEntity = response.getEntity();
-				jsonResponse = EntityUtils.toString(resEntity);
-				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
-				return objectjson.getSocietyDetails(jsonResponse);		
-			}else {
-				throw new SmartFlatError(
-						response.getStatusLine().getReasonPhrase(),
-						"Server Error");
-			}
-		} catch (ClientProtocolException e) {
-			throw new SmartFlatError("Server is unavailable.", "Server Error");
-		} catch (ConnectTimeoutException e) {
-			throw new SmartFlatError("Server timeout.", "Server Error");
-		} catch (SocketTimeoutException e) {
-			throw new SmartFlatError("Server timeout.", "Server Error");
-		} catch (MalformedURLException e) {
-			throw new SmartFlatError(e.toString(), "MalformedURLException");
-		} catch (IOException e) {
-			throw new SmartFlatError("Server is unavailable.", "Server Error");
-		} catch (JSONException e) {
-			//throw new SmartFlatError("Error parsing data return from server", "JSON Parser");
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("societyCode", societyCode));
+			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "getSocietyDetails.php";
+			JSONObject jsonResponse = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getSocietyDetails(jsonResponse);		 
+
+		} 
+		catch (JSONException e) 
+		{
 			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
 		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+			}
 	
-		
+	private Response getFlatOwnerRegistrationCall(FlatOwnerDetails flatOwnerDetails) 
+			throws SmartFlatError{	
+
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("username", flatOwnerDetails.getmUsername()));
+			object.add(new BasicNameValuePair("password",flatOwnerDetails.getmPassword()));
+			object.add(new BasicNameValuePair("securityQuestion",flatOwnerDetails.getmSecurityQuestion()));
+			object.add(new BasicNameValuePair("answer",flatOwnerDetails.getmAnswer()));
+			object.add(new BasicNameValuePair("flatOwnerName",flatOwnerDetails.getmFlatOwnerName()));
+			object.add(new BasicNameValuePair("flatOwnerDOB",flatOwnerDetails.getmFlatOwnerDOB()));
+			object.add(new BasicNameValuePair("flatOwnerAge",flatOwnerDetails.getmFlatOwnerAge()));
+			object.add(new BasicNameValuePair("flatOwnerContactNo",flatOwnerDetails.getmFlatOwnerContactNo()));
+			object.add(new BasicNameValuePair("flatOwnerEmailId",flatOwnerDetails.getmFlatOwnerEmailId()));
+			object.add(new BasicNameValuePair("buildingName",flatOwnerDetails.getmBuildingName()));
+			object.add(new BasicNameValuePair("floorNo",flatOwnerDetails.getmFloorNo()));
+			object.add(new BasicNameValuePair("flatNo",flatOwnerDetails.getmFlatno()));
+			object.add(new BasicNameValuePair("NoOfFamilyMember",flatOwnerDetails.getmNoofFamilyMembers()+""));
+			object.add(new BasicNameValuePair("NoOfVehicle",flatOwnerDetails.getmNoofVehicles()+""));
+			object.add(new BasicNameValuePair("societyCode",flatOwnerDetails.getmSocietyCode()));
+			object.add(new BasicNameValuePair("flatOwnerCode",flatOwnerDetails.getmFlatOwnerCode()));
+			object.add(new BasicNameValuePair("gender",flatOwnerDetails.getmGender()));
+			
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "registerFlatOwner.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	
+	}
+	
+	private Response sendRequestAndComplaintDetailsCall(RequestDetails requestDetails) throws SmartFlatError
+	{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("category", requestDetails.getmRequestCategory()));
+			object.add(new BasicNameValuePair("type", requestDetails.getmRequestType()));
+			object.add(new BasicNameValuePair("priority", requestDetails.getmRequestPriority()));
+			object.add(new BasicNameValuePair("raisedBy", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("details", requestDetails.getmRequestDetails()));
+			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "saveFlatOwnerComplaintsAndRequests.php";
+			JSONObject jsonResponse = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(jsonResponse);		 
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}		
 	}
 
 }

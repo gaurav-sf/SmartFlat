@@ -2,13 +2,9 @@ package com.grs.product.smartflat.activities;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import android.R.layout;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -17,9 +13,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
-
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.utils.Utilities;
 
@@ -55,7 +50,6 @@ public class RegistrationStep1Activity extends Activity {
 	}*/
 
 	private void initializeUI(){
-
 		mEditTextName = (EditText) findViewById(R.id.editTextName);
 		mEditTextDOB = (EditText) findViewById(R.id.editTextDOB);
 		mEditTextAge = (EditText) findViewById(R.id.editTextAge);
@@ -73,8 +67,6 @@ public class RegistrationStep1Activity extends Activity {
 	}
 
 	private void createSpinnerData(){
-		//Later the values for the spinner will come from the database. 
-		//The values which we are going to save after validation of society code
 		List<String> listBuilidingName = new ArrayList<String>();
 		String[] buildingName = mSocietyDetails.getmBuildingName().split("@");
 		for(int i=0; i<buildingName.length;i++){
@@ -189,9 +181,8 @@ public class RegistrationStep1Activity extends Activity {
 			gender = "Female";
 		}
 		//for now sending this in extra later on will access it from Application file using shared pref
-		intentRegistrationStep2.putExtra("societycode", mSocietyDetails.getmSocietyCode());
+		intentRegistrationStep2.putExtra("societycode", SmartFlatApplication.getSocietyCodeFromSharedPreferences());
 		intentRegistrationStep2.putExtra("gender", gender);
-
 		startActivity(intentRegistrationStep2);
 		finish();
 	}

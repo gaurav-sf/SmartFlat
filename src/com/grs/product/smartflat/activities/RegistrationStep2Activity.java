@@ -2,6 +2,7 @@ package com.grs.product.smartflat.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,8 +13,16 @@ import java.text.DateFormat;
 import java.util.Date;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.activities.StartActivity.GetSocietyDetailsListener;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.FlatOwnerRegistrationTask;
+import com.grs.product.smartflat.asynctasks.GetSocietyDetailsTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
 
 public class RegistrationStep2Activity extends Activity {
@@ -49,14 +58,10 @@ public class RegistrationStep2Activity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				if(isValidateUiEntries()){
-					saveFlatOwnerDetails();
-					SmartFlatApplication.saveFlatOwnerCodeInSharedPreferences(mEditTextUsername.getText().toString());
-					Intent loginIntent = new Intent(RegistrationStep2Activity.this, LoginActivity.class);
-					startActivity(loginIntent);
-					finish();
+				if(isValidateUiEntries())
+				{					
+					registerUserOnServer();
 				}
-
 			}
 		});
 	}
@@ -75,7 +80,7 @@ public class RegistrationStep2Activity extends Activity {
 		return true;	
 	}
 
-	private void saveFlatOwnerDetails()
+	private FlatOwnerDetails getFlatOwnerDetails()
 	{
 		FlatOwnerDetails flatOwnerDetails = new FlatOwnerDetails();
 		flatOwnerDetails.setmUsername(extras.getString("username"));
@@ -96,12 +101,68 @@ public class RegistrationStep2Activity extends Activity {
 		flatOwnerDetails.setmFlatOwnerCode(extras.getString("username"));
 		flatOwnerDetails.setmGender(extras.getString("gender"));
 		flatOwnerDetails.setmFlatOwnerCreatedDateTime(Utilities.getCurrentDateTime());
-		
+		return flatOwnerDetails;
+	}
+	
+	private void saveFlatOwnerDetailsInDB(FlatOwnerDetails flatOwnerDetails){
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
 		boolean result = objManager.saveFlatOwnerDeatils(flatOwnerDetails);
 		if(result){
 			Log.e(LOG, "Flat Owner Details Insertion Successful");
 		}
+	}
+	
+	private void registerUserOnServer()
+	{
+		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
+		{
+			new FlatOwnerRegistrationTask(RegistrationStep2Activity.this, new FlatOwnerRegistrationTaskListener(), getFlatOwnerDetails())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(RegistrationStep2Activity.this,"Error", "Please check your Internet");
+		}
+	}
+	
+	public class FlatOwnerRegistrationTaskListener implements AsyncTaskCompleteListener<Response>{
+
+		@Override
+		public void onStarted()
+		{
+			CustomProgressDialog.showProgressDialog(RegistrationStep2Activity.this, "", false);		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if(result!=null){
+				if(result.getStatus().equals("success")){
+					saveFlatOwnerDetailsInDB(getFlatOwnerDetails());
+					SmartFlatApplication.saveFlatOwnerCodeInSharedPreferences(mEditTextUsername.getText().toString());
+					goToNextActivity();
+				}else{
+					Utilities.ShowAlertBox(RegistrationStep2Activity.this, "Error", "Some thing went wrong. Please try after some time.");
+				}
+			}		
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			if(e!=null)
+			Utilities.ShowAlertBox(RegistrationStep2Activity.this, "Error", e.getMessage());
+			CustomProgressDialog.removeDialog();		
+		}
+	}
+	
+	private void goToNextActivity(){
+		Intent loginIntent = new Intent(RegistrationStep2Activity.this, LoginActivity.class);
+		startActivity(loginIntent);
+		finish();
 	}
 
 }
