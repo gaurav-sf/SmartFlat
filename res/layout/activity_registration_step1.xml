@@ -136,7 +136,7 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/spinner_bg"
                 android:hint="Building Name"
-                android:popupBackground="#f2f2f2" />
+                android:popupBackground="@color/spinner_popup"/>
 
             <Spinner
                 android:id="@+id/spinnerTextFloorNo"
@@ -145,7 +145,8 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:hint="Floor Number" />
+                android:hint="Floor Number" 
+                android:popupBackground="@color/spinner_popup"/>
 
             <EditText
                 android:id="@+id/editTextFlatNo"

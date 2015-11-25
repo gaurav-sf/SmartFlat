@@ -6,22 +6,39 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.utils.Utilities;
 
 public class RegistrationStep2Activity extends Activity {
 
-	private EditText mEditTextUsername, mEditTextPassword, mEditTextSecurityQue, mEditTextAnswer;
+	private EditText mEditTextUsername, mEditTextPassword, mEditTextAnswer;
+	private Spinner  mSpinnerSecurityQue;
 	private Button buttonSubmit;
 	private Bundle extras;
 	private final String LOG = RegistrationStep2Activity.class.getName();
+	
+	String[] security_Questions = {
+			"What is your nick name?",
+			"What is your birth place?",
+			"Who is your favorite cricket player?",
+			"What is your favorite color",
+
+			};
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +49,7 @@ public class RegistrationStep2Activity extends Activity {
 		 extras = getIntent().getExtras();
 		String username = extras.getString("username");
 		mEditTextUsername.setText(username);
+		createSpinnerData();
 		addListeners();
 	}
 
@@ -39,7 +57,7 @@ public class RegistrationStep2Activity extends Activity {
 	{
 		mEditTextUsername = (EditText) findViewById(R.id.editTextUsername); 
 		mEditTextPassword = (EditText) findViewById(R.id.editTextPassword); 
-		mEditTextSecurityQue =  (EditText) findViewById(R.id.editTextSecurityQuestion); 
+		mSpinnerSecurityQue =  (Spinner) findViewById(R.id.spinnerSecurityQue); 
 		mEditTextAnswer =  (EditText) findViewById(R.id.editTextAnswer);
 		buttonSubmit = (Button) findViewById(R.id.buttonSubmit);	
 	}
@@ -80,7 +98,7 @@ public class RegistrationStep2Activity extends Activity {
 		FlatOwnerDetails flatOwnerDetails = new FlatOwnerDetails();
 		flatOwnerDetails.setmUsername(extras.getString("username"));
 		flatOwnerDetails.setmPassword(mEditTextPassword.getText().toString());
-		flatOwnerDetails.setmSecurityQuestion(mEditTextSecurityQue.getText().toString());
+		//flatOwnerDetails.setmSecurityQuestion( mSpinnerSecurityQue.getSelectedItem().toString());
 		flatOwnerDetails.setmAnswer(mEditTextAnswer.getText().toString());
 		flatOwnerDetails.setmFlatOwnerName(extras.getString("name"));
 		flatOwnerDetails.setmFlatOwnerDOB(extras.getString("dob"));
@@ -103,5 +121,18 @@ public class RegistrationStep2Activity extends Activity {
 			Log.e(LOG, "Flat Owner Details Insertion Successful");
 		}
 	}
+	private void createSpinnerData(){
+		//Later the values for the spinner will come from the database. 
+		//The values which we are going to save after validation of society code
+		List<String> listSecurityQuestion = new ArrayList<String>();
+		for (int i = 0; i < security_Questions.length; i++) {
+			listSecurityQuestion.add(security_Questions[i]);
+			
+		}
+		ArrayAdapter<String> securityQuestion = new ArrayAdapter<String>
+		(this, android.R.layout.simple_dropdown_item_1line, listSecurityQuestion);
+		securityQuestion.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		mSpinnerSecurityQue.setAdapter(securityQuestion);
 
+}
 }

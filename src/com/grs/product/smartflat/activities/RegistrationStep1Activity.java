@@ -37,7 +37,7 @@ public class RegistrationStep1Activity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_registration_step1);
-		Utilities.addCustomActionBar(this);
+		//Utilities.addCustomActionBar(this);
 		initializeUI();
 		mSocietyDetails = Utilities.getSocietyDetails();
 		createSpinnerData();
