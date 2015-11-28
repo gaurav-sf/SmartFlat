@@ -1,5 +1,6 @@
 package com.grs.product.smartflat.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +14,20 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.activities.LoginActivity;
+import com.grs.product.smartflat.activities.LoginActivity.LoginTaskCompleteListener;
+import com.grs.product.smartflat.adapter.CustomGridAdapter;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.AddVehicleTask;
+import com.grs.product.smartflat.asynctasks.LoginTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.VehicleDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
+import com.grs.product.smartflat.utils.Utilities;
 
 public class NewVehicleFragment extends Fragment {
 	
@@ -56,7 +69,7 @@ public class NewVehicleFragment extends Fragment {
 			@Override
 			public void onClick(View arg0) {
 				if(validateUiEntries()){
-					saveVehicleDetails();
+					saveVehicleOnServer();
 					clearUiEntries();
 				}
 			}
@@ -85,7 +98,7 @@ public class NewVehicleFragment extends Fragment {
 		return true;
 	}
 	
-	private void saveVehicleDetails(){
+	private VehicleDetails getVehicleDetails(){
 		VehicleDetails tempDetails = new VehicleDetails();
 		String vehicleType = "2 Wheeler";
 		int id = mRadioGroupVehicleType.getCheckedRadioButtonId();
@@ -98,11 +111,8 @@ public class NewVehicleFragment extends Fragment {
 		tempDetails.setmVehicleNumber(mEditTextVehicleNumber.getText().toString());
 		tempDetails.setmVehicleColor(mEditTextVehicleColor.getText().toString());
 		
-		SmartFlatDBManager dbManager = new SmartFlatDBManager();
-		boolean status = dbManager.saveVehicleDetails(tempDetails);
-		if(status){
-			Log.e("Vehicle", "Vehicle Added");
-		}
+		return tempDetails;
+
 	}
 	
 	private void clearUiEntries(){
@@ -111,6 +121,70 @@ public class NewVehicleFragment extends Fragment {
 		mEditTextVehicleModel.setText("");
 		mEditTextVehicleColor.setText("");
 		mRadioButton2Wheeler.setChecked(true);	
+	}
+	
+	private void saveVehicleOnServer(){
+
+
+		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
+		{
+			new AddVehicleTask(getActivity(), new AddVehicleTaskListener(), getVehicleDetails())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(getActivity(),"Error", "Please check your Internet");
+		}	
+	
+	}
+	
+	public class AddVehicleTaskListener implements AsyncTaskCompleteListener<Response>{
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(getActivity(), "", false);
+		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					saveVehicleInDB();
+					clearUiEntries();
+					Utilities.ShowAlertBox(getActivity(),"Message","Vehicle Added Successfully");		
+
+				}else{
+					Utilities.ShowAlertBox(getActivity(),"Error","Error Occured please try later");		
+				}
+			}	
+		
+		}
+
+		@Override
+		public void onStoped() {
+CustomProgressDialog.removeDialog();			
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			CustomProgressDialog.removeDialog();		
+			Utilities.ShowAlertBox(getActivity(), "Error", "Server error occured. Please try later");
+			
+		}
+		
+	}
+	
+	private void saveVehicleInDB(){
+			SmartFlatDBManager dbManager = new SmartFlatDBManager();
+		boolean status = dbManager.saveVehicleDetails(getVehicleDetails());
+		if(status){
+			Log.e("Vehicle", "Vehicle Added");
+		}
+		
 	}
 
 }

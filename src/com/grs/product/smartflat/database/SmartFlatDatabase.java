@@ -10,6 +10,7 @@ import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamily
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerVehicleDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableMessageDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyNotices;
@@ -18,6 +19,7 @@ import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.NoticeDetails;
 import com.grs.product.smartflat.models.QueryDetails;
 import com.grs.product.smartflat.models.RequestDetails;
+import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
 
@@ -182,6 +184,30 @@ public class SmartFlatDatabase {
 			db.endTransaction();
 		}	
 	}
+	
+	private void createContactDetailsTable(SQLiteDatabase db){
+		try {
+			db.beginTransaction();
+			db.execSQL(SmartFlatDBTableCreation.TABLE_CONTACT_DETAILS_CREATION_QUERY);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+		}	
+	}
+	
+	private void createMessageDetailsTable(SQLiteDatabase db){
+		try {
+			db.beginTransaction();
+			db.execSQL(SmartFlatDBTableCreation.TABLE_MESSAGE_DETAILS_CREATION_QUERY);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+		}	
+	}
 
 
 	//inner class
@@ -203,6 +229,8 @@ public class SmartFlatDatabase {
 				createRequestDetailsTable(db);
 				createQueryDetailsTable(db);
 				createSocietyNoticesTable(db);
+				createContactDetailsTable(db);
+				createMessageDetailsTable(db);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -233,7 +261,7 @@ public class SmartFlatDatabase {
 		values.put(TableSocietyDetails.BUILDING_NAME,details.getmBuildingName());
 		values.put(TableSocietyDetails.TOTAL_FLOOR_NUMBER,details.getmTotalFloorNumber());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE1,details.getmSocietyAddressLine1());
-		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE2,details.getmSocietyOwnerAddressLine2());
+		values.put(TableSocietyDetails.SOCIETY_ADDRESS_LINE2,details.getmSocietyAddressLine2());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_CITY,details.getmSocietyAddressCity());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_STATE,details.getmSocietyAddressState());
 		values.put(TableSocietyDetails.SOCIETY_ADDRESS_PIN,details.getmSocietyAddressPIN());	
@@ -571,6 +599,45 @@ public class SmartFlatDatabase {
 	
 	public Cursor getClosedQueryDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.QUERY_DETAILS + " WHERE "+TableFlatOwnerQueryDetails.QUERY_STATUS +" = 'Closed'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public Cursor getSinbleRequestDetails(String requestNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE " + TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER +"= '"+ requestNumber+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public boolean saveMessage(RequestMessages message){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();		
+		values.put(TableMessageDetails.MESSAGE_CODE,message.getmMessageNumber());
+		values.put(TableMessageDetails.MESSAGE_CONTENT,message.getmMessageContent());
+		values.put(TableMessageDetails.REQUEST_CODE,message.getmRequestNumber());
+		values.put(TableMessageDetails.IS_SOCIETY_MESSAGE,message.ismIsSocietyMessage());
+		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
+
+		try {
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.MESSAGE_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}	
+		return isAdded;	
+	}
+	
+	public Cursor getMessages(String requestNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_CODE +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();

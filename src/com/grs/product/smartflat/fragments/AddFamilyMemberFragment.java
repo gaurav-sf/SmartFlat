@@ -3,12 +3,23 @@ package com.grs.product.smartflat.fragments;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.R.id;
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.AddFamilyMemberTask;
+import com.grs.product.smartflat.asynctasks.AddVehicleTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDatabase;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.fragments.NewVehicleFragment.AddVehicleTaskListener;
 import com.grs.product.smartflat.models.FamilyDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
+import com.grs.product.smartflat.utils.Utilities;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,8 +74,7 @@ public class AddFamilyMemberFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				if(validateUIEntries()){
-					saveFamilyDetails();
-					clearAllFields();
+					saveFamilyMemberOnServer();
 					
 				}
 			}
@@ -107,7 +117,7 @@ public class AddFamilyMemberFragment extends Fragment {
 		return true;
 	}
 	
-	private void saveFamilyDetails(){
+	private FamilyDetails getFamilyDetails(){
 		FamilyDetails tempFamilyDetails = new FamilyDetails();
 		tempFamilyDetails.setmFamilyMemberName(mEditTextFMemberName.getText().toString());
 		//tempFamilyDetails.setmFamilyMemberRelation(mEditTextFMemberRelation.getText().toString());
@@ -129,9 +139,8 @@ public class AddFamilyMemberFragment extends Fragment {
 		}
 		tempFamilyDetails.setmNeedLogin(needLogin);
 		tempFamilyDetails.setmFlatOwnerCode(SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences());
-		
-		SmartFlatDBManager dbManager = new SmartFlatDBManager();
-		dbManager.saveFamilyDetails(tempFamilyDetails);
+		return tempFamilyDetails;
+
 		}
 	
 	private void clearAllFields(){
@@ -142,5 +151,71 @@ public class AddFamilyMemberFragment extends Fragment {
 		mEditTextFMemberContactNo.setText("");
 		mRadioButtonNo.setChecked(true);
 	}
+	
+	private void saveFamilyMemberOnServer(){
+
+
+		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
+		{
+			new AddFamilyMemberTask(getActivity(), new AddFamilyMemberTaskListener(), getFamilyDetails())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(getActivity(),"Error", "Please check your Internet");
+		}	
+	
+	}
+	
+	public class AddFamilyMemberTaskListener implements AsyncTaskCompleteListener<Response>{
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(getActivity(), "", false);
+		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					saveFamilyDetailsInDB();
+					clearAllFields();
+					Utilities.ShowAlertBox(getActivity(),"Message","Family member added successfully");
+					
+
+				}else{
+					Utilities.ShowAlertBox(getActivity(),"Error","Error Occured please try later");		
+				}
+			}	
+		
+		}
+
+		@Override
+		public void onStoped() {
+CustomProgressDialog.removeDialog();			
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			CustomProgressDialog.removeDialog();		
+			Utilities.ShowAlertBox(getActivity(), "Error", "Server error occured. Please try later");
+			
+		}
+		
+	}
+	
+	private void saveFamilyDetailsInDB(){
+			SmartFlatDBManager dbManager = new SmartFlatDBManager();
+		boolean status = dbManager.saveFamilyDetails(getFamilyDetails());
+		if(status){
+			Log.e("Family Member", "Family Member Added");
+		}
+		
+	}
+	
 
 }

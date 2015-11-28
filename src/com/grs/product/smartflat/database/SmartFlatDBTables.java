@@ -16,7 +16,10 @@ public class SmartFlatDBTables {
 		public static final String COMPLAINT_DETAILS = "Complaint_Details";
 		public static final String REQUEST_DETAILS = "Request_Complaint_Details";
 		public static final String QUERY_DETAILS = "Query_Details";
-		public static final String SOCIETY_NOTICES= "Society_Notices";
+		public static final String SOCIETY_NOTICES = "Society_Notices";
+		public static final String CONTACT_DETAILS = "Contact_Details";
+		public static final String MESSAGE_DETAILS = "Message_Details";
+		
 		
 	}
 
@@ -145,5 +148,28 @@ public class SmartFlatDBTables {
 		public static final String NOTICE_PRIORITY = "Notice_Priority";	
 		public static final String NOTICE_DETAILS = "Notice_Details";																	
 	}
+	
+	public static final class TableContactDetails implements BaseColumns{
+		private TableContactDetails(){}
+		public static final String ID = "ID";
+		public static final String CONTACT_NAME = "Contact_Name";
+		public static final String CONTACT_NUMBER = "Contact_Number";
+		public static final String CONTACT_EMAIL_ID = "Contact_Email_ID";
+		public static final String CONTACT_OCCUPATION = "Contact_Occupation";
+	}
+	
+	public static final class TableMessageDetails implements BaseColumns{
+		private TableMessageDetails(){}
+		public static final String ID = "ID";
+		public static final String MESSAGE_CODE = "Message_Code";
+		public static final String MESSAGE_CONTENT = "Message_Content";
+		public static final String REQUEST_CODE = "Request_Code";
+		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
+		public static final String SOCIETY_CODE = "Society_Code";
+		public static final String IS_SOCIETY_MESSAGE = "Is_Society_Message";
+		public static final String MESSAGE_DATETIME = "Message_DateTime";
+	}
+	
+	
 
 }

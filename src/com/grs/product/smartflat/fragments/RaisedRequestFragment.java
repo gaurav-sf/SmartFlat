@@ -2,7 +2,6 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -18,8 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.activities.RequestDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
@@ -55,11 +52,11 @@ public class RaisedRequestFragment extends Fragment {
 		listViewRequestDetails = (ListView) rootview.findViewById(R.id.listViewRaisedComplaints);
 		textViewMessage = (TextView) rootview.findViewById(R.id.textView1);
 		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
-		listRequestDetails = new ArrayList<RequestDetails>();
-		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
+		listRequestDetails = new ArrayList<RequestDetails>();		
 		createRequestComplaintsList();
 		mRequestListAdapter = new RaisedRequestListAdapter(getActivity(), listRequestDetails);
 		listViewRequestDetails.setAdapter(mRequestListAdapter);
+		mSpinnertSorting = (Spinner) rootview.findViewById(R.id.spinnertSorting);
 		createSortingSpinnerData();
 	}
 
@@ -78,25 +75,31 @@ public class RaisedRequestFragment extends Fragment {
 	}
 
 	private void createRequestComplaintsList(){
-		Cursor cursor = objManager.getRaisedRequestDetails();
-		if(cursor.getCount()==0){
+		Cursor requestDetailsCursor = objManager.getRaisedRequestDetails();
+		if(requestDetailsCursor.getCount()==0){
 			textViewMessage.setVisibility(View.VISIBLE);
 			listViewRequestDetails.setVisibility(View.GONE);
 			mSpinnertSorting.setVisibility(View.GONE);
 			textViewMessage.setText("No Request to display");
 		}else{
-			for(int i = 0; i<=cursor.getCount();i++){
-				boolean isdata = cursor.moveToPosition(i);
-				if(isdata)
+			listRequestDetails.clear();
+			for(int i = 0; i<=requestDetailsCursor.getCount();i++)
+			{
+				boolean isdata = requestDetailsCursor.moveToPosition(i);
+				if(isdata)	
 				{
-					RequestDetails tempComplaintDetails = new RequestDetails();
-					tempComplaintDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
-					tempComplaintDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
-					listRequestDetails.add(tempComplaintDetails);
+					RequestDetails tempRequestDetails = new RequestDetails();
+					tempRequestDetails.setmRequestNumber(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+					tempRequestDetails.setmRequestCategory(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY)));
+					tempRequestDetails.setmRequestDetails(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS)));
+					tempRequestDetails.setmRequestPriority(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY)));
+					tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
+					tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
+					tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+					listRequestDetails.add(tempRequestDetails);
 				}
-
 			}
-		}
+			}
 	}
 
 	private void addListener(){
@@ -158,82 +161,107 @@ public class RaisedRequestFragment extends Fragment {
 	}
 
 	private void sortListByDate(){
-		Cursor cursor = objManager.getRaisedRequestDetails();
+		Cursor requestDetailsCursor = objManager.getRaisedRequestDetails();
 		listRequestDetails.clear();
-		for(int i = 0; i<=cursor.getCount();i++){
-			boolean isdata = cursor.moveToPosition(i);
+		for(int i = 0; i<=requestDetailsCursor.getCount();i++){
+			boolean isdata = requestDetailsCursor.moveToPosition(i);
 			if(isdata)
 			{
-				RequestDetails tempComplaintDetails = new RequestDetails();
-				tempComplaintDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
-				tempComplaintDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
-				listRequestDetails.add(tempComplaintDetails);
+				RequestDetails tempRequestDetails = new RequestDetails();
+				tempRequestDetails.setmRequestNumber(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+				tempRequestDetails.setmRequestCategory(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY)));
+				tempRequestDetails.setmRequestDetails(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS)));
+				tempRequestDetails.setmRequestPriority(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY)));
+				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
+				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
+				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+				listRequestDetails.add(tempRequestDetails);
 			}
 		}
 		mRequestListAdapter.notifyDataSetChanged();
 	}
 
 	private void sortListByType(){
-		Cursor cursor = objManager.getRaisedRequestDetailsByType();
+		Cursor requestDetailsCursor = objManager.getRaisedRequestDetailsByType();
 		listRequestDetails.clear();
-		for(int i = 0; i<=cursor.getCount();i++){
-			boolean isdata = cursor.moveToPosition(i);
+		for(int i = 0; i<=requestDetailsCursor.getCount();i++){
+			boolean isdata = requestDetailsCursor.moveToPosition(i);
 			if(isdata)
 			{
-				RequestDetails tempComplaintDetails = new RequestDetails();
-				tempComplaintDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
-				tempComplaintDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
-				listRequestDetails.add(tempComplaintDetails);
-			}	
-		}	
+				RequestDetails tempRequestDetails = new RequestDetails();
+				tempRequestDetails.setmRequestNumber(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+				tempRequestDetails.setmRequestCategory(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY)));
+				tempRequestDetails.setmRequestDetails(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS)));
+				tempRequestDetails.setmRequestPriority(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY)));
+				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
+				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
+				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+				listRequestDetails.add(tempRequestDetails);
+			}
+		}
 		mRequestListAdapter.notifyDataSetChanged();
 	}
 
 	private void sortListByCategory(){
-		Cursor cursor = objManager.getRaisedRequestDetailsByCategory();
+		Cursor requestDetailsCursor = objManager.getRaisedRequestDetailsByCategory();
 		listRequestDetails.clear();
-		for(int i = 0; i<=cursor.getCount();i++){
-			boolean isdata = cursor.moveToPosition(i);
+		for(int i = 0; i<=requestDetailsCursor.getCount();i++){
+			boolean isdata = requestDetailsCursor.moveToPosition(i);
 			if(isdata)
 			{
-				RequestDetails tempComplaintDetails = new RequestDetails();
-				tempComplaintDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
-				tempComplaintDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
-				listRequestDetails.add(tempComplaintDetails);
-			}	
+				RequestDetails tempRequestDetails = new RequestDetails();
+				tempRequestDetails.setmRequestNumber(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+				tempRequestDetails.setmRequestCategory(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY)));
+				tempRequestDetails.setmRequestDetails(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS)));
+				tempRequestDetails.setmRequestPriority(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY)));
+				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
+				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
+				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+				listRequestDetails.add(tempRequestDetails);
+			}
 		}
 		mRequestListAdapter.notifyDataSetChanged();
 	}
 
 	private void sortListByPriorityHtoL(){
-		Cursor cursor = objManager.getRaisedRequestDetailsByPriorityHtoL();
+		Cursor requestDetailsCursor = objManager.getRaisedRequestDetailsByPriorityHtoL();
 		listRequestDetails.clear();
-		for(int i = 0; i<=cursor.getCount();i++){
-			boolean isdata = cursor.moveToPosition(i);
+		for(int i = 0; i<=requestDetailsCursor.getCount();i++){
+			boolean isdata = requestDetailsCursor.moveToPosition(i);
 			if(isdata)
 			{
-				RequestDetails tempComplaintDetails = new RequestDetails();
-				tempComplaintDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
-				tempComplaintDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
-				listRequestDetails.add(tempComplaintDetails);
-			}	
+				RequestDetails tempRequestDetails = new RequestDetails();
+				tempRequestDetails.setmRequestNumber(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+				tempRequestDetails.setmRequestCategory(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY)));
+				tempRequestDetails.setmRequestDetails(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS)));
+				tempRequestDetails.setmRequestPriority(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY)));
+				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
+				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
+				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+				listRequestDetails.add(tempRequestDetails);
+			}
 		}	
 		mRequestListAdapter.notifyDataSetChanged();
 	}
 
 	private void sortListByPriorityLtoH(){
-		Cursor cursor = objManager.getRaisedRequestDetailsByPriorityLtoH();
+		Cursor requestDetailsCursor = objManager.getRaisedRequestDetailsByPriorityLtoH();
 		listRequestDetails.clear();
-		for(int i = 0; i<=cursor.getCount();i++){
-			boolean isdata = cursor.moveToPosition(i);
+		for(int i = 0; i<=requestDetailsCursor.getCount();i++){
+			boolean isdata = requestDetailsCursor.moveToPosition(i);
 			if(isdata)
 			{
-				RequestDetails tempComplaintDetails = new RequestDetails();
-				tempComplaintDetails.setmRequestNumber(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
-				tempComplaintDetails.setmRequestDateTime(cursor.getString(cursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
-				listRequestDetails.add(tempComplaintDetails);
-			}	
-		}		
+				RequestDetails tempRequestDetails = new RequestDetails();
+				tempRequestDetails.setmRequestNumber(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER)));
+				tempRequestDetails.setmRequestCategory(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY)));
+				tempRequestDetails.setmRequestDetails(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DETAILS)));
+				tempRequestDetails.setmRequestPriority(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY)));
+				tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
+				tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
+				tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+				listRequestDetails.add(tempRequestDetails);
+			}
+		}	
 		mRequestListAdapter.notifyDataSetChanged();
 	}
 

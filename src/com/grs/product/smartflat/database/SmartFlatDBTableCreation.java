@@ -1,10 +1,12 @@
 package com.grs.product.smartflat.database;
 
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableContactDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerVehicleDetails;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableMessageDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyNotices;
@@ -116,4 +118,23 @@ public class SmartFlatDBTableCreation {
 			+ TableSocietyNotices.NOTICE_PRIORITY + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DATETIME + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DETAILS + " TEXT);";
+	
+	public static final String TABLE_CONTACT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.CONTACT_DETAILS
+			+"( "
+			+ TableContactDetails.ID + " INTEGER PRIMARY KEY, "
+			+ TableContactDetails.CONTACT_NAME + " TEXT, "
+			+ TableContactDetails.CONTACT_NUMBER + " TEXT, "
+			+ TableContactDetails.CONTACT_EMAIL_ID + " TEXT, "
+			+ TableContactDetails.CONTACT_OCCUPATION + " TEXT);";
+	
+	public static final String TABLE_MESSAGE_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.MESSAGE_DETAILS
+			+"( "
+			+ TableMessageDetails.ID + " INTEGER PRIMARY KEY, "
+			+ TableMessageDetails.MESSAGE_CODE + " TEXT, "
+			+ TableMessageDetails.MESSAGE_CONTENT + " TEXT, "
+			+ TableMessageDetails.REQUEST_CODE + " TEXT, "
+			+ TableMessageDetails.FLAT_OWNER_CODE + " TEXT, "
+			+ TableMessageDetails.SOCIETY_CODE + " TEXT, "
+			+ TableMessageDetails.IS_SOCIETY_MESSAGE + " BOOLEAN, "
+			+ TableMessageDetails.MESSAGE_DATETIME + " TEXT);";
 	}

@@ -5,6 +5,7 @@ import java.util.List;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.models.RequestDetails;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ public class RaisedRequestListAdapter extends BaseAdapter {
 
 	Context mContext;
 	List<RequestDetails> listRequestDetails = new ArrayList<RequestDetails>();
-	private TextView textViewRequestNumber, textViewRequestDate;
 	
 	public RaisedRequestListAdapter(Context context, List<RequestDetails> listRequestDetails) {
 		mContext = context;
@@ -48,10 +48,25 @@ public class RaisedRequestListAdapter extends BaseAdapter {
 			rowView = infalInflater.inflate(R.layout.raised_complaint_list_item, null);
 		}
 		RequestDetails tempRequestDetails = listRequestDetails.get(position);
-		textViewRequestNumber = (TextView) rowView.findViewById(R.id.textView1);
+		TextView textViewRequestNumber = (TextView) rowView.findViewById(R.id.textViewRequestNumber);
 		textViewRequestNumber.setText(tempRequestDetails.getmRequestNumber());
-		textViewRequestDate = (TextView) rowView.findViewById(R.id.textView2);
+		TextView textViewRequestDate = (TextView) rowView.findViewById(R.id.textViewDatetime);
 		textViewRequestDate.setText(tempRequestDetails.getmRequestDateTime());
+		TextView textViewDetails = (TextView) rowView.findViewById(R.id.textViewDetails);
+		textViewDetails.setText("Details :- "+tempRequestDetails.getmRequestDetails());
+		TextView textViewCategory = (TextView) rowView.findViewById(R.id.textViewCategory);
+		textViewCategory.setText("Category :- "+tempRequestDetails.getmRequestCategory());
+		TextView textViewPriority = (TextView) rowView.findViewById(R.id.textViewPriority);
+		if(tempRequestDetails.getmRequestPriority().equalsIgnoreCase("1")){
+			textViewPriority.setTextColor(Color.RED);
+			textViewPriority.setText("High");	
+		}else if(tempRequestDetails.getmRequestPriority().equalsIgnoreCase("2")){
+			textViewPriority.setTextColor(Color.BLUE);
+			textViewPriority.setText("Medium");	
+		}else{
+			textViewPriority.setTextColor(Color.GREEN);
+			textViewPriority.setText("Low");	
+		}
 		return rowView;
 	}
 

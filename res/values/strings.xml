@@ -14,8 +14,9 @@
         <item>Requests</item>
         <item>Notices</item>
         <item>Contacts</item>
+        <item>About Society</item>
+        <item>About Builder</item>
         <item>About App</item>
-        <item>Help</item>
         <item>Sign Out</item>
     </string-array>
 
