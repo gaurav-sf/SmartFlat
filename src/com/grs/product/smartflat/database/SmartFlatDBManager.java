@@ -8,6 +8,7 @@ import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.NoticeDetails;
 import com.grs.product.smartflat.models.QueryDetails;
 import com.grs.product.smartflat.models.RequestDetails;
+import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
 
@@ -201,5 +202,27 @@ public class SmartFlatDBManager {
 		Cursor details = SmartFlatDatabase.getInstance().getClosedQueryDetails();
 		SmartFlatDatabase.getInstance().close();
 		return details;
+	}
+	
+	public Cursor getSinbleRequestDetails(String requestNumber){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getSinbleRequestDetails(requestNumber);
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public boolean saveMessage(RequestMessages messages){
+		boolean isAdded = false;
+		SmartFlatDatabase.getInstance().open();
+		isAdded = SmartFlatDatabase.getInstance().saveMessage(messages);
+		SmartFlatDatabase.getInstance().close();
+		return isAdded;
+	} 
+	
+	public Cursor getMessages(String requestNumber){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getMessages(requestNumber);
+		SmartFlatDatabase.getInstance().close();
+		return details;	
 	}
 }

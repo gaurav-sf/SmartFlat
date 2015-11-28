@@ -14,6 +14,9 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,9 +27,13 @@ public class ServerConnecter {
 	static InputStream mInputStream = null;
 	static JSONObject mJsonObject = null;
 	static String jsonString = "";
-
+	public static final int JSON_CONNECTION_TIMEOUT = 30000;
+	public static final int JSON_SOCKET_TIMEOUT = 30000;
+	
 	public ServerConnecter() {
-
+		 mInputStream = null;
+		 mJsonObject = null;
+		jsonString = "";
 	}
 	
 
@@ -35,6 +42,8 @@ public class ServerConnecter {
 		// Making HTTP request
 		try {
 			// defaultHttpClient
+			 HttpParams httpParameters = new BasicHttpParams();
+			 setTimeOut(httpParameters);
 			DefaultHttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(url);
 			httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -74,5 +83,11 @@ public class ServerConnecter {
 		// return JSON String
 		return mJsonObject;
 
+	}
+	
+	private void setTimeOut(HttpParams params) {
+		HttpConnectionParams.setConnectionTimeout(params,
+				JSON_CONNECTION_TIMEOUT);
+		HttpConnectionParams.setSoTimeout(params, JSON_SOCKET_TIMEOUT);
 	}
 }

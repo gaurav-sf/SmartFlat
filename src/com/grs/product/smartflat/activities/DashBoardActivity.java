@@ -56,9 +56,9 @@ public class DashBoardActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
 		//Utilities.addCustomActionBar(this);
-		
-ActionBar action = getActionBar();
-action.setDisplayShowHomeEnabled(false);
+
+		ActionBar action = getActionBar();
+		action.setDisplayShowHomeEnabled(false);
 		mTitle = mDrawerTitle = getTitle();
 
 		// load slide menu items
@@ -74,30 +74,36 @@ action.setDisplayShowHomeEnabled(false);
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
+		
 		// Home
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+		
 		// Family
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+		
 		// Vehicle
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-/*		// Complaints
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-*/		
+		
 		// Requests
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));
-/*		// Queries
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-*/		
+		
 		//Notices
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(6, -1)));
+		
 		//Contacts
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(6, -1)));
-		//About App
+
+		//About Society
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		//Help
+
+		//About Builder
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
+
+		//About App
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));		
+		
 		//Sign Out
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -112,12 +118,12 @@ action.setDisplayShowHomeEnabled(false);
 		// enabling action bar app icon and behaving it as toggle button
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		
+
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, //nav menu toggle icon
 				R.string.app_name, // nav drawer open - description for accessibility
 				R.string.app_name // nav drawer close - description for accessibility
-		) {
+				) {
 			public void onDrawerClosed(View view) {
 				getActionBar().setTitle(mTitle);
 				// calling onPrepareOptionsMenu() to show action bar icons
@@ -142,7 +148,7 @@ action.setDisplayShowHomeEnabled(false);
 	 * Slide menu item click listener
 	 * */
 	private class SlideMenuClickListener implements
-			ListView.OnItemClickListener {
+	ListView.OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
@@ -193,58 +199,42 @@ action.setDisplayShowHomeEnabled(false);
 		case 0:
 			status = "created";
 			HomeFragment homeFragment = new HomeFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, homeFragment).commit();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, homeFragment).commit();
 			break;
-			
-		//Family	
+
+			//Family	
 		case 1:
 			status = "created";
 			FamilyMainFragment familyFragment = new FamilyMainFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, familyFragment).commit();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, familyFragment).commit();
 			break;
-			
-		//Vehicle	
+
+			//Vehicle	
 		case 2:
 			status = "created";
 			MainVehicleFragment vehicleFragment = new MainVehicleFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, vehicleFragment).commit();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, vehicleFragment).commit();
 			break;
-			
-/*		//Complaint	
-		case 3:
-			status = "created";
-			MainComplaintsFragment complaintsFragment = new MainComplaintsFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, complaintsFragment).commit();
-			break;*/
-			
+
 		//Request	
 		case 3:
 			status = "created";
 			MainRequestFragment requestFragment = new MainRequestFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, requestFragment).commit();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, requestFragment).commit();
 			break;
-			
-/*		//Query	
-		case 5:
-			status = "created";
-			MainQueriesFragment queryFragment = new MainQueriesFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, queryFragment).commit();
-			break;*/
-			
+
 		//Notice	
 		case 4:
 			status = "created";
 			NoticeFragment noticeFragment = new NoticeFragment();
-	        getSupportFragmentManager().beginTransaction()
-	        .replace(R.id.fragment_container, noticeFragment).commit();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, noticeFragment).commit();
 			break;
-		
+
 		//Contacts	
 		case 5:
 			status = "created";
@@ -252,31 +242,33 @@ action.setDisplayShowHomeEnabled(false);
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fragment_container, contactsFragment).commit();
 			break;
-			
-		//	AboutApp
+
+		//	About Society
 		case 6:
+			status = "created";
+			break;
+
+		//	About Builder
+		case 7:
+			status = "created";
+			break;
+		//	AboutApp
+		case 8:
 			status = "created";
 			AboutAppFragment aboutAppFragment = new AboutAppFragment();
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fragment_container, aboutAppFragment).commit();
 			break;
-			
-		//Help	
-		case 7:
+
+			//Sign Out
+		case 9:
 			status = "created";
-			HelpFragment helpFragment = new HelpFragment();
-			getSupportFragmentManager().beginTransaction()
-			.replace(R.id.fragment_container, helpFragment).commit();
-			break;
-			
-		//Sign Out	
-		case 8:
-			status = "created";
-    		overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
-    		SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(null);
+			overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
+			SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(null);
 			finish();
 			break;
-			
+
+
 		default:
 			break;
 		}
@@ -314,7 +306,7 @@ action.setDisplayShowHomeEnabled(false);
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
