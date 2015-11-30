@@ -130,9 +130,9 @@ public class SmartFlatDBTableCreation {
 	public static final String TABLE_MESSAGE_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.MESSAGE_DETAILS
 			+"( "
 			+ TableMessageDetails.ID + " INTEGER PRIMARY KEY, "
-			+ TableMessageDetails.MESSAGE_CODE + " TEXT, "
+			+ TableMessageDetails.MESSAGE_NUMBER + " TEXT, "
 			+ TableMessageDetails.MESSAGE_CONTENT + " TEXT, "
-			+ TableMessageDetails.REQUEST_CODE + " TEXT, "
+			+ TableMessageDetails.REQUEST_NUMBER + " TEXT, "
 			+ TableMessageDetails.FLAT_OWNER_CODE + " TEXT, "
 			+ TableMessageDetails.SOCIETY_CODE + " TEXT, "
 			+ TableMessageDetails.IS_SOCIETY_MESSAGE + " BOOLEAN, "

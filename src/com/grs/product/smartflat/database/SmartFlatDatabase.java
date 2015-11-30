@@ -618,9 +618,9 @@ public class SmartFlatDatabase {
 	public boolean saveMessage(RequestMessages message){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
-		values.put(TableMessageDetails.MESSAGE_CODE,message.getmMessageNumber());
+		values.put(TableMessageDetails.MESSAGE_NUMBER,message.getmMessageNumber());
 		values.put(TableMessageDetails.MESSAGE_CONTENT,message.getmMessageContent());
-		values.put(TableMessageDetails.REQUEST_CODE,message.getmRequestNumber());
+		values.put(TableMessageDetails.REQUEST_NUMBER,message.getmRequestNumber());
 		values.put(TableMessageDetails.IS_SOCIETY_MESSAGE,message.ismIsSocietyMessage());
 		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
 
@@ -637,7 +637,7 @@ public class SmartFlatDatabase {
 	}
 	
 	public Cursor getMessages(String requestNumber){
-		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_CODE +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
