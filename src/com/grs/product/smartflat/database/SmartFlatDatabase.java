@@ -209,6 +209,17 @@ public class SmartFlatDatabase {
 		}	
 	}
 
+	private void createVisitorDetailsTable(SQLiteDatabase db){
+		try {
+			db.beginTransaction();
+			db.execSQL(SmartFlatDBTableCreation.TABLE_VISITOR_DETAILS_CREATION_QUERY);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+		}	
+	}
 
 	//inner class
 	public class SmartFlatDatabaseHelper extends SQLiteOpenHelper{
@@ -231,6 +242,7 @@ public class SmartFlatDatabase {
 				createSocietyNoticesTable(db);
 				createContactDetailsTable(db);
 				createMessageDetailsTable(db);
+				createVisitorDetailsTable(db);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

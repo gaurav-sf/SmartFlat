@@ -178,12 +178,9 @@ public class SmartFlatDBTables {
 		public static final String NO_OF_VISITORS = "No_of_Visitors";
 		public static final String VISITOR_IN_TIME = "Visitor_In_Time";
 		public static final String VISITOR_OUT_TIME = "Visitor_Out_Time";
-		public static final String VISITOR_PURPOSE = "Visit_Purpose";
+		public static final String VISIT_PURPOSE = "Visit_Purpose";
 		public static final String VISITOR_CONTACT_NO = "Visitor_Contac_No";
 		public static final String VISITOR_VEHICLE_NO = "Visitor_Vehicle_No";
-		public static final String SOCIETY_CODE = "Society_Code";
-		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
-		public static final String IS_OFFLINE_ENTRY = "Is_Offline_Entry";
 		
 /*		//THINING TO USE IN NEXT VERSION
   		public static final String VISITOR_EXPECTED_DATE = "Visitor_Expected_Date";
