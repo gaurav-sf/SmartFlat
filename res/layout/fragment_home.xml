@@ -48,7 +48,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
-            android:text="Powered by : GRS"
+            android:text="@string/poweredby"
             android:textColor="#ffffff" />
     </RelativeLayout>
     

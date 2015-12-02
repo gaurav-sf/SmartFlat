@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +44,14 @@ public class LoginActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
+		/** Hiding Title bar of this activity screen */
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+ 
+        /** Making this activity, full screen */
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        
 		setContentView(R.layout.activity_login);
 		getUserLoginDetailsFromDB();
 		initializeUI();

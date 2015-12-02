@@ -3,40 +3,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20sp" >
+    android:padding="20sp" 
+    android:background="@drawable/bb3">
 
-    <EditText
-        android:id="@+id/edittext_society_code"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/edittext_bg"
-        android:ems="10"
-        android:hint="@string/society_code_hint"
-        android:padding="10sp" >
+        android:orientation="vertical" >
+        
+        
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/edittext_society_code"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/trans_edittext_bg"
+            android:ems="10"
+            android:hint="@string/society_code_hint"
+            android:padding="10sp"
+            android:textColorHint="#ffffff" />
 
-    <Button
-        android:id="@+id/button_continue"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edittext_society_code"
-        android:layout_below="@+id/edittext_society_code"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/btnbg"
-        android:textColor="#ffffff"
-        android:text="@string/button_continue_text" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/edittext_society_code"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="37dp"
-        android:src="@drawable/my_progress_indicator" />
+        <Button
+            android:id="@+id/button_continue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btnbg"
+            android:text="@string/button_continue_text"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
 </RelativeLayout>

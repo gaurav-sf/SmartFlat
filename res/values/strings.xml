@@ -41,5 +41,8 @@
     <string name="text_happy_Family">HAPPY FAMILY</string>
     <string name="text_vehicle_details">VEHICLE DETAILS</string>
     <string name="text_add_new_vehicle">NEW VEHICLE</string>
-
+    <string name="create_new"><u>Create Account</u></string>
+    <string name="forgot_password"><u>Forgot Password</u></string>
+    <string name="smartflat_title"><u>SmartFlat</u></string>
+    <string name="poweredby"><u>Powered by : GRS</u></string>
 </resources>

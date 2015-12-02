@@ -2,44 +2,34 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bb3"
     android:padding="20sp" >
-    
-    <LinearLayout 
-        android:id="@+id/container"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true">
-        <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"     
-        android:text="Registration Step 1/2"
-        android:textColor="#595959"
-        android:textSize="25sp" />
 
-    <View
-        android:id="@+id/view1"
-        android:layout_width="150dp"
-        android:layout_height="1dp"
-        android:layout_below="@id/textView1"
-        android:layout_gravity="center"
-        android:layout_marginTop="18dp"
-        android:background="#469196" />
-        
-        
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Registration Step 1/2"
+            android:textColor="@color/textcolor_like_actionbar"
+            android:textSize="25sp" />
     </LinearLayout>
 
-    
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/container"
         android:layout_above="@+id/buttonNext"
-        android:layout_marginTop="20sp" 
-        android:paddingBottom="10dp">
+        android:layout_below="@+id/container"
+        android:layout_marginTop="20sp"
+        android:paddingBottom="10dp" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,7 +40,7 @@
                 android:id="@+id/editTextName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Name"
                 android:padding="10sp" />
@@ -60,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="DOB --- dd/mm/yyyy"
                 android:padding="10sp" />
@@ -70,49 +60,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Age"
                 android:inputType="number"
                 android:padding="10sp" />
-            
+
             <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="25dp"
-        android:text="Gender" />
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"
+                android:text="Gender" />
 
-    <RadioGroup
-        android:id="@+id/RadioGroupGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+            <RadioGroup
+                android:id="@+id/RadioGroupGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal" >
 
-        <RadioButton
-            android:id="@+id/radioButtonMale"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Male"
-             android:checked="true" />
+                <RadioButton
+                    android:id="@+id/radioButtonMale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:text="Male" />
 
-        <RadioButton
-            android:id="@+id/radioButtonFemale"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Female" />
-    </RadioGroup>
+                <RadioButton
+                    android:id="@+id/radioButtonFemale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Female" />
+            </RadioGroup>
 
             <EditText
                 android:id="@+id/editTextContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Contact Number"
                 android:inputType="number"
@@ -123,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Email id"
                 android:inputType="textEmailAddress"
@@ -136,7 +126,7 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/spinner_bg"
                 android:hint="Building Name"
-                android:popupBackground="@color/spinner_popup"/>
+                android:popupBackground="@color/spinner_popup" />
 
             <Spinner
                 android:id="@+id/spinnerTextFloorNo"
@@ -145,15 +135,15 @@
                 android:layout_marginTop="25dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:hint="Floor Number" 
-                android:popupBackground="@color/spinner_popup"/>
+                android:hint="Floor Number"
+                android:popupBackground="@color/spinner_popup" />
 
             <EditText
                 android:id="@+id/editTextFlatNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Flat Number"
                 android:padding="10sp" />
@@ -163,7 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="No Of Family Members"
                 android:inputType="number"
@@ -174,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="No Of Vehicle"
                 android:inputType="number"
@@ -186,8 +176,8 @@
         android:id="@+id/buttonNext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/btnbg"
         android:ems="10"
         android:text="NEXT"
