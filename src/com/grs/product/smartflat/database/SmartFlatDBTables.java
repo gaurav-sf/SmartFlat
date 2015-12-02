@@ -161,7 +161,7 @@ public class SmartFlatDBTables {
 	public static final class TableMessageDetails implements BaseColumns{
 		private TableMessageDetails(){}
 		public static final String ID = "ID";
-		public static final String MESSAGE_NUMBER = "Message_ Number";
+		public static final String MESSAGE_NUMBER = "Message_Number";
 		public static final String MESSAGE_CONTENT = "Message_Content";
 		public static final String REQUEST_NUMBER = "Request_Number";
 		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
