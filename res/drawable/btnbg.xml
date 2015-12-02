@@ -10,17 +10,17 @@
 <item android:state_focused="true">
      <shape android:shape="rectangle"  >
          <corners android:radius="5dip" />
-         <stroke android:width="1dip" android:color="#5e7974" />
+         <stroke android:width="1dip" android:color="#999696" />
          <solid android:color="#58857e"/>       
      </shape>
  </item>  
 <item >
     <shape android:shape="rectangle"  >
          
-         <corners android:radius="5dip" />
+         <corners android:radius="5dip" android:color="#999696"/>
          <gradient 
-      			   android:endColor="#469196"
-       			   android:startColor="#469196"
+      			   android:endColor="@color/textcolor_like_actionbar"
+       			   android:startColor="@color/textcolor_like_actionbar"
        			   android:type="linear" />            
      </shape>
  </item>
