@@ -1,42 +1,49 @@
 package com.grs.product.smartflat.fragments;
 
+import java.util.Calendar;
+
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.R.id;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflat.asynctasks.AddFamilyMemberTask;
-import com.grs.product.smartflat.asynctasks.AddVehicleTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDatabase;
 import com.grs.product.smartflat.error.SmartFlatError;
-import com.grs.product.smartflat.fragments.NewVehicleFragment.AddVehicleTaskListener;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class AddFamilyMemberFragment extends Fragment {
 	
-	private EditText mEditTextFMemberName/*, mEditTextFMemberRelation*/, mEditTextFMemberDOB,  mEditTextFMemberAge,  mEditTextFMemberContactNo,mEditTextFMemberEmailId;
+	private EditText mEditTextFMemberName, mEditTextFMemberDOB,  mEditTextFMemberAge,  mEditTextFMemberContactNo,mEditTextFMemberEmailId;
 	private RadioGroup mRadioGroupLogin;
 	private RadioButton mRadioButtonYes, mRadioButtonNo;
 	private RadioButton mRadioButtonMale, mRadioButtonFemale;
 	private RadioGroup mRadioGroupGender;
 	private Button mButtonAddMember;
+	private Calendar cal;
+	 private int currentDay;
+	 private int currentMonth;
+	 private int currentYear;
+
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -55,7 +62,8 @@ public class AddFamilyMemberFragment extends Fragment {
 		mEditTextFMemberName = (EditText) rootView.findViewById(R.id.editTextFmemberName);
 		mEditTextFMemberDOB = (EditText) rootView.findViewById(R.id.editTextFmemberDOB);
 		mEditTextFMemberAge = (EditText) rootView.findViewById(R.id.editTextFmemberAge);
-		//mEditTextFMemberRelation = (EditText) rootView.findViewById(R.id.editTextFmemberRelation);
+		mEditTextFMemberAge.setText("25");
+		mEditTextFMemberAge.setVisibility(View.GONE);
 		mEditTextFMemberContactNo = (EditText) rootView.findViewById(R.id.editTextFmemberContactNo);
 		mRadioGroupLogin = (RadioGroup) rootView.findViewById(R.id.RadioGroupLogin);
 		mButtonAddMember = (Button) rootView.findViewById(R.id.buttonAddMember);
@@ -66,6 +74,10 @@ public class AddFamilyMemberFragment extends Fragment {
 		mRadioButtonFemale = (RadioButton) rootView.findViewById(R.id.radioButtonFemale);
 		mEditTextFMemberEmailId =  (EditText) rootView.findViewById(R.id.editTextFmemberEmailId);
 
+		  cal = Calendar.getInstance();
+		  currentDay = cal.get(Calendar.DAY_OF_MONTH);
+		  currentMonth = cal.get(Calendar.MONTH);
+		  currentYear = cal.get(Calendar.YEAR);
 	}
 	
 	private void addListener(){
@@ -77,6 +89,15 @@ public class AddFamilyMemberFragment extends Fragment {
 					saveFamilyMemberOnServer();
 					
 				}
+			}
+		});
+		mEditTextFMemberDOB.setOnClickListener(new OnClickListener() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onClick(View v) {
+				getActivity().showDialog(0);
+				
 			}
 		});
 	}
@@ -184,8 +205,7 @@ public class AddFamilyMemberFragment extends Fragment {
 				{
 					saveFamilyDetailsInDB();
 					clearAllFields();
-					Utilities.ShowAlertBox(getActivity(),"Message","Family member added successfully");
-					
+					Utilities.ShowAlertBox(getActivity(),"Message","Family member added successfully");				
 
 				}else{
 					Utilities.ShowAlertBox(getActivity(),"Error","Error Occured please try later");		
@@ -217,5 +237,17 @@ CustomProgressDialog.removeDialog();
 		
 	}
 	
+	 @Deprecated 
+	 protected Dialog onCreateDialog(int id) {
+	  return new DatePickerDialog(getActivity(), datePickerListener, currentYear, currentMonth, currentDay);
+	 }
+
+	 private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+	  public void onDateSet(DatePicker view, int selectedYear,
+	    int selectedMonth, int selectedDay) {
+		  mEditTextFMemberDOB.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
+	     + selectedYear);
+	  }
+	 };
 
 }

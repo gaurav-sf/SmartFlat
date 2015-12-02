@@ -197,6 +197,7 @@ public class NewRequestFragment extends Fragment {
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
 					saveRequestDataInDB(result.getMessage());
+					Utilities.ShowAlertBox(getActivity(), "Message", "Request raised successfully with reference no "+result.getMessage());
 					clearUiFields();
 					
 				}else{

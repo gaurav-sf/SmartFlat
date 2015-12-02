@@ -1,22 +1,28 @@
 package com.grs.product.smartflat.activities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.models.SocietyDetails;
+import com.grs.product.smartflat.utils.Utilities;
+
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.models.SocietyDetails;
-import com.grs.product.smartflat.utils.Utilities;
 
 public class RegistrationStep1Activity extends Activity {
 
@@ -26,6 +32,10 @@ public class RegistrationStep1Activity extends Activity {
 	private RadioButton mRadioButtonMale, mRadioButtonFemale;
 	private RadioGroup mRadioGroupGender;
 	private SocietyDetails mSocietyDetails;
+	 private Calendar cal;
+	 private int currentDay;
+	 private int currentMonth;
+	 private int currentYear;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +63,16 @@ public class RegistrationStep1Activity extends Activity {
 		mEditTextName = (EditText) findViewById(R.id.editTextName);
 		mEditTextDOB = (EditText) findViewById(R.id.editTextDOB);
 		mEditTextAge = (EditText) findViewById(R.id.editTextAge);
+		mEditTextAge.setText("25"); 
+		mEditTextAge.setVisibility(View.GONE);
 		mEditTextContactNo = (EditText) findViewById(R.id.editTextContactNo);
 		mEditTextEmailId =  (EditText) findViewById(R.id.editTextEmailId);
 		mEditTextNoOfFamilyMembers = (EditText) findViewById(R.id.editTextNoOfFamilyMembers);
+		mEditTextNoOfFamilyMembers.setText("25"); 
+		mEditTextNoOfFamilyMembers.setVisibility(View.GONE);
 		mEditTextNoOfVehicle = (EditText) findViewById(R.id.editTextNoOfVehicle);
+		mEditTextNoOfVehicle.setText("25"); 
+		mEditTextNoOfVehicle.setVisibility(View.GONE);
 		mEditTextFlatNo = (EditText) findViewById(R.id.editTextFlatNo);
 		mSpinnerBuildingName = (Spinner) findViewById(R.id.spinnertBuildingName);
 		mSpinnerFloorNo = (Spinner) findViewById(R.id.spinnerTextFloorNo);
@@ -64,6 +80,10 @@ public class RegistrationStep1Activity extends Activity {
 		mRadioGroupGender = (RadioGroup) findViewById(R.id.RadioGroupGender);
 		mRadioButtonMale = (RadioButton) findViewById(R.id.radioButtonMale);
 		mRadioButtonFemale = (RadioButton) findViewById(R.id.radioButtonFemale);
+		  cal = Calendar.getInstance();
+		  currentDay = cal.get(Calendar.DAY_OF_MONTH);
+		  currentMonth = cal.get(Calendar.MONTH);
+		  currentYear = cal.get(Calendar.YEAR);
 	}
 
 	private void createSpinnerData(){
@@ -103,6 +123,15 @@ public class RegistrationStep1Activity extends Activity {
 				}
 			}
 		});	
+		mEditTextDOB.setOnClickListener(new OnClickListener() {
+			
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onClick(View v) {
+				showDialog(0);
+				
+			}
+		});
 	}
 	
 	private boolean isValidateUiEntries(){
@@ -186,5 +215,19 @@ public class RegistrationStep1Activity extends Activity {
 		startActivity(intentRegistrationStep2);
 		finish();
 	}
+	
+	 @Override
+	 @Deprecated
+	 protected Dialog onCreateDialog(int id) {
+	  return new DatePickerDialog(this, datePickerListener, currentYear, currentMonth, currentDay);
+	 }
+
+	 private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+	  public void onDateSet(DatePicker view, int selectedYear,
+	    int selectedMonth, int selectedDay) {
+		  mEditTextDOB.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
+	     + selectedYear);
+	  }
+	 };
 
 }

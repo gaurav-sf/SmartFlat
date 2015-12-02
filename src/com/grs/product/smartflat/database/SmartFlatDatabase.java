@@ -209,6 +209,17 @@ public class SmartFlatDatabase {
 		}	
 	}
 
+	private void createVisitorDetailsTable(SQLiteDatabase db){
+		try {
+			db.beginTransaction();
+			db.execSQL(SmartFlatDBTableCreation.TABLE_VISITOR_DETAILS_CREATION_QUERY);
+			db.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			db.endTransaction();
+		}	
+	}
 
 	//inner class
 	public class SmartFlatDatabaseHelper extends SQLiteOpenHelper{
@@ -231,6 +242,7 @@ public class SmartFlatDatabase {
 				createSocietyNoticesTable(db);
 				createContactDetailsTable(db);
 				createMessageDetailsTable(db);
+				createVisitorDetailsTable(db);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -618,9 +630,9 @@ public class SmartFlatDatabase {
 	public boolean saveMessage(RequestMessages message){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
-		values.put(TableMessageDetails.MESSAGE_CODE,message.getmMessageNumber());
+		values.put(TableMessageDetails.MESSAGE_NUMBER,message.getmMessageNumber());
 		values.put(TableMessageDetails.MESSAGE_CONTENT,message.getmMessageContent());
-		values.put(TableMessageDetails.REQUEST_CODE,message.getmRequestNumber());
+		values.put(TableMessageDetails.REQUEST_NUMBER,message.getmRequestNumber());
 		values.put(TableMessageDetails.IS_SOCIETY_MESSAGE,message.ismIsSocietyMessage());
 		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
 
@@ -637,7 +649,7 @@ public class SmartFlatDatabase {
 	}
 	
 	public Cursor getMessages(String requestNumber){
-		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_CODE +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();
