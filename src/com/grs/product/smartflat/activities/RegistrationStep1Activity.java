@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.fragments.AddFamilyMemberFragment.SelectDateFragment;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.utils.Utilities;
 
@@ -14,8 +15,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -130,6 +134,15 @@ public class RegistrationStep1Activity extends Activity {
 			public void onClick(View v) {
 				showDialog(0);
 				
+			}
+		});
+		
+		mEditTextDOB.setOnTouchListener(new OnTouchListener() {
+			
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				showDialog(0);
+				return true;
 			}
 		});
 	}

@@ -2,6 +2,25 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.Calendar;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
@@ -14,22 +33,6 @@ import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-
 public class AddFamilyMemberFragment extends Fragment {
 	
 	private EditText mEditTextFMemberName, mEditTextFMemberDOB,  mEditTextFMemberAge,  mEditTextFMemberContactNo,mEditTextFMemberEmailId;
@@ -38,11 +41,6 @@ public class AddFamilyMemberFragment extends Fragment {
 	private RadioButton mRadioButtonMale, mRadioButtonFemale;
 	private RadioGroup mRadioGroupGender;
 	private Button mButtonAddMember;
-	private Calendar cal;
-	 private int currentDay;
-	 private int currentMonth;
-	 private int currentYear;
-
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,11 +71,6 @@ public class AddFamilyMemberFragment extends Fragment {
 		mRadioButtonMale = (RadioButton) rootView.findViewById(R.id.radioButtonMale);
 		mRadioButtonFemale = (RadioButton) rootView.findViewById(R.id.radioButtonFemale);
 		mEditTextFMemberEmailId =  (EditText) rootView.findViewById(R.id.editTextFmemberEmailId);
-
-		  cal = Calendar.getInstance();
-		  currentDay = cal.get(Calendar.DAY_OF_MONTH);
-		  currentMonth = cal.get(Calendar.MONTH);
-		  currentYear = cal.get(Calendar.YEAR);
 	}
 	
 	private void addListener(){
@@ -93,11 +86,10 @@ public class AddFamilyMemberFragment extends Fragment {
 		});
 		mEditTextFMemberDOB.setOnClickListener(new OnClickListener() {
 			
-			@SuppressWarnings("deprecation")
 			@Override
 			public void onClick(View v) {
-				getActivity().showDialog(0);
-				
+				DialogFragment newFragment = new SelectDateFragment();
+	            newFragment.show(getFragmentManager(), "DatePicker");			
 			}
 		});
 	}
@@ -237,17 +229,24 @@ CustomProgressDialog.removeDialog();
 		
 	}
 	
-	 @Deprecated 
-	 protected Dialog onCreateDialog(int id) {
-	  return new DatePickerDialog(getActivity(), datePickerListener, currentYear, currentMonth, currentDay);
-	 }
+	 public class SelectDateFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
-	 private DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
-	  public void onDateSet(DatePicker view, int selectedYear,
-	    int selectedMonth, int selectedDay) {
-		  mEditTextFMemberDOB.setText(selectedDay + "/" + (selectedMonth + 1) + "/"
-	     + selectedYear);
-	  }
-	 };
+	        @Override
+	        public Dialog onCreateDialog(Bundle savedInstanceState) {
+	        final Calendar calendar = Calendar.getInstance();
+	        int yy = calendar.get(Calendar.YEAR);
+	        int mm = calendar.get(Calendar.MONTH);
+	        int dd = calendar.get(Calendar.DAY_OF_MONTH);
+	        return new DatePickerDialog(getActivity(), this, yy, mm, dd);
+	        }
+
+	        public void onDateSet(DatePicker view, int yy, int mm, int dd) {
+	            populateSetDate(yy, mm+1, dd);
+	        }
+	        public void populateSetDate(int year, int month, int day) {
+	        	mEditTextFMemberDOB.setText(month+"/"+day+"/"+year);
+	            }
+
+	    }
 
 }

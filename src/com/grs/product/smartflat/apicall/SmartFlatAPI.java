@@ -71,7 +71,7 @@ public class SmartFlatAPI {
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
 			object.add(new BasicNameValuePair("username", username));
 			object.add(new BasicNameValuePair("password",password));
-			object.add(new BasicNameValuePair("societyCode","SF@GRS1003"/*SmartFlatApplication.getSocietyCodeFromSharedPreferences()*/));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
 			ServerConnecter serverConnecter = new ServerConnecter();
@@ -289,8 +289,8 @@ public class SmartFlatAPI {
 		try{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
 			object.add(new BasicNameValuePair("pushToken", pushToken));
-			object.add(new BasicNameValuePair("flatOwnerCode", "Gauravd4@4001"/*SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()*/));
-			object.add(new BasicNameValuePair("societyCode","SF@GRS1003"/*SmartFlatApplication.getSocietyCodeFromSharedPreferences()*/));
+			object.add(new BasicNameValuePair("flatOwnerCode",SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
 			ServerConnecter serverConnecter = new ServerConnecter();

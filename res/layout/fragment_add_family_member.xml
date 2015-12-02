@@ -66,6 +66,9 @@
         android:ems="10"
         android:hint="DOB" 
         android:padding="10sp"
+        android:inputType="none"
+        android:editable="false"
+        android:clickable="true"
         android:background="@drawable/edittext_bg"/>
 
     <EditText
