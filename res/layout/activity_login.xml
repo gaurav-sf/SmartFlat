@@ -2,45 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bb3"
+    android:background="@drawable/background_image"
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:paddingLeft="20dp"
+    android:paddingTop="20dp"
     android:paddingRight="20dp" >
-    
+
     <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:text="SmartFlat"
-            android:textColor="@color/textcolor_like_actionbar"
-            android:textSize="30sp"
-            android:layout_centerHorizontal="true"
-            android:textStyle="bold" />
+        android:id="@+id/textViewAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="SmartFlat"
+        android:textColor="@color/theme_color"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical" >
-
-        
-
-        <!--
-             <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Login"
-            android:textColor="@color/textcolor_like_actionbar"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-        -->
 
         <EditText
             android:id="@+id/editTextUsername"
@@ -51,7 +37,8 @@
             android:ems="10"
             android:hint="User Id"
             android:padding="10sp"
-            android:textColorHint="#ffffff" />
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_hint_color" />
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -63,46 +50,59 @@
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10sp"
-            android:textColorHint="#ffffff" />
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_hint_color" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" 
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="25dp"
+            android:background="@drawable/trans_edittext_bg"
+            android:orientation="vertical" 
+            android:padding="5dp">
 
-            
-
-                <RadioButton
-                    android:id="@+id/radioButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
-
-                <RadioButton
-                    android:id="@+id/radioButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="" />
+            <RadioGroup
+                android:id="@+id/RadioGroupUserType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/radioButtonOwner"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="" />
+                    android:checked="true"
+                    android:text="Owner"
+                    android:layout_weight="1"
+                    android:textColor="@color/white" />
 
-            </LinearLayout>
-            
+                <RadioButton
+                    android:id="@+id/radioButtonFamilyMember"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Family Member"
+                    android:textColor="@color/white" />
+                
+                <RadioButton
+                    android:id="@+id/radioButtonTenant"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Tenant"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+        </LinearLayout>
+
         <Button
-                    android:id="@+id/buttonLogin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/btnbg"
-                    android:ems="10"
-                    android:text="LOGIN"
-                    android:textColor="#ffffff" />
+            android:id="@+id/buttonLogin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btnbg"
+            android:ems="10"
+            android:text="LOGIN"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
     <LinearLayout
@@ -113,7 +113,7 @@
         android:weightSum="2" >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewForgotPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -122,7 +122,7 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewCreateAccount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
