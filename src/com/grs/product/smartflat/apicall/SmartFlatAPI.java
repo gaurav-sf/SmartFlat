@@ -1,15 +1,19 @@
 package com.grs.product.smartflat.apicall;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.RequestDetails;
+import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
 import com.grs.product.smartflat.response.Response;
@@ -63,6 +67,12 @@ public class SmartFlatAPI {
 	
 	public Response sendPushToken(String pushToen) throws SmartFlatError{
 		return sendPushTokenCall(pushToen);
+	}
+	
+	public List<RequestMessages> getMessages()
+			throws SmartFlatError
+	{
+		return getMessagesCall();
 	}
 
 	private Response getLoginCall(String username, String password)
@@ -298,6 +308,31 @@ public class SmartFlatAPI {
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	}
+	
+	private List<RequestMessages> getMessagesCall() 
+			throws SmartFlatError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("flatOwnerCode", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getFlatOwnerMessages.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getMessages(objJson);
 
 		} 
 		catch (JSONException e) 
