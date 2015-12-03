@@ -11,9 +11,10 @@
     <color name="black">#000000</color>
     <color name="aquablue">#B0FFFF</color>
     <color name="darkaquablue">#3BC0C4</color>
-    <color name="spinner_popup">#469196</color>
-    <color name="textcolor">#ffba00</color>
-    <color name="textcolor_like_actionbar">#933ea5</color>
+    <color name="spinner_popup">#933ea5</color>
+    <color name="theme_color">#933ea5</color>
+    <color name="text_color">#ffffff</color>
+    <color name="text_hint_color">#ffffff</color>
     
     
 </resources>

@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20sp" 
-    android:background="@drawable/bb3">
+    android:background="@drawable/background_image">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,6 +24,7 @@
             android:ems="10"
             android:hint="@string/society_code_hint"
             android:padding="10sp"
+            android:textColor="#ffffff"
             android:textColorHint="#ffffff" />
 
         <Button

@@ -19,8 +19,8 @@
          
          <corners android:radius="5dip" android:color="#999696"/>
          <gradient 
-      			   android:endColor="@color/textcolor_like_actionbar"
-       			   android:startColor="@color/textcolor_like_actionbar"
+      			   android:endColor="@color/theme_color"
+       			   android:startColor="@color/theme_color"
        			   android:type="linear" />            
      </shape>
  </item>

@@ -18,6 +18,8 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ArrayAdapter;
@@ -45,6 +47,14 @@ public class RegistrationStep1Activity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		
+		/** Hiding Title bar of this activity screen */
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+ 
+        /** Making this activity, full screen */
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		
 		setContentView(R.layout.activity_registration_step1);
 		//Utilities.addCustomActionBar(this);
 		initializeUI();
@@ -53,16 +63,7 @@ public class RegistrationStep1Activity extends Activity {
 		addListeners();
 	}
 	
-	/*private void addCustomActionBar(){
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayShowHomeEnabled(false);
-		actionBar.setDisplayShowTitleEnabled(false);
-		LayoutInflater inflater = LayoutInflater.from(this);
-		View mCustomView = inflater.inflate(R.layout.actionbar, null);
-		actionBar.setCustomView(mCustomView);
-		actionBar.setDisplayShowCustomEnabled(true);
-	}*/
-
+	
 	private void initializeUI(){
 		mEditTextName = (EditText) findViewById(R.id.editTextName);
 		mEditTextDOB = (EditText) findViewById(R.id.editTextDOB);

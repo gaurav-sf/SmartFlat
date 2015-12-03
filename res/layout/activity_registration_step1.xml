@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bb3"
+    android:background="@drawable/background_image"
     android:padding="20sp" >
 
     <LinearLayout
@@ -13,17 +13,17 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/textViewRegStep1_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Registration Step 1/2"
-            android:textColor="@color/textcolor_like_actionbar"
+            android:textColor="@color/theme_color"
             android:textSize="25sp" />
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scrollView1"
+        android:id="@+id/scrollViewRegStep1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/buttonNext"
@@ -43,7 +43,9 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Name"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <EditText
                 android:id="@+id/editTextDOB"
@@ -53,7 +55,9 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="DOB --- dd/mm/yyyy"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <EditText
                 android:id="@+id/editTextAge"
@@ -64,15 +68,25 @@
                 android:ems="10"
                 android:hint="Age"
                 android:inputType="number"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color"/>
+            
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:layout_marginTop="25dp"
+            android:background="@drawable/trans_edittext_bg">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewGenderLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="25dp"
-                android:text="Gender" />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Gender" 
+                android:textColor="@color/white"/>
 
             <RadioGroup
                 android:id="@+id/RadioGroupGender"
@@ -87,15 +101,18 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:checked="true"
-                    android:text="Male" />
+                    android:text="Male" 
+                    android:textColor="@color/white"/>
 
                 <RadioButton
                     android:id="@+id/radioButtonFemale"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Female" />
+                    android:text="Female"
+                    android:textColor="@color/white" />
             </RadioGroup>
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/editTextContactNo"
@@ -106,7 +123,9 @@
                 android:ems="10"
                 android:hint="Contact Number"
                 android:inputType="number"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <EditText
                 android:id="@+id/editTextEmailId"
@@ -117,21 +136,25 @@
                 android:ems="10"
                 android:hint="Email id"
                 android:inputType="textEmailAddress"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <Spinner
                 android:id="@+id/spinnertBuildingName"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
                 android:layout_marginTop="25dp"
+                android:textColor="@color/white"
                 android:background="@drawable/spinner_bg"
-                android:hint="Building Name"
+                android:hint="Building Name"                
                 android:popupBackground="@color/spinner_popup" />
 
             <Spinner
                 android:id="@+id/spinnerTextFloorNo"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
+                android:textColor="@color/white"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
@@ -146,7 +169,9 @@
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Flat Number"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <EditText
                 android:id="@+id/editTextNoOfFamilyMembers"
@@ -157,7 +182,9 @@
                 android:ems="10"
                 android:hint="No Of Family Members"
                 android:inputType="number"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
 
             <EditText
                 android:id="@+id/editTextNoOfVehicle"
@@ -168,7 +195,10 @@
                 android:ems="10"
                 android:hint="No Of Vehicle"
                 android:inputType="number"
-                android:padding="10sp" />
+                android:padding="10sp"
+                android:textColor="@color/text_color"
+                android:textColorHint="@color/text_hint_color" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -181,6 +211,7 @@
         android:background="@drawable/btnbg"
         android:ems="10"
         android:text="NEXT"
-        android:textColor="#ffffff" />
+        android:textColor="@color/text_color" 
+        android:textStyle="bold"/>
 
 </RelativeLayout>
