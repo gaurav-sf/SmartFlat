@@ -2,11 +2,27 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.activities.RequestDetailsActivity;
+import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.GetMessagesTask;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.RequestDetails;
+import com.grs.product.smartflat.models.RequestMessages;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
+import com.grs.product.smartflat.utils.Utilities;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +33,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.activities.RequestDetailsActivity;
-import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
-import com.grs.product.smartflat.models.RequestDetails;
 
 public class RaisedRequestFragment extends Fragment {
 
@@ -43,8 +53,9 @@ public class RaisedRequestFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater,
 			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_raised_complaint, container, false);
+		getMessagesFromServer();
 		initializeUI(rootView);
-		addListener();
+		addListener();	
 		return rootView;
 	}
 
@@ -263,6 +274,58 @@ public class RaisedRequestFragment extends Fragment {
 			}
 		}	
 		mRequestListAdapter.notifyDataSetChanged();
+	}
+	
+	private void getMessagesFromServer(){
+		if (NetworkDetector.init(getActivity()).isNetworkAvailable()) 
+		{
+			new GetMessagesTask(getActivity(), new GetMessagesTaskListener())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(getActivity(),"Error", "Please check your Internet");
+		}						
+	}
+	
+	public class GetMessagesTaskListener implements AsyncTaskCompleteListener<List<RequestMessages>>{
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(getActivity(), "", false);			
+		}
+
+		@Override
+		public void onTaskComplete(List<RequestMessages> result) {
+			if(result!=null){
+				saveMessagesInDB(result);
+			}
+			
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			CustomProgressDialog.removeDialog();
+			
+		}
+		
+	}
+	
+	private void saveMessagesInDB(List<RequestMessages> listMessages){		
+		SmartFlatDBManager objManager = new SmartFlatDBManager();
+		for (int i = 0; i < listMessages.size(); i++)
+		{
+			boolean result = objManager.saveMessage(listMessages.get(i));
+			if(result)
+			{
+				Log.e("Message Details", " Insertion Successful");
+			}
+		}		
 	}
 
 }

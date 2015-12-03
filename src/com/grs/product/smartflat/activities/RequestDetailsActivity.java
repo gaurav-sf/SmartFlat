@@ -123,8 +123,16 @@ public class RequestDetailsActivity extends Activity{
 		}
 		
 		for (int i = 0; i < mRequestDetails.getmMessageList().size(); i++) {
-			mTextViewMessage.setText(mTextViewMessage.getText().toString()+"\n"
-		+mRequestDetails.getmMessageList().get(i).getmMessageContent())	;
+			if(mRequestDetails.getmMessageList().get(i).ismIsSocietyMessage()){
+				mTextViewMessage.setTextColor(Color.RED);
+				mTextViewMessage.setText(mTextViewMessage.getText().toString()+"\n"
+						+mRequestDetails.getmMessageList().get(i).getmMessageContent())	;	
+			}else{
+				mTextViewMessage.setTextColor(Color.BLACK);
+				mTextViewMessage.setText(mTextViewMessage.getText().toString()+"\n"
+						+mRequestDetails.getmMessageList().get(i).getmMessageContent())	;	
+			}
+
 		}
 		
 	}

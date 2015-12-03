@@ -137,7 +137,7 @@ public class SmartFlatDatabase {
 		}	
 	}
 
-/*	private void createComplaintDetailsTable(SQLiteDatabase db){
+	/*	private void createComplaintDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
 			db.execSQL(SmartFlatDBTableCreation.TABLE_COMPLAINT_DETAILS_CREATION_QUERY);
@@ -184,7 +184,7 @@ public class SmartFlatDatabase {
 			db.endTransaction();
 		}	
 	}
-	
+
 	private void createContactDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
@@ -196,7 +196,7 @@ public class SmartFlatDatabase {
 			db.endTransaction();
 		}	
 	}
-	
+
 	private void createMessageDetailsTable(SQLiteDatabase db){
 		try {
 			db.beginTransaction();
@@ -323,7 +323,7 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerDetails.ACCESS_TOKEN, details.getmAccessToken());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_LATITUDE, details.getmLatitude());
 		values.put(TableFlatOwnerDetails.FLAT_OWNER_LONGITUDE, details.getmLongitude());
-		
+
 		try {
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.FLAT_OWNER_DETAILS, null, values) > 0;
@@ -345,11 +345,11 @@ public class SmartFlatDatabase {
 		}
 		return cursor;		
 	}
-	
+
 	public boolean saveFamilyDetails(FamilyDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();
-		
+
 		values.put(TableFlatOwnerFamilyDetails.FLAT_OWNER_CODE, details.getmFlatOwnerCode());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_NAME, details.getmFamilyMemberName());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_DOB, details.getmFamilyMemberDOB());
@@ -357,7 +357,7 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO, details.getmFamilyMemberContactno());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE, details.getmFamilyMemberAge());
 		values.put(TableFlatOwnerFamilyDetails.NEED_LOGIN, details.ismNeedLogin());
-		
+
 		try {
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.FAMILY_DETAILS, null, values) > 0;
@@ -369,7 +369,7 @@ public class SmartFlatDatabase {
 		}	
 		return isAdded;
 	}
-	
+
 	public Cursor getFamilyDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.FAMILY_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -378,7 +378,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;		
 	}
-	
+
 	public boolean saveVehicleDetails(VehicleDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
@@ -399,7 +399,7 @@ public class SmartFlatDatabase {
 		}	
 		return isAdded;
 	}
-	
+
 	public Cursor getVehicleDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.VEHICLE_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -408,8 +408,8 @@ public class SmartFlatDatabase {
 		}
 		return cursor;	
 	}
-	
-/*	public boolean saveComplaintDetails(ComplaintDetails details){
+
+	/*	public boolean saveComplaintDetails(ComplaintDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
 		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_NUMBER, details.getmComplaintNumber());
@@ -417,7 +417,7 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_STATUS, details.getmComplaintStatus());
 		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_DETAILS, details.getmComplaintDetails());
 		values.put(TableFlatOwnerComplaintDetails.COMPLAINT_RAISED_DATETIME, details.getmComplaintRaisedDateTime());
-		
+
 		try {
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.COMPLAINT_DETAILS, null, values) > 0;
@@ -429,7 +429,7 @@ public class SmartFlatDatabase {
 		}	
 		return isAdded;
 	}*/
-	
+
 	public Cursor getAllComplaintDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -438,7 +438,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public boolean saveRequestDetails(RequestDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
@@ -460,7 +460,7 @@ public class SmartFlatDatabase {
 		}	
 		return isAdded;
 	}
-	
+
 	public Cursor getAllRequestDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -469,7 +469,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public boolean saveQueryDetails(QueryDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
@@ -488,7 +488,7 @@ public class SmartFlatDatabase {
 		}	
 		return isAdded;
 	}
-	
+
 	public Cursor getAllQueryDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.QUERY_DETAILS;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -497,7 +497,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public boolean saveSocietyNoticeDetails(NoticeDetails details){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
@@ -516,7 +516,7 @@ public class SmartFlatDatabase {
 		}	
 		return isAdded;
 	}
-	
+
 	public Cursor getAllSocietyNoticeDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES;
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -525,8 +525,8 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
-/*	public Cursor getRaisedComplaintDetails(){
+
+	/*	public Cursor getRaisedComplaintDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS + " WHERE "+TableFlatOwnerComplaintDetails.COMPLAINT_STATUS +" IN ('Raised','Processed')";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
@@ -534,7 +534,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getClosedComplaintDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.COMPLAINT_DETAILS + " WHERE "+TableFlatOwnerComplaintDetails.COMPLAINT_STATUS +" = 'Closed'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -543,7 +543,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}*/
-	
+
 	public Cursor getRaisedRequestDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -552,7 +552,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getRaisedRequestDetailsByType(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE + "  ASC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -561,7 +561,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getRaisedRequestDetailsByCategory(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_CATEGORY + "  ASC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -570,7 +570,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getRaisedRequestDetailsByPriorityHtoL(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY + "  ASC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -579,7 +579,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getRaisedRequestDetailsByPriorityLtoH(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" IN ('Raised','Processed') ORDER BY "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_PRIORITY + "  DESC";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -588,9 +588,9 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
-	
-	
+
+
+
 	public Cursor getClosedRequestDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE "+TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS +" = 'Closed'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -599,7 +599,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getRaisedQueryDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.QUERY_DETAILS + " WHERE "+TableFlatOwnerQueryDetails.QUERY_STATUS +" IN ('Raised','Processed')";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -608,7 +608,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getClosedQueryDetails(){
 		String selectQuery = "SELECT  * FROM " + TableNames.QUERY_DETAILS + " WHERE "+TableFlatOwnerQueryDetails.QUERY_STATUS +" = 'Closed'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -617,7 +617,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public Cursor getSinbleRequestDetails(String requestNumber){
 		String selectQuery = "SELECT  * FROM " + TableNames.REQUEST_DETAILS + " WHERE " + TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER +"= '"+ requestNumber+"'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
@@ -626,7 +626,7 @@ public class SmartFlatDatabase {
 		}
 		return cursor;			
 	}
-	
+
 	public boolean saveMessage(RequestMessages message){
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
@@ -637,19 +637,32 @@ public class SmartFlatDatabase {
 		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
 
 		try {
-			mDb.beginTransaction();
-			isAdded = mDb.insert(TableNames.MESSAGE_DETAILS, null, values) > 0;
-			mDb.setTransactionSuccessful();
+			if(getSingleMessages(message.getmMessageNumber()).getCount()<=0)
+			{
+				mDb.beginTransaction();
+				isAdded = mDb.insert(TableNames.MESSAGE_DETAILS, null, values) > 0;
+				mDb.setTransactionSuccessful();	
+				mDb.endTransaction();
+			}
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
-			mDb.endTransaction();
+		//	mDb.endTransaction();
 		}	
 		return isAdded;	
 	}
-	
+
 	public Cursor getMessages(String requestNumber){
 		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' ORDER BY "+TableMessageDetails.MESSAGE_DATETIME + "  DESC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+
+	public Cursor getSingleMessages(String messageNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.MESSAGE_NUMBER +"= '"+ messageNumber+"'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
 			cursor.moveToNext();

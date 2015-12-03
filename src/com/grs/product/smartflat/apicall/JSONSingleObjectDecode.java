@@ -1,10 +1,13 @@
 package com.grs.product.smartflat.apicall;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.util.Log;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
+
+import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.response.Response;
 
@@ -66,6 +69,43 @@ public class JSONSingleObjectDecode {
 			return null;
 		}
 
+	}
+	
+	public List<RequestMessages> getMessages(JSONObject json)
+			throws JSONException{
+		JSONArray messageArray = new JSONArray(json.getString("messages"));
+		if(messageArray!=null && messageArray.length()>0)
+		{
+			if(messageArray.getString(0)==null||
+					messageArray.getString(0).equalsIgnoreCase(null)||
+					messageArray.getString(0).equalsIgnoreCase("null"))
+			{
+				return null;
+			}
+			List<RequestMessages> listMessages= new ArrayList<RequestMessages>();
+			for (int i = 0; i < messageArray.length(); i++) 
+			{
+				listMessages.add(getSingleMessage(messageArray.getJSONObject(i)));
+			}
+			return listMessages;			
+		}
+		return null;
+	}
+	
+	private RequestMessages getSingleMessage(JSONObject json) 
+			throws JSONException{
+		
+		RequestMessages singleMessage = new RequestMessages();
+		
+		singleMessage.setmMessageNumber(json.getString("Message_Number"));
+		singleMessage.setmMessageContent(json.getString("Message_Content"));
+		singleMessage.setmRequestNumber(json.getString("Request_Number"));
+		singleMessage.setmFlatOwnerCode(json.getString("Flat_Owner_Code"));
+		singleMessage.setmIsSocietyMessage(Boolean.parseBoolean(json.getString("Is_Society_Message")));
+		singleMessage.setmMessageDateTime(json.getString("Message_DateTime"));
+		singleMessage.setmSocietyCode(json.getString("Society_Code"));
+		
+		return singleMessage;		
 	}
 
 }
