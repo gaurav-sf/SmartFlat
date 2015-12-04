@@ -43,7 +43,6 @@ public class RaisedRequestFragment extends Fragment {
 	private Spinner mSpinnertSorting;
 	SmartFlatDBManager objManager = new SmartFlatDBManager();
 
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

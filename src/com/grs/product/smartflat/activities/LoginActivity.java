@@ -129,8 +129,8 @@ public class LoginActivity extends Activity{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
 					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(result.getMessage());
-					getPushTokenFromServer(mEditTextUsername.getText().toString());
-				//	goToNextActivity();
+				//	getPushTokenFromServer(mEditTextUsername.getText().toString());
+					goToNextActivity();
 					
 				}else{
 					Utilities.ShowAlertBox(LoginActivity.this,"Error",result.getMessage());		
@@ -140,7 +140,7 @@ public class LoginActivity extends Activity{
 
 		@Override
 		public void onStoped() {
-			//CustomProgressDialog.removeDialog();	
+			CustomProgressDialog.removeDialog();	
 		}
 
 		@Override
