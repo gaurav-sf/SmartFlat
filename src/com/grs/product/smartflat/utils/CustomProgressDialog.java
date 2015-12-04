@@ -1,10 +1,9 @@
 package com.grs.product.smartflat.utils;
 
 import com.grs.product.smartflat.R;
+
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;

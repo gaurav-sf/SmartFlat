@@ -1,5 +1,8 @@
 package com.grs.product.smartflat.activities;
 
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +14,6 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
 
 
 public class SplashActivity extends Activity {

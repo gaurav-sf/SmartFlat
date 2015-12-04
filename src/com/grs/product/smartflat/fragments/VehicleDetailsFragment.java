@@ -4,12 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.adapter.FamilyDetailsListAdapter;
 import com.grs.product.smartflat.adapter.VehicleDetailsListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerVehicleDetails;
-import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
 
 import android.database.Cursor;

@@ -3,23 +3,8 @@ package com.grs.product.smartflat.activities;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.activities.LoginActivity.LoginTaskCompleteListener;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.asynctasks.LoginTask;
 import com.grs.product.smartflat.asynctasks.SendMessageTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
@@ -31,6 +16,18 @@ import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
+
+import android.app.Activity;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class RequestDetailsActivity extends Activity{
 	private Bundle extras;

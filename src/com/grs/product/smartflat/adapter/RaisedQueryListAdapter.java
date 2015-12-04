@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.models.QueryDetails;
-import com.grs.product.smartflat.models.RequestDetails;
 
 import android.content.Context;
 import android.view.LayoutInflater;

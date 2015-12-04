@@ -3,6 +3,13 @@ package com.grs.product.smartflat.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.activities.QueryDetailsActivity;
+import com.grs.product.smartflat.adapter.RaisedQueryListAdapter;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
+import com.grs.product.smartflat.models.QueryDetails;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -15,13 +22,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.activities.QueryDetailsActivity;
-import com.grs.product.smartflat.adapter.RaisedQueryListAdapter;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
-import com.grs.product.smartflat.models.QueryDetails;
 
 public class ClosedQueryFragment extends Fragment {
 

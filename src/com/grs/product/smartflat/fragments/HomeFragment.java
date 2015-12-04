@@ -1,5 +1,8 @@
 package com.grs.product.smartflat.fragments;
 
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.adapter.CustomGridAdapter;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,8 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.adapter.CustomGridAdapter;
 
 public class HomeFragment extends Fragment {
 	GridView grid;

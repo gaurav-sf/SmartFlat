@@ -1,27 +1,6 @@
 package com.grs.product.smartflat.fragments;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.activities.ComplaintDetailsActivity;
-import com.grs.product.smartflat.activities.RegistrationStep1Activity;
-import com.grs.product.smartflat.adapter.RaisedComplaintListAdapter;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.models.ComplaintDetails;
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class RaisedComplaintFragment extends Fragment {/*
 	private ListView listViewComplaintDetails;

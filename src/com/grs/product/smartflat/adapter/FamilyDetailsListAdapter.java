@@ -2,6 +2,10 @@ package com.grs.product.smartflat.adapter;
 
 
 import java.util.List;
+
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.models.FamilyDetails;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -9,9 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.models.FamilyDetails;
 
 public class FamilyDetailsListAdapter extends BaseExpandableListAdapter {
 

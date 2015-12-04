@@ -4,7 +4,9 @@ package com.grs.product.smartflat.database;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
 import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableContactDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerQueryDetails;
@@ -14,6 +16,7 @@ import com.grs.product.smartflat.database.SmartFlatDBTables.TableMessageDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyNotices;
+import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.NoticeDetails;
@@ -668,6 +671,37 @@ public class SmartFlatDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;			
+	}
+	
+	public boolean saveContact(ContactDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableContactDetails.CONTACT_NAME,details.getmContactName());
+		values.put(TableContactDetails.CONTACT_NUMBER,details.getmContactNumber());
+		values.put(TableContactDetails.CONTACT_EMAIL_ID,details.getmContactEmailId());
+		values.put(TableContactDetails.CONTACT_OCCUPATION,details.getmContactOccupation());
+	try 
+		{
+			mDb.beginTransaction();
+			isAdded = mDb.insert(TableNames.CONTACT_DETAILS, null, values) > 0;
+			mDb.setTransactionSuccessful();
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			mDb.endTransaction();
+		}
+		return isAdded;		
+	}
+	
+	public Cursor getAllContacts(){
+
+		String selectQuery = "SELECT  * FROM " + TableNames.CONTACT_DETAILS;
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
+	
 	}
 
 }

@@ -2,12 +2,14 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.activities.RequestDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
 import com.grs.product.smartflat.models.RequestDetails;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,9 +19,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class ClosedRequestFragment extends Fragment {
 

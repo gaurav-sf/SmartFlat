@@ -2,20 +2,6 @@ package com.grs.product.smartflat.activities;
 
 import java.io.IOException;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
@@ -31,6 +17,20 @@ import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Param;
 import com.grs.product.smartflat.utils.Utilities;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class LoginActivity extends Activity{
 	

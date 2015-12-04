@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.response.Response;
@@ -106,6 +107,40 @@ public class JSONSingleObjectDecode {
 		singleMessage.setmSocietyCode(json.getString("Society_Code"));
 		
 		return singleMessage;		
+	}
+	
+	
+	public List<ContactDetails> getContacts(JSONObject json)
+			throws JSONException{
+		JSONArray contactsArray = new JSONArray(json.getString("contacts"));
+		if(contactsArray!=null && contactsArray.length()>0)
+		{
+			if(contactsArray.getString(0)==null||
+					contactsArray.getString(0).equalsIgnoreCase(null)||
+					contactsArray.getString(0).equalsIgnoreCase("null"))
+			{
+				return null;
+			}
+			List<ContactDetails> listContacts= new ArrayList<ContactDetails>();
+			for (int i = 0; i < contactsArray.length(); i++) 
+			{
+				listContacts.add(getSingleContact(contactsArray.getJSONObject(i)));
+			}
+			return listContacts;			
+		}
+		return null;
+	}
+	
+	private ContactDetails getSingleContact(JSONObject json) 
+			throws JSONException{
+		
+		ContactDetails singleContact = new ContactDetails();		
+		singleContact.setmContactName(json.getString("Contact_Name"));
+		singleContact.setmContactNumber(json.getString("Contact_Number"));
+		singleContact.setmContactEmailId(json.getString("Contact_Email_ID"));
+		singleContact.setmContactOccupation(json.getString("Contact_Occupation"));	
+		
+		return singleContact;		
 	}
 
 }
