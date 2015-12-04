@@ -3,6 +3,12 @@ package com.grs.product.smartflat.fragments;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.adapter.FamilyDetailsListAdapter;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
+import com.grs.product.smartflat.models.FamilyDetails;
+
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,12 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupExpandListener;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.adapter.FamilyDetailsListAdapter;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerFamilyDetails;
-import com.grs.product.smartflat.models.FamilyDetails;
 
 public class FamilyDetailsFragment extends Fragment{
 	private ExpandableListView mExpListViewFamilyDetails;

@@ -2,8 +2,8 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.activities.ComplaintDetailsActivity;
 import com.grs.product.smartflat.activities.QueryDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedQueryListAdapter;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
@@ -19,9 +19,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class RaisedQueryFragment extends Fragment {
 

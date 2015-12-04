@@ -3,6 +3,18 @@ package com.grs.product.smartflat.activities;
 
 import java.util.ArrayList;
 
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.adapter.NavDrawerItem;
+import com.grs.product.smartflat.adapter.NavDrawerListAdapter;
+import com.grs.product.smartflat.fragments.AboutAppFragment;
+import com.grs.product.smartflat.fragments.ContactsFragment;
+import com.grs.product.smartflat.fragments.FamilyMainFragment;
+import com.grs.product.smartflat.fragments.HomeFragment;
+import com.grs.product.smartflat.fragments.MainRequestFragment;
+import com.grs.product.smartflat.fragments.MainVehicleFragment;
+import com.grs.product.smartflat.fragments.NoticeFragment;
+
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -15,22 +27,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.adapter.NavDrawerItem;
-import com.grs.product.smartflat.adapter.NavDrawerListAdapter;
-import com.grs.product.smartflat.fragments.AboutAppFragment;
-import com.grs.product.smartflat.fragments.ContactsFragment;
-import com.grs.product.smartflat.fragments.FamilyMainFragment;
-import com.grs.product.smartflat.fragments.HelpFragment;
-import com.grs.product.smartflat.fragments.HomeFragment;
-import com.grs.product.smartflat.fragments.MainComplaintsFragment;
-import com.grs.product.smartflat.fragments.MainQueriesFragment;
-import com.grs.product.smartflat.fragments.MainRequestFragment;
-import com.grs.product.smartflat.fragments.MainVehicleFragment;
-import com.grs.product.smartflat.fragments.NoticeFragment;
-import com.grs.product.smartflat.utils.Utilities;
 
 @SuppressWarnings("deprecation")
 public class DashBoardActivity extends FragmentActivity {

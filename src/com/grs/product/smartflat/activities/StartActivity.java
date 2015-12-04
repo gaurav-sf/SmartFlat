@@ -10,18 +10,18 @@ import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class StartActivity extends Activity {
 	private Button button_continue;

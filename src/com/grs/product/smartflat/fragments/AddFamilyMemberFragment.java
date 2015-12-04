@@ -2,25 +2,6 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.Calendar;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
@@ -32,6 +13,23 @@ import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
+
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class AddFamilyMemberFragment extends Fragment {
 	

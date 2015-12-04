@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.models.VehicleDetails;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;

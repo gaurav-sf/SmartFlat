@@ -1,5 +1,16 @@
 package com.grs.product.smartflat.fragments;
 
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.AddVehicleTask;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.VehicleDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
+import com.grs.product.smartflat.utils.Utilities;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,22 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.activities.LoginActivity;
-import com.grs.product.smartflat.activities.LoginActivity.LoginTaskCompleteListener;
-import com.grs.product.smartflat.adapter.CustomGridAdapter;
-import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.asynctasks.AddVehicleTask;
-import com.grs.product.smartflat.asynctasks.LoginTask;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.error.SmartFlatError;
-import com.grs.product.smartflat.models.VehicleDetails;
-import com.grs.product.smartflat.response.Response;
-import com.grs.product.smartflat.utils.CustomProgressDialog;
-import com.grs.product.smartflat.utils.NetworkDetector;
-import com.grs.product.smartflat.utils.Utilities;
 
 public class NewVehicleFragment extends Fragment {
 	

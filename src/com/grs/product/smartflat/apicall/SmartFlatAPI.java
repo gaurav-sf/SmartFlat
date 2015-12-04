@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.RequestDetails;
@@ -73,6 +74,12 @@ public class SmartFlatAPI {
 			throws SmartFlatError
 	{
 		return getMessagesCall();
+	}
+	
+	public List<ContactDetails> getContacts()
+			throws SmartFlatError
+	{
+		return getContactsCall();
 	}
 
 	private Response getLoginCall(String username, String password)
@@ -333,6 +340,31 @@ public class SmartFlatAPI {
 			JSONObject objJson = obj.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getMessages(objJson);
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	}
+	
+	private List<ContactDetails> getContactsCall() 
+			throws SmartFlatError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("societyCode", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getContacts.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getContacts(objJson);
 
 		} 
 		catch (JSONException e) 

@@ -2,8 +2,10 @@ package com.grs.product.smartflat.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.models.RequestDetails;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;

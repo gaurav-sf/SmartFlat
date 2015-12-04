@@ -4,8 +4,6 @@ import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflat.apicall.SmartFlatAPI;
 import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.SocietyDetails;
-import com.grs.product.smartflat.response.Response;
-import com.grs.product.smartflat.utils.Utilities;
 
 import android.content.Context;
 import android.os.AsyncTask;

@@ -1,8 +1,6 @@
 package com.grs.product.smartflat.database;
 
-import android.database.Cursor;
-
-import com.grs.product.smartflat.models.ComplaintDetails;
+import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.NoticeDetails;
@@ -11,6 +9,8 @@ import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
+
+import android.database.Cursor;
 
 public class SmartFlatDBManager {
 
@@ -222,6 +222,21 @@ public class SmartFlatDBManager {
 	public Cursor getMessages(String requestNumber){
 		SmartFlatDatabase.getInstance().open();
 		Cursor details = SmartFlatDatabase.getInstance().getMessages(requestNumber);
+		SmartFlatDatabase.getInstance().close();
+		return details;	
+	}
+	
+	public boolean saveContact(ContactDetails details){
+		boolean isAdded = false;
+		SmartFlatDatabase.getInstance().open();
+		isAdded = SmartFlatDatabase.getInstance().saveContact(details);
+		SmartFlatDatabase.getInstance().close();
+		return isAdded;
+	}
+	
+	public Cursor getAllContacts(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getAllContacts();
 		SmartFlatDatabase.getInstance().close();
 		return details;	
 	}

@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.SmartFlatApplication;
-import com.grs.product.smartflat.activities.LoginActivity;
-import com.grs.product.smartflat.activities.LoginActivity.LoginTaskCompleteListener;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.asynctasks.LoginTask;
 import com.grs.product.smartflat.asynctasks.SendRequestAndComplaintTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerRequestDetails;
 import com.grs.product.smartflat.error.SmartFlatError;
-import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
+
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;

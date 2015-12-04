@@ -1,21 +1,6 @@
 package com.grs.product.smartflat.fragments;
 
-import android.database.Cursor;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDatabase;
-import com.grs.product.smartflat.database.SmartFlatDatabase.SmartFlatDatabaseHelper;
-import com.grs.product.smartflat.models.ComplaintDetails;
-import com.grs.product.smartflat.utils.Utilities;
 
 public class NewComplaintFragment extends Fragment {/*
 	private EditText mEditTextCopmType, mEditTextCopmDetails;

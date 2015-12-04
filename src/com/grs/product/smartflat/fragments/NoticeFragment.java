@@ -1,7 +1,6 @@
 package com.grs.product.smartflat.fragments;
 
 import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.utils.Utilities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

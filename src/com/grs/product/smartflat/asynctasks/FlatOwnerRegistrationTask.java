@@ -1,14 +1,15 @@
 package com.grs.product.smartflat.asynctasks;
 
-import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflat.apicall.SmartFlatAPI;
 import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.Utilities;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 
 public class FlatOwnerRegistrationTask  extends AsyncTask<Void, Void, SmartFlatError> {
 

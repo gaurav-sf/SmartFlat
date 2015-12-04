@@ -5,8 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import android.app.ActionBar;
-import android.app.Activity;
+import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
+import com.grs.product.smartflat.models.SocietyDetails;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.database.Cursor;
@@ -14,11 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.grs.product.smartflat.R;
-import com.grs.product.smartflat.database.SmartFlatDBManager;
-import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
-import com.grs.product.smartflat.models.SocietyDetails;
 
 public class Utilities {
 

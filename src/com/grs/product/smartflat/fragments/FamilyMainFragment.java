@@ -3,7 +3,6 @@ package com.grs.product.smartflat.fragments;
 import com.grs.product.smartflat.R;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;

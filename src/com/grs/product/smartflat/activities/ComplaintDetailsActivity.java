@@ -1,12 +1,12 @@
 package com.grs.product.smartflat.activities;
 
+import com.grs.product.smartflat.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-
-import com.grs.product.smartflat.R;
 
 public class ComplaintDetailsActivity extends Activity {
 	private Bundle extras;
