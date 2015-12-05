@@ -1,43 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
     android:padding="20sp">
-
-<!--     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    
+    <ScrollView
+        android:id="@+id/scrollViewNewRequest"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="NEW REQUEST"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#595959" />
-    
-    <View
-        android:id="@+id/view1"
-        android:layout_width="100dp"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="18dp"
-        android:background="#469196" /> -->
-    
-    
-        <RadioGroup
+        android:layout_above="@+id/buttonRaiseRequest"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="5dp">
+        
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RadioGroup
         android:id="@+id/RadioGroupType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
 
         <RadioButton
             android:id="@+id/radioButtonRequest"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Request"
-            android:checked="true" />
+            android:checked="true"
+            android:text="Request" />
 
         <RadioButton
             android:id="@+id/radioButtonComplaint"
@@ -45,7 +39,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Complaint" />
-
     </RadioGroup>
 
     <Spinner
@@ -53,13 +46,12 @@
         android:layout_width="match_parent"
         android:layout_height="40sp"
         android:layout_marginTop="20sp"
-        android:ems="10" 
-        android:popupBackground="@drawable/trans_edittext_bg"     
         android:background="@drawable/spinner_bg"
-        />
+        android:ems="10"
+        android:popupBackground="@drawable/trans_spinner_bg" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewPriorityType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -71,22 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radioButtonHigh"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="High" />
-
-        <RadioButton
-            android:id="@+id/radioButtonMedium"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Medium" />
-
+        android:orientation="horizontal" >
+        
         <RadioButton
             android:id="@+id/radioButtonLow"
             android:layout_width="0dp"
@@ -94,26 +72,55 @@
             android:layout_weight="1"
             android:checked="true"
             android:text="Low" />
+
+         <RadioButton
+            android:id="@+id/radioButtonMedium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium" />
+
+        
+        <RadioButton
+            android:id="@+id/radioButtonHigh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="High" />
+
+       
     </RadioGroup>
+    
+     <TextView
+        android:id="@+id/textViewRequestDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20sp"
+        android:text="Request Details" />
 
     <EditText
         android:id="@+id/editTextRequestDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20sp"
-        android:ems="10"
-        android:padding="10sp"
+        android:layout_marginTop="5sp"
         android:background="@drawable/edittext_bg"
-        android:hint="Request Details" />
+        android:ems="10"
+        android:hint="Request Details"
+        android:padding="10sp" />
+
     
-        <Button
+
+</LinearLayout>
+ </ScrollView>
+    
+<Button
         android:id="@+id/buttonRaiseRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="35sp"
-        android:text="RAISE REQUEST" 
-        android:textColor="#ffffff"
-        android:background="@drawable/btnbg"/>
-
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:text="ADD VEHICLE" 
+        android:background="@drawable/btnbg"
+        android:textColor="@drawable/btn_text_color"/>
+</RelativeLayout>

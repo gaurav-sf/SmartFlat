@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="35sp"
         android:ems="10" 
-        android:popupBackground="#469196"
+        android:popupBackground="@drawable/edittext_bg"
         android:background="@drawable/spinner_bg"/>
 
     <ListView

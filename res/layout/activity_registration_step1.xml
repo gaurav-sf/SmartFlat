@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:text="Registration Step 1/2"
             android:textColor="@color/theme_color"
-            android:textSize="25sp" />
+            android:textSize="22sp" />
     </LinearLayout>
 
     <ScrollView
@@ -211,7 +211,7 @@
         android:background="@drawable/btnbg"
         android:ems="10"
         android:text="NEXT"
-        android:textColor="@color/text_color" 
+        android:textColor="@drawable/btn_text_color" 
         android:textStyle="bold"/>
 
 </RelativeLayout>

@@ -18,33 +18,58 @@
         android:layout_marginTop="15dp"
         android:text="SmartFlat"
         android:textColor="@color/theme_color"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
-
-    <LinearLayout
+    
+    <ScrollView
+        android:id="@+id/scrollViewRegStep2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_marginTop="20sp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewUserNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#5d5c5c" />
 
         <EditText
             android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/trans_edittext_bg"
             android:ems="10"
             android:hint="User Id"
             android:padding="10sp"
             android:textColor="@color/text_color"
             android:textColorHint="@color/text_hint_color" />
+        
+        <TextView
+            android:id="@+id/textViewPasswordLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Password"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#5d5c5c" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/trans_edittext_bg"
             android:ems="10"
             android:hint="Password"
@@ -72,6 +97,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:checked="true"
+                    android:layout_gravity="center_vertical"
                     android:text="Owner"
                     android:layout_weight="1"
                     android:textColor="@color/white" />
@@ -80,6 +106,7 @@
                     android:id="@+id/radioButtonFamilyMember"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Family Member"
                     android:textColor="@color/white" />
@@ -88,6 +115,7 @@
                     android:id="@+id/radioButtonTenant"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:text="Tenant"
                     android:textColor="@color/white" />
@@ -102,10 +130,12 @@
             android:background="@drawable/btnbg"
             android:ems="10"
             android:text="LOGIN"
-            android:textColor="#ffffff" />
+            android:textColor="@drawable/btn_text_color" />
     </LinearLayout>
+     </ScrollView>>
 
     <LinearLayout
+        android:id="@+id/linearLayoutForForgetSignup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
