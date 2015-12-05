@@ -13,15 +13,24 @@
         android:orientation="horizontal"
         android:weightSum="10">
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="0dp"
+            android:layout_height="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:src="@drawable/request_listview_icon" />
+
         <TextView
             android:id="@+id/textViewRequestNumber"
             android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:text="Request Number"
-            android:textColor="#469196"
+            android:textColor="@color/theme_color"
             android:textSize="18sp"
             android:textStyle="bold" 
-            android:layout_weight="8.3"/>
+            android:layout_weight="7.3"/>
 
         <TextView
             android:id="@+id/textViewPriority"
@@ -33,6 +42,12 @@
             android:layout_gravity="right"
             android:textSize="16sp" />
     </LinearLayout>
+    <View
+                android:id="@+id/viewLineRequest"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="#e6e6e6" />
 
     <TextView
         android:id="@+id/textViewCategory"
