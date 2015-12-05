@@ -20,7 +20,7 @@
         android:layout_gravity="center"
         android:text="Society Registration"
         android:textColor="@color/theme_color"
-        android:textSize="23sp" />
+        android:textSize="22sp" />
 
     <TextView
         android:id="@+id/textViewRegStep2_Title2"
@@ -30,7 +30,7 @@
         android:layout_marginTop="5dp"
         android:text="Step 2/2"
         android:textColor="@color/theme_color"
-        android:textSize="23sp" />
+        android:textSize="22sp" />
 
    
 
@@ -38,7 +38,6 @@
         android:id="@+id/scrollViewRegStep2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view1"
         android:layout_marginTop="20sp" >
 
         <LinearLayout

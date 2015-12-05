@@ -5,7 +5,7 @@
     android:orientation="vertical" >
     
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewAppNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:text="SmartFlat"
         android:textSize="28sp"
-        android:textColor="#469196"
+        android:textColor="@color/theme_color"
         android:textStyle="bold|italic" />
     
     <GridView
@@ -23,8 +23,8 @@
    		 android:padding="5dp"
     	 android:numColumns="2"
     	 android:layout_marginTop="20dp"
-    	 android:layout_below="@+id/textView2"
-    	 android:layout_above="@+id/bottomlayout1"
+    	 android:layout_below="@+id/textViewAppNameLabel"
+    	 android:layout_above="@+id/relativeLayoutPoweredBy"
     	 android:verticalSpacing="5dp"
     	 android:horizontalSpacing="5dp"
         android:columnWidth="80dp"
@@ -35,12 +35,12 @@
     
 
     <RelativeLayout
-        android:id="@+id/bottomlayout1"
+        android:id="@+id/relativeLayoutPoweredBy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="10dp"
-        android:background="#469196">
+        android:background="@color/theme_color">
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="18sp"
             android:text="@string/poweredby"
-            android:textColor="#ffffff" />
+            android:textColor="@color/white" />
     </RelativeLayout>
     
 </RelativeLayout>

@@ -20,7 +20,7 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/notice_pin_red" 
+        android:src="@drawable/board_pin" 
         android:layout_gravity="right"/>
 
     <TextView
@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Notice"
+        android:textColor="@color/theme_color"
         android:layout_gravity="center_horizontal"
         android:textSize="22sp"
         android:textStyle="bold" />
