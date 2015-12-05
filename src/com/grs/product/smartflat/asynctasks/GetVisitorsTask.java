@@ -2,25 +2,25 @@ package com.grs.product.smartflat.asynctasks;
 
 import java.util.List;
 
-import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.apicall.SmartFlatAPI;
-import com.grs.product.smartflat.error.SmartFlatError;
-import com.grs.product.smartflat.models.ContactDetails;
-import com.grs.product.smartflat.models.RequestMessages;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class GetContactsTask    extends AsyncTask<Void, Void, SmartFlatError>{
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.apicall.SmartFlatAPI;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.RequestMessages;
+import com.grs.product.smartflat.models.VisitorDetails;
+
+public class GetVisitorsTask extends AsyncTask<Void, Void, SmartFlatError>{
 
 	private static final String TAG = GetMessagesTask.class.getName();
 	final Context mContext;
-	private AsyncTaskCompleteListener<List<ContactDetails>> listener = null;
-	List<ContactDetails> listContacts;
+	private AsyncTaskCompleteListener<List<VisitorDetails>> listener = null;
+	List<VisitorDetails> listVisitors;
 	
-	public GetContactsTask(Context mContext, 
-			AsyncTaskCompleteListener<List<ContactDetails>> listener) 
+	public GetVisitorsTask(Context mContext, 
+			AsyncTaskCompleteListener<List<VisitorDetails>> listener) 
 	{		
 		this.mContext = mContext;
 		this.listener = listener;
@@ -37,8 +37,10 @@ public class GetContactsTask    extends AsyncTask<Void, Void, SmartFlatError>{
 		SmartFlatAPI smartFlatAPI = new SmartFlatAPI(mContext);		
 		try {
 			
-			listContacts = smartFlatAPI.getContacts();
-			
+			listVisitors = smartFlatAPI.getVisitors();
+			if(listVisitors==null){
+					return new SmartFlatError("No Visitors");
+			}
 		} catch (SmartFlatError e) {
 			Log.e(TAG, e.toString());
 			return e;	
@@ -50,12 +52,12 @@ public class GetContactsTask    extends AsyncTask<Void, Void, SmartFlatError>{
 	@Override
 	protected void onPostExecute(SmartFlatError error) {
 		
-		if(listContacts!=null)
+		if(listVisitors!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(listContacts);
+				listener.onTaskComplete(listVisitors);
 				listener = null;
 			}
 		}

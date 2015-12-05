@@ -5,6 +5,15 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableContactDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
@@ -16,6 +25,7 @@ import com.grs.product.smartflat.database.SmartFlatDBTables.TableMessageDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableNames;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyDetails;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableSocietyNotices;
+import com.grs.product.smartflat.database.SmartFlatDBTables.TableVisitorDetails;
 import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
@@ -25,15 +35,7 @@ import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
-
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+import com.grs.product.smartflat.models.VisitorDetails;
 
 public class SmartFlatDatabase {
 	private SQLiteDatabase mDb;
@@ -664,7 +666,7 @@ public class SmartFlatDatabase {
 		return cursor;			
 	}
 
-	public Cursor getSingleMessages(String messageNumber){
+	private Cursor getSingleMessages(String messageNumber){
 		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.MESSAGE_NUMBER +"= '"+ messageNumber+"'";
 		Cursor cursor = mDb.rawQuery(selectQuery, null);	
 		if (cursor != null && cursor.getCount()>0) {
@@ -682,13 +684,17 @@ public class SmartFlatDatabase {
 		values.put(TableContactDetails.CONTACT_OCCUPATION,details.getmContactOccupation());
 	try 
 		{
+		if(getContact(details.getmContactName(), details.getmContactNumber(), details.getmContactOccupation()).getCount()<=0)
+		{
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.CONTACT_DETAILS, null, values) > 0;
 			mDb.setTransactionSuccessful();
+			mDb.endTransaction();
+		}
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
-			mDb.endTransaction();
+			//mDb.endTransaction();
 		}
 		return isAdded;		
 	}
@@ -702,6 +708,61 @@ public class SmartFlatDatabase {
 		}
 		return cursor;		
 	
+	}
+	
+	private Cursor getContact(String name, String number, String occupation){
+		String selectQuery = "SELECT  * FROM " + TableNames.CONTACT_DETAILS + " WHERE " + TableContactDetails.CONTACT_NAME +"= '"+ name+"' AND "+TableContactDetails.CONTACT_NUMBER + "='"+number+"' AND "+
+								TableContactDetails.CONTACT_OCCUPATION+"='"+occupation+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public boolean saveVisitor(VisitorDetails details){
+		boolean isAdded = false;
+		ContentValues values = new ContentValues();
+		values.put(TableVisitorDetails.VISITOR_CODE,details.getmVisitorCode());
+		values.put(TableVisitorDetails.VISITOR_NAME,details.getmVisitorName());
+		values.put(TableVisitorDetails.VISITOR_IN_TIME,details.getmVisitorInTime());
+		values.put(TableVisitorDetails.NO_OF_VISITORS,details.getmNoofVisitors());
+		values.put(TableVisitorDetails.VISIT_PURPOSE,details.getmVisitPurpose());
+		values.put(TableVisitorDetails.VISITOR_CONTACT_NO,details.getmVisitorContacNo());
+		values.put(TableVisitorDetails.VISITOR_VEHICLE_NO,details.getmVisitorVehicleNo());
+		try 
+		{
+			if(getSingleVisitor(details.getmVisitorCode()).getCount()<=0)
+			{
+				mDb.beginTransaction();
+				isAdded = mDb.insert(TableNames.VISITOR_DETAILS, null, values) > 0;
+				mDb.setTransactionSuccessful();
+				mDb.endTransaction();
+			}
+		} catch (Exception e) {
+			Log.e("Error in transaction", e.toString());
+		} finally {
+			//mDb.endTransaction();
+		}
+		return isAdded;	
+	}
+	
+	public Cursor getVisitors(){
+		String selectQuery = "SELECT  * FROM " + TableNames.VISITOR_DETAILS +" ORDER BY "+TableVisitorDetails.VISITOR_IN_TIME + "  DESC";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;		
+	}
+	
+	private Cursor getSingleVisitor(String visitorCode){
+		String selectQuery = "SELECT  * FROM " + TableNames.VISITOR_DETAILS + " WHERE " + TableVisitorDetails.VISITOR_CODE +"= '"+ visitorCode+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
 	}
 
 }

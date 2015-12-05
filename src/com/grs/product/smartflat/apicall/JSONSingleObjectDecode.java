@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
+import com.grs.product.smartflat.models.VisitorDetails;
 import com.grs.product.smartflat.response.Response;
 
 public class JSONSingleObjectDecode {
@@ -141,6 +142,38 @@ public class JSONSingleObjectDecode {
 		singleContact.setmContactOccupation(json.getString("Contact_Occupation"));	
 		
 		return singleContact;		
+	}
+	
+	public List<VisitorDetails> getVisitors(JSONObject json)
+			throws JSONException{
+		JSONArray visitorsArray = new JSONArray(json.getString("visitors"));
+		if(visitorsArray!=null && visitorsArray.length()>0)
+		{
+			if(visitorsArray.getString(0)==null||
+					visitorsArray.getString(0).equalsIgnoreCase(null)||
+					visitorsArray.getString(0).equalsIgnoreCase("null"))
+			{
+				return null;
+			}
+			List<VisitorDetails> listVisitors= new ArrayList<VisitorDetails>();
+			for (int i = 0; i < visitorsArray.length(); i++) 
+			{
+				listVisitors.add(getSingleVisitor(visitorsArray.getJSONObject(i)));
+			}
+			return listVisitors;			
+		}
+		return null;
+	}
+	
+	private VisitorDetails getSingleVisitor(JSONObject json) 
+			throws JSONException{
+		
+		VisitorDetails singleVisitor = new VisitorDetails();	
+		singleVisitor.setmVisitorCode(json.getString("Visitor_Code"));
+		singleVisitor.setmVisitorName(json.getString("Visitor_Name"));
+		singleVisitor.setmVisitorInTime(json.getString("Visitor_In_Time"));
+		
+		return singleVisitor;		
 	}
 
 }

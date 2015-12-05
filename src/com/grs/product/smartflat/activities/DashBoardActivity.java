@@ -14,6 +14,7 @@ import com.grs.product.smartflat.fragments.HomeFragment;
 import com.grs.product.smartflat.fragments.MainRequestFragment;
 import com.grs.product.smartflat.fragments.MainVehicleFragment;
 import com.grs.product.smartflat.fragments.NoticeFragment;
+import com.grs.product.smartflat.fragments.VisitorsFragment;
 
 import android.app.ActionBar;
 import android.content.res.Configuration;
@@ -70,36 +71,39 @@ public class DashBoardActivity extends FragmentActivity {
 		navDrawerItems = new ArrayList<NavDrawerItem>();
 
 		// adding nav drawer items to array
-		
+
 		// Home
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		
+
 		// Family
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		
+
 		// Vehicle
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		
+
 		// Requests
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));
-		
-		//Notices
+
+		//Visitor
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(6, -1)));
-		
-		//Contacts
+
+		//Notices
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(6, -1)));
 
-		//About Society
+		//Contacts
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
-		//About Builder
+		//About Society
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
 
+		//About Builder
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
+
 		//About App
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));		
-		
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));		
+
 		//Sign Out
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -215,7 +219,7 @@ public class DashBoardActivity extends FragmentActivity {
 			.replace(R.id.fragment_container, vehicleFragment).commit();
 			break;
 
-		//Request	
+			//Request	
 		case 3:
 			status = "created";
 			MainRequestFragment requestFragment = new MainRequestFragment();
@@ -223,33 +227,42 @@ public class DashBoardActivity extends FragmentActivity {
 			.replace(R.id.fragment_container, requestFragment).commit();
 			break;
 
-		//Notice	
+			//Visitor	
 		case 4:
+			status = "created";
+			VisitorsFragment visitorsFragment = new VisitorsFragment();
+			getSupportFragmentManager().beginTransaction()
+			.replace(R.id.fragment_container, visitorsFragment).commit();
+			 break;
+
+			 //Notice	
+		case 5:
 			status = "created";
 			NoticeFragment noticeFragment = new NoticeFragment();
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fragment_container, noticeFragment).commit();
 			break;
 
-		//Contacts	
-		case 5:
+			//Contacts	
+		case 6:
 			status = "created";
 			ContactsFragment contactsFragment = new ContactsFragment();
 			getSupportFragmentManager().beginTransaction()
 			.replace(R.id.fragment_container, contactsFragment).commit();
 			break;
 
-		//	About Society
-		case 6:
-			status = "created";
-			break;
-
-		//	About Builder
+			//	About Society
 		case 7:
 			status = "created";
 			break;
-		//	AboutApp
+
+			//	About Builder
 		case 8:
+			status = "created";
+			break;
+
+			//	AboutApp
+		case 9:
 			status = "created";
 			AboutAppFragment aboutAppFragment = new AboutAppFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -257,7 +270,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 
 			//Sign Out
-		case 9:
+		case 10:
 			status = "created";
 			overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
 			SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(null);
