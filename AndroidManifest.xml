@@ -25,6 +25,7 @@
 
     <!-- GCM Permissions - End here -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
         android:name=".SmartFlatApplication"

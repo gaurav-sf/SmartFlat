@@ -17,6 +17,7 @@ import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
+import com.grs.product.smartflat.models.VisitorDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.Param;
 import com.grs.product.smartflat.utils.Utilities;
@@ -80,6 +81,12 @@ public class SmartFlatAPI {
 			throws SmartFlatError
 	{
 		return getContactsCall();
+	}
+	
+	public List<VisitorDetails> getVisitors()
+			throws SmartFlatError
+	{
+		return getVisitorsCall();
 	}
 
 	private Response getLoginCall(String username, String password)
@@ -358,7 +365,7 @@ public class SmartFlatAPI {
 		try
 		{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
-			object.add(new BasicNameValuePair("societyCode", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("societyCode", SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
 
 			ServerConnecter obj = new ServerConnecter();
 			String URL = Param.baseURL + "getContacts.php";
@@ -366,6 +373,29 @@ public class SmartFlatAPI {
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getContacts(objJson);
 
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	}
+	
+	private List<VisitorDetails> getVisitorsCall() 
+			throws SmartFlatError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("faltOwnerCode", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getVisitorsForFlatOwner.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getVisitors(objJson);
 		} 
 		catch (JSONException e) 
 		{

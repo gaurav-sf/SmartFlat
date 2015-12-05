@@ -1,5 +1,7 @@
 package com.grs.product.smartflat.database;
 
+import android.database.Cursor;
+
 import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
@@ -9,8 +11,7 @@ import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
 import com.grs.product.smartflat.models.VehicleDetails;
-
-import android.database.Cursor;
+import com.grs.product.smartflat.models.VisitorDetails;
 
 public class SmartFlatDBManager {
 
@@ -237,6 +238,21 @@ public class SmartFlatDBManager {
 	public Cursor getAllContacts(){
 		SmartFlatDatabase.getInstance().open();
 		Cursor details = SmartFlatDatabase.getInstance().getAllContacts();
+		SmartFlatDatabase.getInstance().close();
+		return details;	
+	}
+	
+	public boolean saveVisitor(VisitorDetails details){
+		boolean isAdded = false;
+		SmartFlatDatabase.getInstance().open();
+		isAdded = SmartFlatDatabase.getInstance().saveVisitor(details);
+		SmartFlatDatabase.getInstance().close();
+		return isAdded;
+	}
+	
+	public Cursor getVisitors(){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getVisitors();
 		SmartFlatDatabase.getInstance().close();
 		return details;	
 	}
