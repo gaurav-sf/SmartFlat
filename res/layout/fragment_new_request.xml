@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_alignParentBottom="true"
-        android:text="ADD VEHICLE" 
+        android:text="ADD REQUEST" 
         android:background="@drawable/btnbg"
         android:textColor="@drawable/btn_text_color"/>
 </RelativeLayout>

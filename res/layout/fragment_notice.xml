@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:paddingTop="10dp"
+    android:background="#e6e6e6">
     
     <!-- List View -->
     <ListView
@@ -11,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:divider="#ffffff"
-        android:dividerHeight="1px" 
+        android:dividerHeight="10dp" 
         android:layout_weight="92"/>
     
     

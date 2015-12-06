@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:padding="10dp"
-    android:background="#fdfbfb">
+    android:background="#e6e6e6">
     
 
      <TextView
@@ -21,7 +20,7 @@
         android:id="@+id/spinnertSorting"
         android:layout_width="match_parent"
         android:layout_height="35sp"
-        android:ems="10" 
+        android:ems="10" android:layout_margin="7dp"
         android:popupBackground="@drawable/edittext_bg"
         android:background="@drawable/spinner_bg"/>
 
@@ -29,7 +28,7 @@
         android:id="@+id/listViewRaisedComplaints"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:cacheColorHint="@android:color/transparent"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
