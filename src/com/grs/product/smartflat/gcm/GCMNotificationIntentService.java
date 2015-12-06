@@ -19,7 +19,7 @@ public class GCMNotificationIntentService extends IntentService {
 	NotificationCompat.Builder builder;
 
 	public GCMNotificationIntentService() {
-		super("GcmIntentService");
+		super("GCMNotificationIntentService");
 	}
 
 

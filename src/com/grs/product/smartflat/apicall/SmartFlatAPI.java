@@ -195,7 +195,7 @@ public class SmartFlatAPI {
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 
 			ServerConnecter serverConnecter = new ServerConnecter();
-			String URL = Param.baseURL + "saveFlatOwnerComplaintsAndRequests.php";
+			String URL = Param.baseURL + "saveFlatOwnerComplaintsAndRequests.php";			
 			JSONObject jsonResponse = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(jsonResponse);		 

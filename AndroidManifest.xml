@@ -115,7 +115,7 @@
         <!-- Register Broadcast receiver -->
 
         <receiver
-            android:name="com.grs.product.smartflat.gcm.GcmBroadcastReceiver"
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:permission="com.google.android.c2dm.permission.SEND" >
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -128,7 +128,7 @@
         		
         <!-- Register Service -->
          
-        <service android:name="com.grs.product.smartflat.gcm..GCMNotificationIntentService" />
+        <service android:name=".GCMIntentService" />
     </application>
 
 </manifest>
