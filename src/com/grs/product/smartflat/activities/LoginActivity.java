@@ -129,7 +129,7 @@ public class LoginActivity extends Activity{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
 					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(result.getMessage());
-				//	getPushTokenFromServer(mEditTextUsername.getText().toString());
+					getPushTokenFromServer(mEditTextUsername.getText().toString());
 					goToNextActivity();
 					
 				}else{
@@ -209,7 +209,7 @@ public class LoginActivity extends Activity{
 
 		@Override
 		public void onStarted() {
-			CustomProgressDialog.showProgressDialog(LoginActivity.this, "", false);		
+		//	CustomProgressDialog.showProgressDialog(LoginActivity.this, "", false);		
 		}
 
 		@Override
@@ -228,13 +228,13 @@ public class LoginActivity extends Activity{
 
 		@Override
 		public void onStoped() {
-			CustomProgressDialog.removeDialog();	
+		//	CustomProgressDialog.removeDialog();	
 		}
 
 		@Override
 		public void onStopedWithError(SmartFlatError e) {
 			Utilities.ShowAlertBox(LoginActivity.this,"Error",e.getMessage());		
-			CustomProgressDialog.removeDialog();	
+		//	CustomProgressDialog.removeDialog();	
 		}
 		
 	}
