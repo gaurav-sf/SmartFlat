@@ -130,7 +130,7 @@ public class LoginActivity extends Activity{
 				{
 					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(result.getMessage());
 					getPushTokenFromServer(mEditTextUsername.getText().toString());
-					goToNextActivity();
+					//goToNextActivity();
 					
 				}else{
 					Utilities.ShowAlertBox(LoginActivity.this,"Error",result.getMessage());		
