@@ -88,6 +88,10 @@ public class SmartFlatAPI {
 	{
 		return getVisitorsCall();
 	}
+	
+	public Response updatePassword(String newPassword) throws SmartFlatError{
+		return updatePasswordCall(newPassword);
+	}
 
 	private Response getLoginCall(String username, String password)
 			throws SmartFlatError{
@@ -396,6 +400,32 @@ public class SmartFlatAPI {
 			JSONObject objJson = obj.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getVisitors(objJson);
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	}
+	
+	private Response updatePasswordCall(String newPassword)
+			throws SmartFlatError{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("newPassword", newPassword));
+			object.add(new BasicNameValuePair("flatOwnerCode",SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
+			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
+
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "updateFlatOwnerPassword.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
 		} 
 		catch (JSONException e) 
 		{
