@@ -31,18 +31,24 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.TextView;
 
 public class LoginActivity extends Activity{
 	
 	private EditText mEditTextUsername, mEditTextPassword;
 	private Button mButtonLogin;
 	private FlatOwnerDetails mFlatOwnerDetails = new FlatOwnerDetails();
+	private RadioGroup mRadioGroupUserType;
+	private RadioButton mRadioButtonOwner,mRadioButtonFamilyMember,mRadioButtonTenant;
+	private TextView mTextViewCreateAccount, mTextViewForgotPassword;
 	private GoogleCloudMessaging gcmObj;
 	String regId = "";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		/** Hiding Title bar of this activity screen */
@@ -63,7 +69,13 @@ public class LoginActivity extends Activity{
 		mEditTextUsername = (EditText) findViewById(R.id.editTextUsername); 
 		mEditTextUsername.setText(SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences());
 		mEditTextPassword = (EditText) findViewById(R.id.editTextPassword); 
-		mButtonLogin = (Button) findViewById(R.id.buttonLogin);	
+		mButtonLogin = (Button) findViewById(R.id.buttonLogin);
+		mRadioGroupUserType = (RadioGroup) findViewById(R.id.RadioGroupUserType);
+		mRadioButtonOwner = (RadioButton) findViewById(R.id.radioButtonOwner);
+		mRadioButtonFamilyMember = (RadioButton) findViewById(R.id.radioButtonFamilyMember);
+		mRadioButtonTenant = (RadioButton) findViewById(R.id.radioButtonTenant);
+		mTextViewForgotPassword = (TextView) findViewById(R.id.textViewForgotPassword);
+		mTextViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
 	}
 	
 	private void addListeners(){
@@ -76,6 +88,42 @@ public class LoginActivity extends Activity{
 				{
 					getLoginCall();
 				}		
+			}
+		});
+		mRadioGroupUserType.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(RadioGroup group, int checkedId) {
+				// TODO Auto-generated method stub
+				if(checkedId == mRadioButtonOwner.getId()){
+					
+				}else if(checkedId == mRadioButtonFamilyMember.getId()){
+					
+				}else if(checkedId == mRadioButtonTenant.getId()){
+					
+				}
+			}
+		});
+		
+		mTextViewCreateAccount.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+        		Intent goToRegistration = new Intent(LoginActivity.this,CreateAccoutForActivity.class);
+        		startActivity(goToRegistration);
+        		//finish();
+			}
+		});
+		
+		mTextViewForgotPassword.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+        		Intent goToRegistration = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+        		startActivity(goToRegistration);
+        		finish();	
 			}
 		});
 	}

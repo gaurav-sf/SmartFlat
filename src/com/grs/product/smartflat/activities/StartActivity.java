@@ -64,7 +64,7 @@ public class StartActivity extends Activity {
 	}
 
 	private void gotoNextActivity(){
-			Intent registrationStep1 = new Intent(this, RegistrationStep1Activity.class);
+			Intent registrationStep1 = new Intent(this, RegistrationFlatOwnerStep1Activity.class);
 			startActivity(registrationStep1);
 			finish();
 	}

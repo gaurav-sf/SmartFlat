@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_image"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp" >
+
+    <TextView
+        android:id="@+id/textViewAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="SmartFlat"
+        android:textColor="@color/theme_color"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+    
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20sp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textViewFlatOwnerCodeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Flat Owner Code"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#5d5c5c" />
+
+        <EditText
+            android:id="@+id/editTextFlatOwnerCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/trans_edittext_bg"
+            android:ems="10"
+            android:hint="Flat Owner Code"
+            android:padding="10sp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_hint_color" />
+        
+        <TextView
+            android:id="@+id/textViewUsernameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Username"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#5d5c5c" />
+
+        <EditText
+            android:id="@+id/editTextUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/trans_edittext_bg"
+            android:ems="10"
+            android:hint="Username"
+            android:inputType="text"
+            android:padding="10sp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_hint_color" />         
+
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btnbg"
+            android:ems="10"
+            android:text="NEXT"
+            android:textColor="@drawable/btn_text_color" />
+    </LinearLayout>
+     </ScrollView>>
+
+</RelativeLayout>

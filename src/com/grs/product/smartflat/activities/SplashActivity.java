@@ -62,10 +62,10 @@ public class SplashActivity extends Activity {
 		});
     }
     
-    private void goToNextActivity(){
-    	/*First we check for society Code, if it is not null in SharedPreferences 
+/*    private void goToNextActivity(){
+    	First we check for society Code, if it is not null in SharedPreferences 
     	means society details are there with us so directly we can go to registration or home screen
-    	otherwise launch society code screen*/
+    	otherwise launch society code screen
     	if(SmartFlatApplication.getSocietyCodeFromSharedPreferences() == null||SmartFlatApplication.getSocietyCodeFromSharedPreferences().equals(null))
     	{
     		Intent goToSocietyCode = new Intent(SplashActivity.this,StartActivity.class);
@@ -93,6 +93,19 @@ public class SplashActivity extends Activity {
     			
     		}
     		
+    	}
+    }*/
+    
+    private void goToNextActivity(){
+
+    	if(SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences()==null || SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences().equals(null)){    		
+    		Intent goToLoginScreen = new Intent(SplashActivity.this,LoginActivity.class);
+    		startActivity(goToLoginScreen);
+    		finish();
+    	}else{
+    		Intent goToDashboardScreen = new Intent(SplashActivity.this,DashBoardActivity.class);
+    		startActivity(goToDashboardScreen);
+    		finish();
     	}
     }
 

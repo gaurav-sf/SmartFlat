@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/buttonRegisterFlatOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btnbg"
+            android:ems="10"
+            android:text="Register as Flat Owner"
+            android:textColor="@drawable/btn_text_color"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonRegisterFamilyMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btnbg"
+            android:ems="10"
+            android:text="Register as Family Member"
+            android:textColor="@drawable/btn_text_color"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonRegisterTenant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/btnbg"
+            android:ems="10"
+            android:text="Register as Tenant"
+            android:textColor="@drawable/btn_text_color"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>

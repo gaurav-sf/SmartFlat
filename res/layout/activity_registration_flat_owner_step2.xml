@@ -80,7 +80,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
-                android:hint="Floor Number"
+                android:hint="Security Question"
                 android:popupBackground="@color/spinner_popup" />
 
             <EditText
