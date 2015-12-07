@@ -29,13 +29,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-public class RegistrationStep2Activity extends Activity {
+public class RegistrationFlatOwnerStep2Activity extends Activity {
 
 	private EditText mEditTextUsername, mEditTextPassword, mEditTextAnswer;
 	private Spinner  mSpinnerSecurityQue;
 	private Button buttonSubmit;
 	private Bundle extras;
-	private final String LOG = RegistrationStep2Activity.class.getName();
+	private final String LOG = RegistrationFlatOwnerStep2Activity.class.getName();
 	
 	String[] security_Questions = {
 			"What is your nick name?",
@@ -58,7 +58,7 @@ public class RegistrationStep2Activity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
-		setContentView(R.layout.activity_registration_step2);
+		setContentView(R.layout.activity_registration_flat_owner_step2);
 		initializeUI();
 		 extras = getIntent().getExtras();
 		String username = extras.getString("username");
@@ -108,7 +108,7 @@ public class RegistrationStep2Activity extends Activity {
 		FlatOwnerDetails flatOwnerDetails = new FlatOwnerDetails();
 		flatOwnerDetails.setmUsername(extras.getString("username"));
 		flatOwnerDetails.setmPassword(mEditTextPassword.getText().toString());
-		//flatOwnerDetails.setmSecurityQuestion( mSpinnerSecurityQue.getSelectedItem().toString());
+		flatOwnerDetails.setmSecurityQuestion( mSpinnerSecurityQue.getSelectedItem().toString());
 		flatOwnerDetails.setmAnswer(mEditTextAnswer.getText().toString());
 		flatOwnerDetails.setmFlatOwnerName(extras.getString("name"));
 		flatOwnerDetails.setmFlatOwnerDOB(extras.getString("dob"));
@@ -118,8 +118,6 @@ public class RegistrationStep2Activity extends Activity {
 		flatOwnerDetails.setmBuildingName(extras.getString("buildingname"));
 		flatOwnerDetails.setmFloorNo(extras.getString("floorno"));
 		flatOwnerDetails.setmFlatno(extras.getString("flatno"));
-		flatOwnerDetails.setmNoofFamilyMembers(Integer.parseInt(extras.getString("nooffamilymem")));
-		flatOwnerDetails.setmNoofVehicles(Integer.parseInt(extras.getString("noofvehicle")));
 		flatOwnerDetails.setmSocietyCode(extras.getString("societycode"));
 		flatOwnerDetails.setmFlatOwnerCode(extras.getString("username"));
 		flatOwnerDetails.setmGender(extras.getString("gender"));
@@ -139,12 +137,12 @@ public class RegistrationStep2Activity extends Activity {
 	{
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new FlatOwnerRegistrationTask(RegistrationStep2Activity.this, new FlatOwnerRegistrationTaskListener(), getFlatOwnerDetails())
+			new FlatOwnerRegistrationTask(RegistrationFlatOwnerStep2Activity.this, new FlatOwnerRegistrationTaskListener(), getFlatOwnerDetails())
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
 		{
-			Utilities.ShowAlertBox(RegistrationStep2Activity.this,"Error", "Please check your Internet");
+			Utilities.ShowAlertBox(RegistrationFlatOwnerStep2Activity.this,"Error", "Please check your Internet");
 		}
 	}
 	
@@ -153,7 +151,7 @@ public class RegistrationStep2Activity extends Activity {
 		@Override
 		public void onStarted()
 		{
-			CustomProgressDialog.showProgressDialog(RegistrationStep2Activity.this, "", false);		
+			CustomProgressDialog.showProgressDialog(RegistrationFlatOwnerStep2Activity.this, "", false);		
 		}
 
 		@Override
@@ -164,7 +162,7 @@ public class RegistrationStep2Activity extends Activity {
 					SmartFlatApplication.saveFlatOwnerCodeInSharedPreferences(mEditTextUsername.getText().toString());
 					goToNextActivity();
 				}else{
-					Utilities.ShowAlertBox(RegistrationStep2Activity.this, "Error", "Some thing went wrong. Please try after some time.");
+					Utilities.ShowAlertBox(RegistrationFlatOwnerStep2Activity.this, "Error", "Some thing went wrong. Please try after some time.");
 				}
 			}		
 		}
@@ -177,13 +175,13 @@ public class RegistrationStep2Activity extends Activity {
 		@Override
 		public void onStopedWithError(SmartFlatError e) {
 			if(e!=null)
-			Utilities.ShowAlertBox(RegistrationStep2Activity.this, "Error", e.getMessage());
+			Utilities.ShowAlertBox(RegistrationFlatOwnerStep2Activity.this, "Error", e.getMessage());
 			CustomProgressDialog.removeDialog();		
 		}
 	}
 	
 	private void goToNextActivity(){
-		Intent loginIntent = new Intent(RegistrationStep2Activity.this, LoginActivity.class);
+		Intent loginIntent = new Intent(RegistrationFlatOwnerStep2Activity.this, LoginActivity.class);
 		startActivity(loginIntent);
 		finish();
 	}

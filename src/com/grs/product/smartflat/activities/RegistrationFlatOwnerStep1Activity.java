@@ -28,9 +28,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
-public class RegistrationStep1Activity extends Activity {
+public class RegistrationFlatOwnerStep1Activity extends Activity {
 
-	private EditText mEditTextName, mEditTextDOB, mEditTextAge, mEditTextContactNo, mEditTextEmailId, mEditTextNoOfFamilyMembers, mEditTextNoOfVehicle, mEditTextFlatNo;
+	private EditText mEditTextName, mEditTextDOB, mEditTextContactNo, mEditTextEmailId, mEditTextFlatNo;
 	private Spinner mSpinnerBuildingName, mSpinnerFloorNo;
 	private Button mButtonNext;
 	private RadioButton mRadioButtonMale, mRadioButtonFemale;
@@ -53,7 +53,7 @@ public class RegistrationStep1Activity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		
-		setContentView(R.layout.activity_registration_step1);
+		setContentView(R.layout.activity_registration_flat_owner_step1);
 		//Utilities.addCustomActionBar(this);
 		initializeUI();
 		mSocietyDetails = Utilities.getSocietyDetails();
@@ -65,17 +65,8 @@ public class RegistrationStep1Activity extends Activity {
 	private void initializeUI(){
 		mEditTextName = (EditText) findViewById(R.id.editTextName);
 		mEditTextDOB = (EditText) findViewById(R.id.editTextDOB);
-		mEditTextAge = (EditText) findViewById(R.id.editTextAge);
-		mEditTextAge.setText("25"); 
-		mEditTextAge.setVisibility(View.GONE);
 		mEditTextContactNo = (EditText) findViewById(R.id.editTextContactNo);
 		mEditTextEmailId =  (EditText) findViewById(R.id.editTextEmailId);
-		mEditTextNoOfFamilyMembers = (EditText) findViewById(R.id.editTextNoOfFamilyMembers);
-		mEditTextNoOfFamilyMembers.setText("25"); 
-		mEditTextNoOfFamilyMembers.setVisibility(View.GONE);
-		mEditTextNoOfVehicle = (EditText) findViewById(R.id.editTextNoOfVehicle);
-		mEditTextNoOfVehicle.setText("25"); 
-		mEditTextNoOfVehicle.setVisibility(View.GONE);
 		mEditTextFlatNo = (EditText) findViewById(R.id.editTextFlatNo);
 		mSpinnerBuildingName = (Spinner) findViewById(R.id.spinnertBuildingName);
 		mSpinnerFloorNo = (Spinner) findViewById(R.id.spinnerTextFloorNo);
@@ -157,11 +148,6 @@ public class RegistrationStep1Activity extends Activity {
 			mEditTextDOB.setError("Please enter your DOB");
 			return false;
 		}
-		if(mEditTextAge.getText().toString().equals(""))
-		{
-			mEditTextAge.setError("Please enter your Age");
-			return false;
-		}
 		if(mEditTextContactNo.getText().toString().equals(""))
 		{
 			mEditTextContactNo.setError("Please enter your contact no");
@@ -175,16 +161,6 @@ public class RegistrationStep1Activity extends Activity {
 		if(mEditTextFlatNo.getText().toString().equals(""))
 		{
 			mEditTextFlatNo.setError("Please enter flat no");
-			return false;
-		}
-		if(mEditTextNoOfFamilyMembers.getText().toString().equals(""))
-		{
-			mEditTextNoOfFamilyMembers.setError("Please enter total number of family members");
-			return false;
-		}
-		if(mEditTextNoOfVehicle.getText().toString().equals(""))
-		{
-			mEditTextNoOfVehicle.setError("Please enter total no of vehicles");
 			return false;
 		}
 		return true;
@@ -204,18 +180,15 @@ public class RegistrationStep1Activity extends Activity {
 	
 	private void sendDataForward(String username)
 	{
-		Intent intentRegistrationStep2 = new Intent(RegistrationStep1Activity.this, RegistrationStep2Activity.class);
+		Intent intentRegistrationStep2 = new Intent(RegistrationFlatOwnerStep1Activity.this, RegistrationFlatOwnerStep2Activity.class);
 		intentRegistrationStep2.putExtra("username", username);
 		intentRegistrationStep2.putExtra("name", mEditTextName.getText().toString());
 		intentRegistrationStep2.putExtra("dob", mEditTextDOB.getText().toString());
-		intentRegistrationStep2.putExtra("age", mEditTextAge.getText().toString());
 		intentRegistrationStep2.putExtra("contactno", mEditTextContactNo.getText().toString());
 		intentRegistrationStep2.putExtra("emailid", mEditTextEmailId.getText().toString());
 		intentRegistrationStep2.putExtra("buildingname", mSpinnerBuildingName.getSelectedItem().toString());
 		intentRegistrationStep2.putExtra("floorno",  mSpinnerFloorNo.getSelectedItem().toString());
 		intentRegistrationStep2.putExtra("flatno", mEditTextFlatNo.getText().toString());
-		intentRegistrationStep2.putExtra("nooffamilymem", mEditTextNoOfFamilyMembers.getText().toString());
-		intentRegistrationStep2.putExtra("noofvehicle", mEditTextNoOfVehicle.getText().toString());
 		String gender = "Male";
 		int id = mRadioGroupGender.getCheckedRadioButtonId();
 		if(id == mRadioButtonFemale.getId()){
