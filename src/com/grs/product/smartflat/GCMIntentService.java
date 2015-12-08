@@ -1,7 +1,15 @@
 package com.grs.product.smartflat;
 
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.google.android.gcm.GCMBaseIntentService;
 import com.grs.product.smartflat.activities.DashBoardActivity;
+import com.grs.product.smartflat.apicall.JSONSingleObjectDecode;
+import com.grs.product.smartflat.database.SmartFlatDBManager;
+import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.utils.Param;
 
 import android.app.Notification;
@@ -31,6 +39,19 @@ public class GCMIntentService extends GCMBaseIntentService {
 		// TODO Auto-generated method stub
 		
 		String message = intent.getExtras().getString("message");
+		if(message.equalsIgnoreCase("New Message"))
+		{
+			JSONObject json;
+			try {
+				json = new JSONObject(intent.getExtras().getString("jsonData"));
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				saveMessageInDB(objectjson.getMessages(json));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
 		Log.i(TAG, "new message= "+message);
 		generateNotification(context, message);
 		
@@ -61,20 +82,10 @@ public class GCMIntentService extends GCMBaseIntentService {
 	 */
 	private static void generateNotification(Context context, String message) {
 		
-		boolean isHash = false, isStar = false, isnews = false;
 		Intent notificationIntent;
 		int icon = R.drawable.ic_launcher;
 		long when = System.currentTimeMillis();
 		
-		if(message.contains("#")){
-			isHash = true;			
-		}else if(message.contains("*")){
-			isStar = true;
-		}else{
-			isnews = true;
-		}
-		message = message.replace("#", "");
-		message = message.replace("*", "");
 		NotificationManager notificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		Notification notification = new Notification(icon, message, when);
@@ -94,6 +105,20 @@ public class GCMIntentService extends GCMBaseIntentService {
 		notification.setLatestEventInfo(context, title, message, intent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		notificationManager.notify(0, notification);
+	}
+	
+	private void saveMessageInDB(List<RequestMessages> listMessages){
+		
+		SmartFlatDBManager objManager = new SmartFlatDBManager();
+		for (int i = 0; i < listMessages.size(); i++)
+		{
+			boolean result = objManager.saveMessage(listMessages.get(i));
+			if(result)
+			{
+				Log.e("Message Details", " Insertion Successful");
+			}
+		}		
+	
 	}
 
 }
