@@ -28,6 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 public class DashBoardActivity extends FragmentActivity {
@@ -47,6 +48,7 @@ public class DashBoardActivity extends FragmentActivity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
+	int exitCount=0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -318,8 +320,12 @@ public class DashBoardActivity extends FragmentActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
-		super.onBackPressed();
+		if (exitCount==0) {
+			exitCount = exitCount+1;
+			Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+		}else{
+			finish();
+		}
 	}
 
 }

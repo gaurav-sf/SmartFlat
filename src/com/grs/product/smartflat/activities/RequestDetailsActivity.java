@@ -3,7 +3,21 @@ package com.grs.product.smartflat.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.adapter.MessageListAdapter;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflat.asynctasks.SendMessageTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
@@ -17,25 +31,15 @@ import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
 
-import android.app.Activity;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-
 public class RequestDetailsActivity extends Activity{
 	private Bundle extras;
-	private TextView mTextViewRequestNo, mTextViewPriorityType, mTextViewCategory,mTextViewDetails, mTextViewManagementReply, mTextViewMessage;
+	private TextView mTextViewRequestNo, mTextViewPriorityType, mTextViewCategory,mTextViewDetails;
 	private ImageButton mButtonClose,mButtonSendMessage;
 	private EditText mEditTextMessage;
 	private String mRequestNumber;
 	private RequestDetails mRequestDetails;
+	private MessageListAdapter mMessageListAdapter;
+	private ListView mListViewMessages;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +58,10 @@ public class RequestDetailsActivity extends Activity{
 		mTextViewPriorityType = (TextView) findViewById(R.id.textViewPriorityType);
 		mTextViewCategory = (TextView) findViewById(R.id.textViewCategory);
 		mTextViewDetails = (TextView) findViewById(R.id.textViewDetails);
-		mTextViewManagementReply = (TextView) findViewById(R.id.textViewManagementReply);
 		mButtonClose = (ImageButton) findViewById(R.id.buttonClose);
 		mEditTextMessage = (EditText) findViewById(R.id.editTextMessage);
 		mButtonSendMessage = (ImageButton) findViewById(R.id.imageButtonSendMessage);
-		mTextViewMessage =  (TextView) findViewById(R.id.textViewMessage);
+		mListViewMessages = (ListView) findViewById(R.id.listViewMessages);
 	}
 	
 	private void addListeners(){
@@ -119,19 +122,7 @@ public class RequestDetailsActivity extends Activity{
 			mTextViewPriorityType.setText("Low");	
 		}
 		
-		for (int i = 0; i < mRequestDetails.getmMessageList().size(); i++) {
-			if(mRequestDetails.getmMessageList().get(i).ismIsSocietyMessage()){
-				mTextViewMessage.setTextColor(Color.RED);
-				mTextViewMessage.setText(mTextViewMessage.getText().toString()+"\n"
-						+mRequestDetails.getmMessageList().get(i).getmMessageContent())	;	
-			}else{
-				mTextViewMessage.setTextColor(Color.BLACK);
-				mTextViewMessage.setText(mTextViewMessage.getText().toString()+"\n"
-						+mRequestDetails.getmMessageList().get(i).getmMessageContent())	;	
-			}
-
-		}
-		
+		showUpdatedDataInList();		
 	}
 	
 	private void sendMessage(){
@@ -162,9 +153,8 @@ public class RequestDetailsActivity extends Activity{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
 					saveMessageInDB(result.getMessage());
-					mTextViewMessage.setText(mTextViewMessage.getText().toString()+"\n"
-					+mEditTextMessage.getText().toString())	;
-					mEditTextMessage.setText("");
+				//	showUpdatedDataInList();
+				//	mEditTextMessage.setText("");
 				}else{
 					Utilities.ShowAlertBox(RequestDetailsActivity.this,"Error",result.getMessage());		
 				}
@@ -198,6 +188,10 @@ public class RequestDetailsActivity extends Activity{
 		if (isAdded) {
 			Log.e("Request Message", "Inserted Successfully");
 		}
+		
+		mRequestDetails.getmMessageList().add(tempMessages);
+		mMessageListAdapter.notifyDataSetChanged();
+		mEditTextMessage.setText("");
 	}
 	
 	private List<RequestMessages> getMessagesFromDB(){
@@ -211,11 +205,21 @@ public class RequestDetailsActivity extends Activity{
 			{
 				RequestMessages tempMessages = new RequestMessages();
 				tempMessages.setmMessageContent(messageCursor.getString(messageCursor.getColumnIndex(TableMessageDetails.MESSAGE_CONTENT)));
-				tempMessages.setmIsSocietyMessage(Boolean.parseBoolean(messageCursor.getString(messageCursor.getColumnIndex(TableMessageDetails.IS_SOCIETY_MESSAGE))));
+				tempMessages.setmMessageDateTime(messageCursor.getString(messageCursor.getColumnIndex(TableMessageDetails.MESSAGE_DATETIME)));
+				if(messageCursor.getString(messageCursor.getColumnIndex(TableMessageDetails.IS_SOCIETY_MESSAGE)).equals("0")){
+					tempMessages.setmIsSocietyMessage(false);
+				}else{
+					tempMessages.setmIsSocietyMessage(true);	
+				}
 				messageList.add(tempMessages);
 			}
 		}
 		return messageList;
 
+	}
+	
+	private void showUpdatedDataInList(){
+		mMessageListAdapter = new MessageListAdapter(getApplicationContext(), mRequestDetails.getmMessageList());
+		mListViewMessages.setAdapter(mMessageListAdapter);
 	}
 }
