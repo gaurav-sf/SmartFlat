@@ -103,7 +103,11 @@ public class JSONSingleObjectDecode {
 		singleMessage.setmMessageContent(json.getString("Message_Content"));
 		singleMessage.setmRequestNumber(json.getString("Request_Number"));
 		singleMessage.setmFlatOwnerCode(json.getString("Flat_Owner_Code"));
-		singleMessage.setmIsSocietyMessage(Boolean.parseBoolean(json.getString("Is_Society_Message")));
+		if(json.getString("Is_Society_Message").equals("0")){
+			singleMessage.setmIsSocietyMessage(false);
+		}else{
+			singleMessage.setmIsSocietyMessage(true);			
+		}
 		singleMessage.setmMessageDateTime(json.getString("Message_DateTime"));
 		singleMessage.setmSocietyCode(json.getString("Society_Code"));
 		

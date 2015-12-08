@@ -66,13 +66,10 @@ public class UpdatePasswordTask  extends AsyncTask<Void, Void, SmartFlatError> {
 				if(error!=null)
 				{
 					listener.onStopedWithError(error);
-				}
-				
+				}				
 				listener = null;
-			}
-			
+			}			
 		}
-
 	}
 
 }

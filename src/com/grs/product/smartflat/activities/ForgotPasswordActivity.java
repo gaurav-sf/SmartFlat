@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.activities.LoginActivity.LoginTaskCompleteListener;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.LoginTask;
+import com.grs.product.smartflat.asynctasks.UpdatePasswordTask;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.database.SmartFlatDBTables.TableFlatOwnerDetails;
 import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
 
 public class ForgotPasswordActivity  extends Activity{
@@ -117,7 +122,15 @@ public class ForgotPasswordActivity  extends Activity{
 	}
 	
 	private void updatePassword(){
-		
+		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
+		{
+			new UpdatePasswordTask(getApplicationContext(), new UpdatePasswordTaskListener(),mEditTextNewPassword.getText().toString())
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(ForgotPasswordActivity.this,"Error", "Please check your Internet");
+		}		
 	}
 	
 	public class UpdatePasswordTaskListener implements AsyncTaskCompleteListener<Response> {
@@ -169,11 +182,19 @@ public class ForgotPasswordActivity  extends Activity{
 
 			@Override
 			public void onClick(final View view) {
+				mDialog.dismiss();
 	    		Intent goToLoginScreen = new Intent(ForgotPasswordActivity.this,LoginActivity.class);
 	    		startActivity(goToLoginScreen);
 	    		finish();
 			}
 		});
 		mDialog.show();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent goToLoginScreen = new Intent(ForgotPasswordActivity.this,LoginActivity.class);
+		startActivity(goToLoginScreen);
+		finish();
 	}
 }
