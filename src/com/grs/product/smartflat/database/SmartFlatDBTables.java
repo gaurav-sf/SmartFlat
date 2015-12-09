@@ -87,6 +87,7 @@ public class SmartFlatDBTables {
 		public static final String FAMILY_MEMBER_CONTACT_NO = "Family_Member_Contact_no";
 		public static final String FAMILY_MEMBER_EMAIL_ID = "Family_Member_Email_Id";
 		public static final String NEED_LOGIN = "Need_Login";
+		public static final String FAMILY_MEMBER_USERNAME = "Family_Member_Username";
 	}
 
 	public static final class TableFlatOwnerVehicleDetails implements BaseColumns

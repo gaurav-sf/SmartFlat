@@ -72,6 +72,7 @@ public class SmartFlatDBTableCreation {
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE + " INTEGER, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO + " TEXT, "
 			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_EMAIL_ID + " TEXT, "
+			+ TableFlatOwnerFamilyDetails.FAMILY_MEMBER_USERNAME + " TEXT, "
 			+ TableFlatOwnerFamilyDetails.NEED_LOGIN + " BOOLEAN);";
 	
 	public static final String TABLE_VEHICLE_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.VEHICLE_DETAILS

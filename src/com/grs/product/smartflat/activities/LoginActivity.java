@@ -59,7 +59,7 @@ public class LoginActivity extends Activity{
         WindowManager.LayoutParams.FLAG_FULLSCREEN);
         
 		setContentView(R.layout.activity_login);
-		getUserLoginDetailsFromDB();
+		//getUserLoginDetailsFromDB();
 		initializeUI();
 		addListeners();
 	}
@@ -120,7 +120,7 @@ public class LoginActivity extends Activity{
 				// TODO Auto-generated method stub
         		Intent goToRegistration = new Intent(LoginActivity.this,CreateAccoutForActivity.class);
         		startActivity(goToRegistration);
-        		//finish();
+        		finish();
 			}
 		});
 		

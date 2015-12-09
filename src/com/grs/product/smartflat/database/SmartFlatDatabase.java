@@ -361,6 +361,7 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_RELATION, details.getmFamilyMemberRelation());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO, details.getmFamilyMemberContactno());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE, details.getmFamilyMemberAge());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_USERNAME, details.getmFamilyMemberUsername());
 		values.put(TableFlatOwnerFamilyDetails.NEED_LOGIN, details.ismNeedLogin());
 
 		try {

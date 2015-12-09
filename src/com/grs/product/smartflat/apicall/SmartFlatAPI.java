@@ -92,6 +92,11 @@ public class SmartFlatAPI {
 	public Response updatePassword(String newPassword) throws SmartFlatError{
 		return updatePasswordCall(newPassword);
 	}
+	
+	public Response getFamilyMemberOrTenantValidation(String flatOwnerCode, String username, String role)
+			throws SmartFlatError{
+		return getFamilyMemberOrTenantValidationCall(flatOwnerCode, username, role);
+	}
 
 	private Response getLoginCall(String username, String password, String role)
 			throws SmartFlatError{
@@ -429,6 +434,36 @@ public class SmartFlatAPI {
 
 			ServerConnecter serverConnecter = new ServerConnecter();
 			String URL = Param.baseURL + "updateFlatOwnerPassword.php";
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	}
+	
+	private Response getFamilyMemberOrTenantValidationCall(String flatOwnerCode, String username, String role)
+			throws SmartFlatError{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("username", username));
+			object.add(new BasicNameValuePair("flatOwnerCode",flatOwnerCode));
+			object.add(new BasicNameValuePair("role",role));
+			String URL = "";
+			ServerConnecter serverConnecter = new ServerConnecter();
+			if(role.equalsIgnoreCase("FamilyMember")){
+				URL = Param.baseURL + "validateFamilyMember.php";
+			}else if(role.equalsIgnoreCase("Tenant")){
+				URL = Param.baseURL + "validateTenant.php";
+			}
+			
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	
