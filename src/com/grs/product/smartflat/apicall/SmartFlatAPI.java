@@ -32,9 +32,9 @@ public class SmartFlatAPI {
 		this.mContext = context;
 	}
 
-	public Response getLogin(String username, String password)
+	public Response getLogin(String username, String password, String role)
 			throws SmartFlatError{
-		return getLoginCall(username, password);
+		return getLoginCall(username, password, role);
 	}
 
 	public SocietyDetails getSocietyDetails(String societyCode)
@@ -93,7 +93,7 @@ public class SmartFlatAPI {
 		return updatePasswordCall(newPassword);
 	}
 
-	private Response getLoginCall(String username, String password)
+	private Response getLoginCall(String username, String password, String role)
 			throws SmartFlatError{
 		try{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
@@ -101,9 +101,16 @@ public class SmartFlatAPI {
 			object.add(new BasicNameValuePair("password",password));
 			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
-
+			String URL = "";
 			ServerConnecter serverConnecter = new ServerConnecter();
-			String URL = Param.baseURL + "FlatOwnerLogin.php";
+			if(role.equalsIgnoreCase("Family Member")){
+				
+			}else if(role.equalsIgnoreCase("Tenant")){
+				
+			}else{
+			   URL = Param.baseURL + "FlatOwnerLogin.php";
+			}
+			
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getStatus(objJson);	

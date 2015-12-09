@@ -123,6 +123,11 @@ public class AddFamilyMemberFragment extends Fragment {
 		{
 			mEditTextFMemberEmailId.setError("Please enter email id");
 			return false;
+		}else{
+			if(!Utilities.isValidEmail(mEditTextFMemberEmailId.getText().toString())){
+				mEditTextFMemberEmailId.setError("Please enter valid email id");	
+				return false;
+			}
 		}
 		
 		return true;

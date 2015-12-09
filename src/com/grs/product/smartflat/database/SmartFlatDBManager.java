@@ -256,4 +256,10 @@ public class SmartFlatDBManager {
 		SmartFlatDatabase.getInstance().close();
 		return details;	
 	}
+	
+	public void deleteDataFromAllTables(){
+		SmartFlatDatabase.getInstance().open();
+		SmartFlatDatabase.getInstance().deleteDataFromAllTables();
+		SmartFlatDatabase.getInstance().close();
+	}
 }

@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
@@ -48,7 +49,7 @@ public class DashBoardActivity extends FragmentActivity {
 
 	private ArrayList<NavDrawerItem> navDrawerItems;
 	private NavDrawerListAdapter adapter;
-	int exitCount=0;
+	private boolean doubleBackToExitPressedOnce = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -319,14 +320,21 @@ public class DashBoardActivity extends FragmentActivity {
 	}
 
 	@Override
-	public void onBackPressed() {
-		if (exitCount==0) {
-			exitCount = exitCount+1;
-			Toast.makeText(getApplicationContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
-		}else{
-			finish();
-		}
-	}
+	public void onBackPressed() {if (doubleBackToExitPressedOnce) {
+        super.onBackPressed();
+        return;
+    }
+
+    this.doubleBackToExitPressedOnce = true;
+    Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+    new Handler().postDelayed(new Runnable() {
+
+        @Override
+        public void run() {
+            doubleBackToExitPressedOnce=false;                       
+        }
+    }, 2000);}
 
 }
 

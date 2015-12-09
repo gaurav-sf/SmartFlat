@@ -16,14 +16,16 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 	private AsyncTaskCompleteListener<Response> listener = null;
 	String username;
 	String password;
+	String role;
 	Response mLoginStatus;
 	
-	public LoginTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String username, String password) 
+	public LoginTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String username, String password,String role) 
 	{
 		this.context = ctx;
 		this.listener = listener;
 		this.username = username;
 		this.password = password;	
+		this.role = role;
 	}
 	
 	@Override
@@ -38,7 +40,7 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 		SmartFlatAPI smartFlatAPI = new SmartFlatAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAPI.getLogin(username, password);
+			mLoginStatus =  smartFlatAPI.getLogin(username, password, role);
 		}
 		catch (SmartFlatError e) 
 		{

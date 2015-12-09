@@ -86,7 +86,15 @@ public class LoginActivity extends Activity{
 			public void onClick(View v) {
 				if(validateUiEntries())
 				{
-					getLoginCall();
+					int id = mRadioGroupUserType.getCheckedRadioButtonId();
+					if (id== mRadioButtonOwner.getId()) {
+						getLoginCall(mRadioButtonOwner.getText().toString());
+					}else if(id== mRadioButtonFamilyMember.getId()){
+						getLoginCall(mRadioButtonFamilyMember.getText().toString());
+					}else{
+						getLoginCall(mRadioButtonTenant.getText().toString());
+					}
+					
 				}		
 			}
 		});
@@ -150,11 +158,11 @@ public class LoginActivity extends Activity{
 		}		
 	}
 	
-	private void getLoginCall(){
+	private void getLoginCall(String role){
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(),mEditTextUsername.getText().toString(), mEditTextPassword.getText().toString())
+			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(),mEditTextUsername.getText().toString(), mEditTextPassword.getText().toString(),role)
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 
