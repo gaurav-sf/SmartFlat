@@ -215,7 +215,7 @@ public class AddFamilyMemberFragment extends Fragment {
 
 		@Override
 		public void onStoped() {
-CustomProgressDialog.removeDialog();			
+			CustomProgressDialog.removeDialog();			
 		}
 
 		@Override

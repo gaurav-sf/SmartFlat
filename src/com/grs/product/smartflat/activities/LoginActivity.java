@@ -38,12 +38,12 @@ import android.widget.TextView;
 
 public class LoginActivity extends Activity{
 	
-	private EditText mEditTextUsername, mEditTextPassword;
+	private EditText mEditTextUsername, mEditTextPassword,mEditTextOwnerCode;
 	private Button mButtonLogin;
 	private FlatOwnerDetails mFlatOwnerDetails = new FlatOwnerDetails();
 	private RadioGroup mRadioGroupUserType;
 	private RadioButton mRadioButtonOwner,mRadioButtonFamilyMember,mRadioButtonTenant;
-	private TextView mTextViewCreateAccount, mTextViewForgotPassword;
+	private TextView mTextViewCreateAccount, mTextViewForgotPassword,mTextViewOwnerCode;
 	private GoogleCloudMessaging gcmObj;
 	String regId = "";
 	
@@ -76,6 +76,8 @@ public class LoginActivity extends Activity{
 		mRadioButtonTenant = (RadioButton) findViewById(R.id.radioButtonTenant);
 		mTextViewForgotPassword = (TextView) findViewById(R.id.textViewForgotPassword);
 		mTextViewCreateAccount = (TextView) findViewById(R.id.textViewCreateAccount);
+		mEditTextOwnerCode = (EditText) findViewById(R.id.editTextOwnerCode); 
+		mTextViewOwnerCode = (TextView) findViewById(R.id.textViewOwnerCode);
 	}
 	
 	private void addListeners(){
@@ -104,11 +106,14 @@ public class LoginActivity extends Activity{
 			public void onCheckedChanged(RadioGroup group, int checkedId) {
 				// TODO Auto-generated method stub
 				if(checkedId == mRadioButtonOwner.getId()){
-					
+					mEditTextOwnerCode.setHint("Society Code");
+					mTextViewOwnerCode.setText("Society Code");
 				}else if(checkedId == mRadioButtonFamilyMember.getId()){
-					
+					mEditTextOwnerCode.setHint("Flat Owner Code");
+					mTextViewOwnerCode.setText("Flat Owner Code");
 				}else if(checkedId == mRadioButtonTenant.getId()){
-					
+					mEditTextOwnerCode.setHint("Flat Owner Code");
+					mTextViewOwnerCode.setText("Flat Owner Code");
 				}
 			}
 		});
@@ -149,20 +154,11 @@ public class LoginActivity extends Activity{
 			
 	}
 	
-	private void getUserLoginDetailsFromDB(){
-		SmartFlatDBManager objManager = new SmartFlatDBManager();
-		Cursor cursor = objManager.getFlatOwnerDetails();
-		if(cursor!=null && cursor.getCount()>0){
-			mFlatOwnerDetails.setmUsername(cursor.getString(cursor.getColumnIndex(TableFlatOwnerDetails.USERNAME)));
-			mFlatOwnerDetails.setmPassword(cursor.getString(cursor.getColumnIndex(TableFlatOwnerDetails.PASSWORD)));		
-		}		
-	}
-	
 	private void getLoginCall(String role){
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(),mEditTextUsername.getText().toString(), mEditTextPassword.getText().toString(),role)
+			new LoginTask(getApplicationContext(), new LoginTaskCompleteListener(),mEditTextUsername.getText().toString(), mEditTextPassword.getText().toString(),role,mEditTextOwnerCode.getText().toString())
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 

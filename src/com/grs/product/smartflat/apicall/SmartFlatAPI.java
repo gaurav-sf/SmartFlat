@@ -32,9 +32,9 @@ public class SmartFlatAPI {
 		this.mContext = context;
 	}
 
-	public Response getLogin(String username, String password, String role)
+	public Response getLogin(String username, String password, String role,  String ownerCode)
 			throws SmartFlatError{
-		return getLoginCall(username, password, role);
+		return getLoginCall(username, password, role, ownerCode);
 	}
 
 	public SocietyDetails getSocietyDetails(String societyCode)
@@ -97,22 +97,29 @@ public class SmartFlatAPI {
 			throws SmartFlatError{
 		return getFamilyMemberOrTenantValidationCall(flatOwnerCode, username, role);
 	}
+	
+	public Response registerFamilyMember(FamilyDetails familyDetails) 
+			throws SmartFlatError{
+		return registerFamilyMemberCall(familyDetails);
+	}
 
-	private Response getLoginCall(String username, String password, String role)
+	private Response getLoginCall(String username, String password, String role, String ownerCode)
 			throws SmartFlatError{
 		try{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
 			object.add(new BasicNameValuePair("username", username));
 			object.add(new BasicNameValuePair("password",password));
-			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
 			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
 			String URL = "";
 			ServerConnecter serverConnecter = new ServerConnecter();
 			if(role.equalsIgnoreCase("Family Member")){
-				
+				object.add(new BasicNameValuePair("flatOwnerCode",ownerCode));
+				URL = Param.baseURL + "familyMemberLogin.php";
 			}else if(role.equalsIgnoreCase("Tenant")){
-				
+				object.add(new BasicNameValuePair("flatOwnerCode",ownerCode));
+				//URL = Param.baseURL + "familyMemberLogin.php";
 			}else{
+				object.add(new BasicNameValuePair("societyCode",ownerCode));
 			   URL = Param.baseURL + "FlatOwnerLogin.php";
 			}
 			
@@ -331,8 +338,6 @@ public class SmartFlatAPI {
 			object.add(new BasicNameValuePair("pushToken", pushToken));
 			object.add(new BasicNameValuePair("flatOwnerCode",SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
 			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
-			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
-
 			ServerConnecter serverConnecter = new ServerConnecter();
 			String URL = Param.baseURL + "saveFlatOwnerPushToken.php";
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
@@ -477,6 +482,40 @@ public class SmartFlatAPI {
 		{
 			throw new SmartFlatError("Please try again later", "Server Error");
 		}
+	}
+	
+	private Response registerFamilyMemberCall(FamilyDetails familyDetails) throws SmartFlatError{
+
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("flatOwnerCode", familyDetails.getmFlatOwnerCode()));
+			object.add(new BasicNameValuePair("familyMemberName",familyDetails.getmFamilyMemberName() ));
+			object.add(new BasicNameValuePair("familyMemberDOB",familyDetails.getmFamilyMemberDOB() ));
+			object.add(new BasicNameValuePair("familyMemberContactNo", familyDetails.getmFamilyMemberContactno()));
+			object.add(new BasicNameValuePair("familyMemberEmailId", familyDetails.getmFamilyMemberEmailId()));
+			object.add(new BasicNameValuePair("gender", familyDetails.getmGender()));
+			object.add(new BasicNameValuePair("username", familyDetails.getmFamilyMemberUsername()));
+			object.add(new BasicNameValuePair("password", familyDetails.getmPassword()));
+			object.add(new BasicNameValuePair("securityQuestion", familyDetails.getmSecurityQuestion()));
+			object.add(new BasicNameValuePair("answer", familyDetails.getmAnswer()));
+			
+			ServerConnecter serverConnecter = new ServerConnecter();
+			String URL = Param.baseURL + "registerFamilyMember.php";
+			JSONObject jsonResponse = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(jsonResponse);		 
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}		
+	
+		
 	}
 
 }
