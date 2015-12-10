@@ -27,12 +27,34 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="20sp" >
+        android:layout_marginTop="10sp" 
+        android:layout_below="@+id/textViewAppName">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+        
+         <TextView
+            android:id="@+id/textViewOwnerCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Society Code"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#5d5c5c" />
+
+        <EditText
+            android:id="@+id/editTextOwnerCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/trans_edittext_bg"
+            android:ems="10"
+            android:hint="Owner Code"
+            android:padding="10sp"
+            android:textColor="@color/text_color"
+            android:textColorHint="@color/text_hint_color" />
 
         <TextView
             android:id="@+id/textViewUserNameLabel"
@@ -78,13 +100,6 @@
             android:textColor="@color/text_color"
             android:textColorHint="@color/text_hint_color" />
 
-<!--         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/trans_edittext_bg"
-            android:orientation="vertical" 
-            android:padding="5dp"> -->
         <TextView
             android:id="@+id/textViewLoginAsLabel"
             android:layout_width="wrap_content"
@@ -130,19 +145,19 @@
                     android:text="Tenant"
                     android:textColor="@color/white" />
             </RadioGroup>
-        <!-- </LinearLayout> -->
-
-        <Button
+    </LinearLayout>
+     </ScrollView>
+     
+            <Button
             android:id="@+id/buttonLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:background="@drawable/btnbg"
             android:ems="10"
             android:text="LOGIN"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/scrollViewRegStep2"
             android:textColor="@drawable/btn_text_color" />
-    </LinearLayout>
-     </ScrollView>>
 
     <LinearLayout
         android:id="@+id/linearLayoutForForgetSignup"

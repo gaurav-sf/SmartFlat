@@ -9,11 +9,26 @@ import org.json.JSONObject;
 
 import com.google.android.gms.drive.internal.GetMetadataRequest;
 import com.grs.product.smartflat.R;
+import com.grs.product.smartflat.SmartFlatApplication;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.AddFamilyMemberTask;
+import com.grs.product.smartflat.asynctasks.FamilyMemberRegistrationTask;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.fragments.AddFamilyMemberFragment.AddFamilyMemberTaskListener;
 import com.grs.product.smartflat.models.FamilyDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.NetworkDetector;
+import com.grs.product.smartflat.utils.Utilities;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -23,6 +38,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class RegistrationFamilyMemberOrTenantActivity extends Activity{
 	
@@ -83,6 +99,7 @@ public class RegistrationFamilyMemberOrTenantActivity extends Activity{
 			mEditTextDOB.setText(mFamilyDetails.getmFamilyMemberDOB());
 			mEditTextContactNo.setText(mFamilyDetails.getmFamilyMemberContactno());
 			mEditTextEmailId.setText(mFamilyDetails.getmFamilyMemberEmailId());
+			mEditTextUsername.setText(mFamilyDetails.getmFamilyMemberUsername());
 			if(mFamilyDetails.getmGender().equalsIgnoreCase("Male")){
 				mRadioButtonMale.setChecked(true);
 			}else{
@@ -98,7 +115,10 @@ public class RegistrationFamilyMemberOrTenantActivity extends Activity{
 
 			@Override
 			public void onClick(View arg0) {
-				
+				if(isValidateUiEntries()){
+					getFamilyMemberDataFromUI();
+					registerOnServer();
+				}
 			}
 		});
 		
@@ -117,7 +137,7 @@ public class RegistrationFamilyMemberOrTenantActivity extends Activity{
 	private void getDataFromExtras(){
 		extras = getIntent().getExtras();
 		 registrationFor =  extras.getString("registrationFor");
-		 stringJsonData =  extras.getString("jsonData");
+		 stringJsonData =  extras.getString("jsonData").replace("[", "").replace("]", "");
 		if(registrationFor.equalsIgnoreCase("FamilyMember")){
 			mFamilyDetails = getFamilyDetailsFromJson(stringJsonData);
 		}else{
@@ -157,6 +177,115 @@ public class RegistrationFamilyMemberOrTenantActivity extends Activity{
 		mSpinnerSecurityQue.setAdapter(securityQuestion);
 }
 	
+	private boolean isValidateUiEntries(){
+		if(mEditTextName.getText().toString().equals(""))
+		{
+			mEditTextName.setError("Please enter your full name");
+			return false;
+		}
+		if(mEditTextDOB.getText().toString().equals(""))
+		{
+			mEditTextDOB.setError("Please enter your DOB");
+			return false;
+		}
+		if(mEditTextContactNo.getText().toString().equals(""))
+		{
+			mEditTextContactNo.setError("Please enter your contact no");
+			return false;
+		}
+		if(mEditTextEmailId.getText().toString().equals(""))
+		{
+			mEditTextEmailId.setError("Please enter your email id");
+			return false;
+		}else{
+			if(!Utilities.isValidEmail(mEditTextEmailId.getText().toString())){
+				mEditTextEmailId.setError("Please enter valid email id");	
+				return false;
+			}
+		}
+		
+		if(mEditTextPassword.getText().toString().equals(""))
+		{
+			mEditTextPassword.setError("Please enter password");
+			return false;
+		}
+		
+		if(mEditTextAnswer.getText().toString().equals(""))
+		{
+			mEditTextAnswer.setError("Please enter answer for security question");
+			return false;
+		}
+		return true;	
+	}
+	
+	private void getFamilyMemberDataFromUI(){
+		mFamilyDetails.setmFamilyMemberName(mEditTextName.getText().toString());
+		mFamilyDetails.setmFamilyMemberDOB(mEditTextDOB.getText().toString());
+		mFamilyDetails.setmFamilyMemberContactno(mEditTextContactNo.getText().toString());
+		mFamilyDetails.setmFamilyMemberEmailId(mEditTextEmailId.getText().toString());
+		mFamilyDetails.setmFamilyMemberUsername(mEditTextUsername.getText().toString());
+		mFamilyDetails.setmPassword(mEditTextPassword.getText().toString());
+		mFamilyDetails.setmSecurityQuestion(mSpinnerSecurityQue.getSelectedItem().toString());
+		mFamilyDetails.setmAnswer(mEditTextAnswer.getText().toString());
+		String gender = "";
+		int idgender = mRadioGroupGender.getCheckedRadioButtonId();
+		if(idgender == mRadioButtonFemale.getId()){
+			gender = "Female";
+		}else{
+			gender = "Male";	
+		}
+		mFamilyDetails.setmGender(gender);		
+	}
+	
+	private void registerOnServer(){
+		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
+		{
+			new FamilyMemberRegistrationTask(RegistrationFamilyMemberOrTenantActivity.this, new FamilyMemberRegistrationTaskListener(), mFamilyDetails)
+			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+		} 
+		else 
+		{
+			Utilities.ShowAlertBox(RegistrationFamilyMemberOrTenantActivity.this,"Error", "Please check your Internet");
+		}		
+	}
+	
+	public class FamilyMemberRegistrationTaskListener implements AsyncTaskCompleteListener<Response>{
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(RegistrationFamilyMemberOrTenantActivity.this, "", false);
+		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					showAlertBox(RegistrationFamilyMemberOrTenantActivity.this, "Message", "Registration Successfull");
+				}else{
+					Utilities.ShowAlertBox(RegistrationFamilyMemberOrTenantActivity.this,"Error","Error Occured please try later");		
+				}
+			}	
+		
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();			
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			CustomProgressDialog.removeDialog();		
+			Utilities.ShowAlertBox(RegistrationFamilyMemberOrTenantActivity.this, "Error", "Server error occured. Please try later");
+			
+		}
+		
+	}
+	
 	 @Override
 	 @Deprecated
 	 protected Dialog onCreateDialog(int id) {
@@ -170,4 +299,36 @@ public class RegistrationFamilyMemberOrTenantActivity extends Activity{
 	     + selectedYear);
 	  }
 	 };
+	 
+		private void showAlertBox(Context context, String title,
+				String message) {
+			final Dialog mDialog = new Dialog(context,
+					android.R.style.Theme_Translucent_NoTitleBar);
+			View layout = LayoutInflater.from(context)
+					.inflate(R.layout.alert, null);
+			TextView tvAlert = (TextView) layout.findViewById(R.id.tvAlert);
+			TextView tvAlertMsg = (TextView) layout.findViewById(R.id.tvAlertMsg);
+			tvAlertMsg.setText(message);
+			tvAlert.setText(title);
+			mDialog.setContentView(layout);
+			Button btnOk = (Button) layout.findViewById(R.id.btnOk);
+			btnOk.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(final View view) {
+					mDialog.dismiss();
+					Intent goToLoginScreen = new Intent(RegistrationFamilyMemberOrTenantActivity.this,LoginActivity.class);
+					startActivity(goToLoginScreen);
+					finish();
+				}
+			});
+			mDialog.show();
+		}
+		
+		@Override
+		public void onBackPressed() {
+			Intent goToLoginScreen = new Intent(RegistrationFamilyMemberOrTenantActivity.this,LoginActivity.class);
+			startActivity(goToLoginScreen);
+			finish();
+		}
 }

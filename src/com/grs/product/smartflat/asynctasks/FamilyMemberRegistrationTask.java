@@ -1,33 +1,30 @@
 package com.grs.product.smartflat.asynctasks;
 
-import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
-import com.grs.product.smartflat.apicall.SmartFlatAPI;
-import com.grs.product.smartflat.error.SmartFlatError;
-import com.grs.product.smartflat.response.Response;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.apicall.SmartFlatAPI;
+import com.grs.product.smartflat.error.SmartFlatError;
+import com.grs.product.smartflat.models.FamilyDetails;
+import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.Utilities;
+
+public class FamilyMemberRegistrationTask   extends AsyncTask<Void, Void, SmartFlatError> {
 
 	private static final String TAG = LoginTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<Response> listener = null;
-	String username;
-	String password;
-	String role;
-	String ownerCode;
-	Response mLoginStatus;
+	private FamilyDetails mFamilyDetails;
+	Response mRegistrationStatus;
 	
-	public LoginTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String username, String password,String role, String ownerCode) 
+	public FamilyMemberRegistrationTask(Context ctx, AsyncTaskCompleteListener<Response> listener, FamilyDetails familyDetails) 
 	{
 		this.context = ctx;
 		this.listener = listener;
-		this.username = username;
-		this.password = password;	
-		this.role = role;
-		this.ownerCode = ownerCode;
+		this.mFamilyDetails=familyDetails;
 	}
 	
 	@Override
@@ -42,7 +39,7 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 		SmartFlatAPI smartFlatAPI = new SmartFlatAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAPI.getLogin(username, password, role, ownerCode);
+			mRegistrationStatus =  smartFlatAPI.registerFamilyMember(mFamilyDetails);
 		}
 		catch (SmartFlatError e) 
 		{
@@ -56,12 +53,12 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 	@Override
 	protected void onPostExecute(SmartFlatError error) {
 		
-		if(mLoginStatus!=null)
+		if(mRegistrationStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(mLoginStatus);
+				listener.onTaskComplete(mRegistrationStatus);
 				listener = null;
 			}
 		}
