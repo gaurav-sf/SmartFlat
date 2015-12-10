@@ -42,9 +42,9 @@ public class CreateAccoutForActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-        		Intent goToRegistration = new Intent(CreateAccoutForActivity.this,FamilyMemberAndTenantCheckValidationActivity.class);
-        		goToRegistration.putExtra("registrationFor", "FamilyMember");
-        		startActivity(goToRegistration);
+        		Intent goToValidation = new Intent(CreateAccoutForActivity.this,FamilyMemberAndTenantCheckValidationActivity.class);
+        		goToValidation.putExtra("registrationFor", "FamilyMember");
+        		startActivity(goToValidation);
         		finish();			
 			}
 		});		
@@ -53,9 +53,9 @@ public class CreateAccoutForActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-        		Intent goToRegistration = new Intent(CreateAccoutForActivity.this,FamilyMemberAndTenantCheckValidationActivity.class);
-        		goToRegistration.putExtra("registrationFor", "Tenant");
-        		startActivity(goToRegistration);
+        		Intent goToValidation = new Intent(CreateAccoutForActivity.this,FamilyMemberAndTenantCheckValidationActivity.class);
+        		goToValidation.putExtra("registrationFor", "Tenant");
+        		startActivity(goToValidation);
         		finish();				
 			}
 		});	

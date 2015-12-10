@@ -94,6 +94,7 @@ public class FamilyMemberAndTenantCheckValidationActivity extends Activity{
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
+					gotoNextActivity(result.getMessage());					
 					
 				}else{
 					Utilities.ShowAlertBox(FamilyMemberAndTenantCheckValidationActivity.this,"Error",result.getMessage());		
@@ -119,5 +120,13 @@ public class FamilyMemberAndTenantCheckValidationActivity extends Activity{
 		Intent goToPrevScreen = new Intent(FamilyMemberAndTenantCheckValidationActivity.this,CreateAccoutForActivity.class);
 		startActivity(goToPrevScreen);
 		finish();
+	}
+	
+	private void gotoNextActivity(String jsonData){
+		Intent goToRegistration = new Intent(FamilyMemberAndTenantCheckValidationActivity.this,RegistrationFamilyMemberOrTenantActivity.class);
+		goToRegistration.putExtra("registrationFor", extras.getString("registrationFor"));
+		goToRegistration.putExtra("jsonData", jsonData);
+		startActivity(goToRegistration);
+		finish();	
 	}
 }

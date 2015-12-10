@@ -12,6 +12,9 @@ public class FamilyDetails {
 	private String mFamilyMemberEmailId;
 	private boolean mNeedLogin;
 	private String mFamilyMemberUsername;
+	private String mPassword;	
+	private String mSecurityQuestion;	
+	private String mAnswer;
 	
 	public String getmFlatOwnerCode() {
 		return mFlatOwnerCode;
@@ -91,6 +94,30 @@ public class FamilyDetails {
 
 	public void setmFamilyMemberUsername(String mFamilyMemberUsername) {
 		this.mFamilyMemberUsername = mFamilyMemberUsername;
+	}
+	
+	public String getmPassword() {
+		return mPassword;
+	}
+	
+	public void setmPassword(String mPassword) {
+		this.mPassword = mPassword;
+	}
+	
+	public String getmSecurityQuestion() {
+		return mSecurityQuestion;
+	}
+	
+	public void setmSecurityQuestion(String mSecurityQuestion) {
+		this.mSecurityQuestion = mSecurityQuestion;
+	}
+	
+	public String getmAnswer() {
+		return mAnswer;
+	}
+	
+	public void setmAnswer(String mAnswer) {
+		this.mAnswer = mAnswer;
 	}
 
 }
