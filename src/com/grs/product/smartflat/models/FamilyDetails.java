@@ -11,6 +11,7 @@ public class FamilyDetails {
 	private String mFamilyMemberContactno;
 	private String mFamilyMemberEmailId;
 	private boolean mNeedLogin;
+	private String mFamilyMemberUsername;
 	
 	public String getmFlatOwnerCode() {
 		return mFlatOwnerCode;
@@ -82,6 +83,14 @@ public class FamilyDetails {
 
 	public void setmFamilyMemberEmailId(String mFamilyMemberEmailId) {
 		this.mFamilyMemberEmailId = mFamilyMemberEmailId;
+	}
+
+	public String getmFamilyMemberUsername() {
+		return mFamilyMemberUsername;
+	}
+
+	public void setmFamilyMemberUsername(String mFamilyMemberUsername) {
+		this.mFamilyMemberUsername = mFamilyMemberUsername;
 	}
 
 }

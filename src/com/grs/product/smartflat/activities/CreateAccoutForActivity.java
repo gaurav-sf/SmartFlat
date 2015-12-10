@@ -60,4 +60,11 @@ public class CreateAccoutForActivity extends Activity{
 			}
 		});	
 	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent goToLoginScreen = new Intent(CreateAccoutForActivity.this,LoginActivity.class);
+		startActivity(goToLoginScreen);
+		finish();
+	}
 }

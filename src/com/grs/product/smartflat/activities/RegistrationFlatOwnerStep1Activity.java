@@ -14,6 +14,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -157,6 +158,11 @@ public class RegistrationFlatOwnerStep1Activity extends Activity {
 		{
 			mEditTextEmailId.setError("Please enter your email id");
 			return false;
+		}else{
+			if(!Utilities.isValidEmail(mEditTextEmailId.getText().toString())){
+				mEditTextEmailId.setError("Please enter valid email id");	
+				return false;
+			}
 		}
 		if(mEditTextFlatNo.getText().toString().equals(""))
 		{
@@ -214,5 +220,4 @@ public class RegistrationFlatOwnerStep1Activity extends Activity {
 	     + selectedYear);
 	  }
 	 };
-
 }

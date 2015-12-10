@@ -123,6 +123,11 @@ public class AddFamilyMemberFragment extends Fragment {
 		{
 			mEditTextFMemberEmailId.setError("Please enter email id");
 			return false;
+		}else{
+			if(!Utilities.isValidEmail(mEditTextFMemberEmailId.getText().toString())){
+				mEditTextFMemberEmailId.setError("Please enter valid email id");	
+				return false;
+			}
 		}
 		
 		return true;
@@ -156,7 +161,7 @@ public class AddFamilyMemberFragment extends Fragment {
 	
 	private void clearAllFields(){
 		mEditTextFMemberName.setText("");
-		//mEditTextFMemberRelation.setText("");
+		mEditTextFMemberEmailId.setText("");
 		mEditTextFMemberDOB.setText("");
 		mEditTextFMemberAge.setText("");
 		mEditTextFMemberContactNo.setText("");
@@ -193,9 +198,13 @@ public class AddFamilyMemberFragment extends Fragment {
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
-					saveFamilyDetailsInDB();
+					saveFamilyDetailsInDB(result.getMessage());
 					clearAllFields();
-					Utilities.ShowAlertBox(getActivity(),"Message","Family member added successfully");				
+					if(result.getMessage().equals("")){
+						Utilities.ShowAlertBox(getActivity(),"Message","Family member added successfully");				
+					}else{
+						Utilities.ShowAlertBox(getActivity(),"Message","Family member added successfully \n Username:- "+result.getMessage());				
+					}
 
 				}else{
 					Utilities.ShowAlertBox(getActivity(),"Error","Error Occured please try later");		
@@ -218,9 +227,11 @@ CustomProgressDialog.removeDialog();
 		
 	}
 	
-	private void saveFamilyDetailsInDB(){
+	private void saveFamilyDetailsInDB(String username){
 			SmartFlatDBManager dbManager = new SmartFlatDBManager();
-		boolean status = dbManager.saveFamilyDetails(getFamilyDetails());
+			FamilyDetails details = getFamilyDetails();
+			details.setmFamilyMemberUsername(username);
+		boolean status = dbManager.saveFamilyDetails(details);
 		if(status){
 			Log.e("Family Member", "Family Member Added");
 		}

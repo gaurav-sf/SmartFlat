@@ -44,7 +44,11 @@ public class RequestDetailsActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_request_details);
+		setContentView(R.layout.activity_request_details);		
+/*		DisplayMetrics displaymetrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+		int height = displaymetrics.heightPixels;
+		int width = displaymetrics.widthPixels;*/
 		initializeUI();
 		mRequestDetails = getRequestDataFromDB(mRequestNumber);
 		setUIData();

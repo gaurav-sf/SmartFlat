@@ -361,6 +361,7 @@ public class SmartFlatDatabase {
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_RELATION, details.getmFamilyMemberRelation());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO, details.getmFamilyMemberContactno());
 		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE, details.getmFamilyMemberAge());
+		values.put(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_USERNAME, details.getmFamilyMemberUsername());
 		values.put(TableFlatOwnerFamilyDetails.NEED_LOGIN, details.ismNeedLogin());
 
 		try {
@@ -763,6 +764,128 @@ public class SmartFlatDatabase {
 			cursor.moveToNext();
 		}
 		return cursor;			
+	}
+	
+	public void deleteDataFromAllTables()
+	{
+		deleteFlatOwnerDetailsTable();
+		deleteSocietyDetailsTable();
+		deleteFamilyDetailsTable();
+		deleteVehicleDetailsTable();
+		deleteRequestDetailsTable();
+		deleteSocietyNoticesTable();
+		deleteContactDetailsTable();
+		deleteMessageDetailsTable();
+		deleteVisitorDetailsTable();
+	}
+
+	private void deleteFlatOwnerDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.FLAT_OWNER_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}			
+	}
+
+	private void deleteSocietyDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.SOCIETY_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+
+	private void deleteFamilyDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.FAMILY_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+
+	private void deleteVehicleDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.VEHICLE_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}				
+	}
+
+	private void deleteRequestDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.REQUEST_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+
+
+	private void deleteSocietyNoticesTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.SOCIETY_NOTICES);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+
+	private void deleteContactDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.CONTACT_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+
+	private void deleteMessageDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.MESSAGE_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+
+	private void deleteVisitorDetailsTable(){
+		try {
+			mDb.beginTransaction();
+			mDb.execSQL("DELETE * FROM "+ TableNames.VISITOR_DETAILS);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}				
 	}
 
 }

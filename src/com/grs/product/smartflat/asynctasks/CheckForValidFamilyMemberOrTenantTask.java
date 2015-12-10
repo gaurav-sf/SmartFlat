@@ -1,30 +1,30 @@
 package com.grs.product.smartflat.asynctasks;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
 import com.grs.product.smartflat.apicall.SmartFlatAPI;
 import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.response.Response;
 
-import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
-
-public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
+public class CheckForValidFamilyMemberOrTenantTask  extends AsyncTask<Void, Void, SmartFlatError> {
 
 	private static final String TAG = LoginTask.class.getName();
 	final Context context;
 	private AsyncTaskCompleteListener<Response> listener = null;
+	String flatOwnerCode;
 	String username;
-	String password;
 	String role;
-	Response mLoginStatus;
+	Response mValidationStatus;
 	
-	public LoginTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String username, String password,String role) 
+	public CheckForValidFamilyMemberOrTenantTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String flatOwnerCode, String username,String role) 
 	{
 		this.context = ctx;
 		this.listener = listener;
-		this.username = username;
-		this.password = password;	
+		this.flatOwnerCode = flatOwnerCode;	
+		this.username = username;		
 		this.role = role;
 	}
 	
@@ -40,7 +40,7 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 		SmartFlatAPI smartFlatAPI = new SmartFlatAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAPI.getLogin(username, password, role);
+			mValidationStatus =  smartFlatAPI.getFamilyMemberOrTenantValidation(flatOwnerCode, username, role);
 		}
 		catch (SmartFlatError e) 
 		{
@@ -54,12 +54,12 @@ public class LoginTask extends AsyncTask<Void, Void, SmartFlatError> {
 	@Override
 	protected void onPostExecute(SmartFlatError error) {
 		
-		if(mLoginStatus!=null)
+		if(mValidationStatus!=null)
 		{
 			if(listener!=null)
 			{
 				listener.onStoped();
-				listener.onTaskComplete(mLoginStatus);
+				listener.onTaskComplete(mValidationStatus);
 				listener = null;
 			}
 		}

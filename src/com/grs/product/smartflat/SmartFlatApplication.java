@@ -93,5 +93,16 @@ public class SmartFlatApplication extends Application{
 		String restoredText = sharedpreferences.getString("FlatOwnerPushToken", null);		
 		return restoredText;	
 	}
+	
+	public static void saveApplicationAccessRoleInSharedPreferences(String applicationAccessRole){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("ApplicationAccessRole", applicationAccessRole);
+        editor.commit();	
+	}
+	
+	public static String getApplicationAccessRoleFromSharedPreferences(){		
+		String restoredText = sharedpreferences.getString("ApplicationAccessRole", null);		
+		return restoredText;	
+	}
 
 }

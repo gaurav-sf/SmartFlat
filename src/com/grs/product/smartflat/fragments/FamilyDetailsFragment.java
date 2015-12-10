@@ -66,7 +66,8 @@ public class FamilyDetailsFragment extends Fragment{
 				temp.setmFamilyMemberRelation(cursorFamilydetails.getString(cursorFamilydetails.getColumnIndex(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_RELATION)));
 				temp.setmFamilyMemberDOB(cursorFamilydetails.getString(cursorFamilydetails.getColumnIndex(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_DOB)));
 				temp.setmFamilyMemberAge(cursorFamilydetails.getString(cursorFamilydetails.getColumnIndex(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_AGE)));
-				temp.setmFamilyMemberContactno(cursorFamilydetails.getString(cursorFamilydetails.getColumnIndex(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO)));			
+				temp.setmFamilyMemberContactno(cursorFamilydetails.getString(cursorFamilydetails.getColumnIndex(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_CONTACT_NO)));
+				temp.setmFamilyMemberUsername(cursorFamilydetails.getString(cursorFamilydetails.getColumnIndex(TableFlatOwnerFamilyDetails.FAMILY_MEMBER_USERNAME)));
 				mListFamilyDetails.add(temp);
 			}
 		}
