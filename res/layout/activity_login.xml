@@ -51,7 +51,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/trans_edittext_bg"
             android:ems="10"
-            android:hint="Owner Code"
+            android:hint="Society Code"
             android:padding="10sp"
             android:textColor="@color/text_color"
             android:textColorHint="@color/text_hint_color" />

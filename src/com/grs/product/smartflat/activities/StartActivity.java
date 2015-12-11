@@ -102,7 +102,7 @@ public class StartActivity extends Activity {
 		public void onTaskComplete(SocietyDetails result) {
 			if(result != null){
 				saveSocietyDetailsInDB(result);
-				SmartFlatApplication.saveSocietyCodeInSharedPreferences(result.getmSocietyCode());
+			//	SmartFlatApplication.saveSocietyCodeInSharedPreferences(result.getmSocietyCode());
 				gotoNextActivity();
 			}else{
 				Utilities.ShowAlertBox(StartActivity.this, "Message", "Null aala na be....");

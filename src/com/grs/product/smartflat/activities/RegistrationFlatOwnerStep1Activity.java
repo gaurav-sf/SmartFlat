@@ -201,7 +201,7 @@ public class RegistrationFlatOwnerStep1Activity extends Activity {
 			gender = "Female";
 		}
 		//for now sending this in extra later on will access it from Application file using shared pref
-		intentRegistrationStep2.putExtra("societycode", SmartFlatApplication.getSocietyCodeFromSharedPreferences());
+		intentRegistrationStep2.putExtra("societycode", mSocietyDetails.getmSocietyCode());
 		intentRegistrationStep2.putExtra("gender", gender);
 		startActivity(intentRegistrationStep2);
 		finish();

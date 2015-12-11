@@ -778,6 +778,10 @@ public class SmartFlatDatabase {
 		deleteMessageDetailsTable();
 		deleteVisitorDetailsTable();
 	}
+	
+	public void deleteDataFromSocietyDetails(){
+		deleteSocietyDetailsTable();
+	}
 
 	private void deleteFlatOwnerDetailsTable(){
 		try {
