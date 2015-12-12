@@ -102,6 +102,11 @@ public class SmartFlatAPI {
 			throws SmartFlatError{
 		return registerFamilyMemberCall(familyDetails);
 	}
+	
+	public Response getFlatOwnerData(String username, String ownerCode,String accessRole)
+			throws SmartFlatError{
+		return getFlatOwnerDataCall(username, ownerCode, accessRole);
+	}
 
 	private Response getLoginCall(String username, String password, String role, String ownerCode)
 			throws SmartFlatError{
@@ -513,9 +518,47 @@ public class SmartFlatAPI {
 		catch (Exception e)
 		{
 			throw new SmartFlatError("Please try again later", "Server Error");
-		}		
+		}				
+	}
 	
-		
+	private Response getFlatOwnerDataCall(String username, String ownerCode, String accessRole) throws SmartFlatError{
+
+		try{		
+			if(accessRole.equalsIgnoreCase("Family Member")){
+				ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+				object.add(new BasicNameValuePair("familyMemberCode", username));
+				object.add(new BasicNameValuePair("flatOwnerCode",ownerCode));
+				
+				ServerConnecter serverConnecter = new ServerConnecter();
+				String URL = Param.baseURL + "getFamilyMemberData.php";
+				JSONObject jsonResponse = serverConnecter.getJSONFromUrl(URL, object);
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				return objectjson.getFamilyMemberLoginData(jsonResponse,username);	
+			}else if(accessRole.equalsIgnoreCase("Tenant")){
+				//Customize for tenant
+				return null;	
+			}else{
+				ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+				object.add(new BasicNameValuePair("flatOwnerCode", username));
+				object.add(new BasicNameValuePair("societyCode",ownerCode));			
+				ServerConnecter serverConnecter = new ServerConnecter();
+				String URL = Param.baseURL + "getFlatOwnerData.php";
+				JSONObject jsonResponse = serverConnecter.getJSONFromUrl(URL, object);
+				JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+				return objectjson.getFlatOwnerData(jsonResponse);	
+			}
+			
+			//return objectjson.getFlatOwnerData(jsonResponse);		 
+
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}				
 	}
 
 }

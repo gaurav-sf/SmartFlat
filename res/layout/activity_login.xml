@@ -54,7 +54,8 @@
             android:hint="Society Code"
             android:padding="10sp"
             android:textColor="@color/text_color"
-            android:textColorHint="@color/text_hint_color" />
+            android:textColorHint="@color/text_hint_color" 
+            android:text="SF@GRS1009"/>
 
         <TextView
             android:id="@+id/textViewUserNameLabel"
@@ -75,7 +76,8 @@
             android:hint="User Id"
             android:padding="10sp"
             android:textColor="@color/text_color"
-            android:textColorHint="@color/text_hint_color" />
+            android:textColorHint="@color/text_hint_color"
+            android:text="rajeAlpha6@6006" />
         
         <TextView
             android:id="@+id/textViewPasswordLabel"
@@ -98,7 +100,8 @@
             android:inputType="textPassword"
             android:padding="10sp"
             android:textColor="@color/text_color"
-            android:textColorHint="@color/text_hint_color" />
+            android:textColorHint="@color/text_hint_color" 
+            android:text="raje"/>
 
         <TextView
             android:id="@+id/textViewLoginAsLabel"

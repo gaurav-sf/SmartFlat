@@ -79,8 +79,8 @@ public class RaisedRequestFragment extends Fragment {
 		listRequestType.add("By Priority High to Low");
 		listRequestType.add("By Priority Low to High");
 		ArrayAdapter<String> adapterBuildingName = new ArrayAdapter<String>
-		(getActivity(), android.R.layout.simple_dropdown_item_1line, listRequestType);
-		adapterBuildingName.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(getActivity(), R.layout.spinner_item, listRequestType);
+		adapterBuildingName.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnertSorting.setAdapter(adapterBuildingName);
 
 	}

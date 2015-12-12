@@ -148,7 +148,7 @@
                 android:textColor="@color/white"
                 android:background="@drawable/spinner_bg"
                 android:hint="Building Name"                
-                android:popupBackground="@color/spinner_popup" />
+                android:popupBackground="@drawable/trans_spinner_bg" />
 
             <Spinner
                 android:id="@+id/spinnerTextFloorNo"
@@ -159,7 +159,7 @@
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Floor Number"
-                android:popupBackground="@color/spinner_popup" />
+                android:popupBackground="@drawable/trans_spinner_bg" />
 
             <EditText
                 android:id="@+id/editTextFlatNo"

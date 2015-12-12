@@ -83,14 +83,14 @@ public class SmartFlatApplication extends Application{
 		return restoredText;	
 	}
 	
-	public static void saveFlatOwnerPushTokenInSharedPreferences(String flatOwnerCode){
+	public static void savePushTokenInSharedPreferences(String flatOwnerCode){
 		SharedPreferences.Editor editor = sharedpreferences.edit();           
-        editor.putString("FlatOwnerPushToken", flatOwnerCode);
+        editor.putString("PushToken", flatOwnerCode);
         editor.commit();	
 	}
 	
-	public static String getFlatOwnerPushTokenFromSharedPreferences(){		
-		String restoredText = sharedpreferences.getString("FlatOwnerPushToken", null);		
+	public static String getPushTokenFromSharedPreferences(){		
+		String restoredText = sharedpreferences.getString("PushToken", null);		
 		return restoredText;	
 	}
 	
@@ -102,6 +102,17 @@ public class SmartFlatApplication extends Application{
 	
 	public static String getApplicationAccessRoleFromSharedPreferences(){		
 		String restoredText = sharedpreferences.getString("ApplicationAccessRole", null);		
+		return restoredText;	
+	}
+	
+	public static void saveUserCodeInSharedPreferences(String applicationAccessRole){
+		SharedPreferences.Editor editor = sharedpreferences.edit();           
+        editor.putString("userCode", applicationAccessRole);
+        editor.commit();	
+	}
+	
+	public static String getUserCodeFromSharedPreferences(){		
+		String restoredText = sharedpreferences.getString("userCode", null);		
 		return restoredText;	
 	}
 

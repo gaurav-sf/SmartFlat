@@ -46,6 +46,7 @@ public class LoginActivity extends Activity{
 	private TextView mTextViewCreateAccount, mTextViewForgotPassword,mTextViewOwnerCode;
 	private GoogleCloudMessaging gcmObj;
 	String regId = "";
+	private String accessRole;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +91,14 @@ public class LoginActivity extends Activity{
 				{
 					int id = mRadioGroupUserType.getCheckedRadioButtonId();
 					if (id== mRadioButtonOwner.getId()) {
-						getLoginCall(mRadioButtonOwner.getText().toString());
+						accessRole = mRadioButtonOwner.getText().toString();
+						getLoginCall(accessRole);
 					}else if(id== mRadioButtonFamilyMember.getId()){
-						getLoginCall(mRadioButtonFamilyMember.getText().toString());
+						accessRole = mRadioButtonFamilyMember.getText().toString();
+						getLoginCall(accessRole);					
 					}else{
-						getLoginCall(mRadioButtonTenant.getText().toString());
+						accessRole = mRadioButtonTenant.getText().toString();
+						getLoginCall(accessRole);
 					}
 					
 				}		
@@ -180,7 +184,7 @@ public class LoginActivity extends Activity{
 			{
 				if (result.getStatus().equalsIgnoreCase("success")) 
 				{
-					SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(result.getMessage());
+					//SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(result.getMessage());
 					getPushTokenFromServer(mEditTextUsername.getText().toString());
 					//goToNextActivity();
 					
@@ -204,8 +208,11 @@ public class LoginActivity extends Activity{
 	}
 	
 	private void goToNextActivity(){
-		Intent intentDashboard = new Intent(LoginActivity.this,DashBoardActivity.class);
-		startActivity(intentDashboard);	
+		Intent intentDataCheckActivity = new Intent(LoginActivity.this,PreviousDataCheckActivity.class);
+		intentDataCheckActivity.putExtra("accessRole", accessRole);
+		intentDataCheckActivity.putExtra("userCode", mEditTextUsername.getText().toString());
+		intentDataCheckActivity.putExtra("ownerCode", mEditTextOwnerCode.getText().toString());
+		startActivity(intentDataCheckActivity);	
 		finish();
 	}
 	
@@ -233,7 +240,8 @@ public class LoginActivity extends Activity{
 				@Override
 				protected void onPostExecute(String msg) {
 					if (!TextUtils.isEmpty(regId)) {
-						SmartFlatApplication.saveFlatOwnerPushTokenInSharedPreferences(regId);
+						SmartFlatApplication.savePushTokenInSharedPreferences(regId);
+						//SmartFlatApplication.saveApplicationAccessRoleInSharedPreferences(accessRole);
 						sendPushTokenToServer();
 						Log.e("Push Token Success", msg);
 					} else {

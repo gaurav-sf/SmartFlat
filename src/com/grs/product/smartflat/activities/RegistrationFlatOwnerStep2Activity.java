@@ -195,8 +195,8 @@ public class RegistrationFlatOwnerStep2Activity extends Activity {
 			
 		}
 		ArrayAdapter<String> securityQuestion = new ArrayAdapter<String>
-		(this, android.R.layout.simple_dropdown_item_1line, listSecurityQuestion);
-		securityQuestion.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(this, R.layout.spinner_item, listSecurityQuestion);
+		securityQuestion.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerSecurityQue.setAdapter(securityQuestion);
 }
 	

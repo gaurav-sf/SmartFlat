@@ -90,8 +90,8 @@ public class RegistrationFlatOwnerStep1Activity extends Activity {
 		
 		//Create Adapter and set data to spinner building name
 		ArrayAdapter<String> adapterBuildingName = new ArrayAdapter<String>
-		(this, android.R.layout.simple_dropdown_item_1line, listBuilidingName);
-		adapterBuildingName.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(this, R.layout.spinner_item, listBuilidingName);
+		adapterBuildingName.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerBuildingName.setAdapter(adapterBuildingName);
 		
 		//Create Adapter and set data to spinner floor no
@@ -100,8 +100,8 @@ public class RegistrationFlatOwnerStep1Activity extends Activity {
 			listFloorNo.add(String.valueOf(i));	
 		}
 		ArrayAdapter<String> adapterFloorNo = new ArrayAdapter<String>
-		(this, android.R.layout.simple_dropdown_item_1line, listFloorNo);
-		adapterFloorNo.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(this, R.layout.spinner_item, listFloorNo);
+		adapterFloorNo.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerFloorNo.setAdapter(adapterFloorNo);		
 	}
 	
