@@ -81,7 +81,7 @@
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Security Question"
-                android:popupBackground="@color/spinner_popup" />
+                android:popupBackground="@drawable/trans_spinner_bg" />
 
             <EditText
                 android:id="@+id/editTextAnswer"

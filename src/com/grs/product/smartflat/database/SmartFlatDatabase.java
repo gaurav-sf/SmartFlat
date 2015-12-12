@@ -778,11 +778,15 @@ public class SmartFlatDatabase {
 		deleteMessageDetailsTable();
 		deleteVisitorDetailsTable();
 	}
+	
+	public void deleteDataFromSocietyDetails(){
+		deleteSocietyDetailsTable();
+	}
 
 	private void deleteFlatOwnerDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.FLAT_OWNER_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.FLAT_OWNER_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -794,7 +798,7 @@ public class SmartFlatDatabase {
 	private void deleteSocietyDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.SOCIETY_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.SOCIETY_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -806,7 +810,7 @@ public class SmartFlatDatabase {
 	private void deleteFamilyDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.FAMILY_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.FAMILY_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -818,7 +822,7 @@ public class SmartFlatDatabase {
 	private void deleteVehicleDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.VEHICLE_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.VEHICLE_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -830,7 +834,7 @@ public class SmartFlatDatabase {
 	private void deleteRequestDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.REQUEST_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.REQUEST_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -843,7 +847,7 @@ public class SmartFlatDatabase {
 	private void deleteSocietyNoticesTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.SOCIETY_NOTICES);
+			mDb.execSQL("DELETE  FROM "+ TableNames.SOCIETY_NOTICES);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -855,7 +859,7 @@ public class SmartFlatDatabase {
 	private void deleteContactDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.CONTACT_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.CONTACT_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -867,7 +871,7 @@ public class SmartFlatDatabase {
 	private void deleteMessageDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.MESSAGE_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.MESSAGE_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -879,7 +883,7 @@ public class SmartFlatDatabase {
 	private void deleteVisitorDetailsTable(){
 		try {
 			mDb.beginTransaction();
-			mDb.execSQL("DELETE * FROM "+ TableNames.VISITOR_DETAILS);
+			mDb.execSQL("DELETE  FROM "+ TableNames.VISITOR_DETAILS);
 			mDb.setTransactionSuccessful();
 		} catch (SQLException e) {
 			e.printStackTrace();

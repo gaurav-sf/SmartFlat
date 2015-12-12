@@ -262,4 +262,10 @@ public class SmartFlatDBManager {
 		SmartFlatDatabase.getInstance().deleteDataFromAllTables();
 		SmartFlatDatabase.getInstance().close();
 	}
+	
+	public void deleteDataFromSocietyDetails(){
+		SmartFlatDatabase.getInstance().open();
+		SmartFlatDatabase.getInstance().deleteDataFromSocietyDetails();
+		SmartFlatDatabase.getInstance().close();
+	}
 }

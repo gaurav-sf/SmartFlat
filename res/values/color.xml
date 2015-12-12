@@ -13,6 +13,7 @@
     <color name="darkaquablue">#3BC0C4</color>
     <color name="spinner_popup">#933ea5</color>
     <color name="theme_color">#933ea5</color>
+    <!-- R=147 G=62 B=165 -->
     <color name="text_color">#ffffff</color>
     <color name="text_hint_color">#ffffff</color>
     

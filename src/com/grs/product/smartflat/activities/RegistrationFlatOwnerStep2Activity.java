@@ -125,13 +125,13 @@ public class RegistrationFlatOwnerStep2Activity extends Activity {
 		return flatOwnerDetails;
 	}
 	
-	private void saveFlatOwnerDetailsInDB(FlatOwnerDetails flatOwnerDetails){
+/*	private void saveFlatOwnerDetailsInDB(FlatOwnerDetails flatOwnerDetails){
 		SmartFlatDBManager objManager = new SmartFlatDBManager();
 		boolean result = objManager.saveFlatOwnerDeatils(flatOwnerDetails);
 		if(result){
 			Log.e(LOG, "Flat Owner Details Insertion Successful");
 		}
-	}
+	}*/
 	
 	private void registerUserOnServer()
 	{
@@ -158,8 +158,9 @@ public class RegistrationFlatOwnerStep2Activity extends Activity {
 		public void onTaskComplete(Response result) {
 			if(result!=null){
 				if(result.getStatus().equals("success")){
-					saveFlatOwnerDetailsInDB(getFlatOwnerDetails());
-					SmartFlatApplication.saveFlatOwnerCodeInSharedPreferences(mEditTextUsername.getText().toString());
+				//	saveFlatOwnerDetailsInDB(getFlatOwnerDetails());
+				//	SmartFlatApplication.saveFlatOwnerCodeInSharedPreferences(mEditTextUsername.getText().toString());
+					deleteSocietyDataFromDB();
 					goToNextActivity();
 				}else{
 					Utilities.ShowAlertBox(RegistrationFlatOwnerStep2Activity.this, "Error", "Some thing went wrong. Please try after some time.");
@@ -194,9 +195,19 @@ public class RegistrationFlatOwnerStep2Activity extends Activity {
 			
 		}
 		ArrayAdapter<String> securityQuestion = new ArrayAdapter<String>
-		(this, android.R.layout.simple_dropdown_item_1line, listSecurityQuestion);
-		securityQuestion.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);		
+		(this, R.layout.spinner_item, listSecurityQuestion);
+		securityQuestion.setDropDownViewResource(R.layout.spinner_item);		
 		mSpinnerSecurityQue.setAdapter(securityQuestion);
-
 }
+	
+	@Override
+	public void onBackPressed() {
+		deleteSocietyDataFromDB();
+		goToNextActivity();	
+	}
+	
+	private void deleteSocietyDataFromDB(){
+		SmartFlatDBManager dbManager =  new SmartFlatDBManager();
+		dbManager.deleteDataFromSocietyDetails();
+	}
 }
