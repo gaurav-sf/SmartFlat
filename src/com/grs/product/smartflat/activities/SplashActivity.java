@@ -98,7 +98,7 @@ public class SplashActivity extends Activity {
     
     private void goToNextActivity(){
 
-    	if(SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences()==null || SmartFlatApplication.getFlatOwnerAccessCodeFromSharedPreferences().equals(null)){    		
+    	if(SmartFlatApplication.getPushTokenFromSharedPreferences()==null || SmartFlatApplication.getPushTokenFromSharedPreferences().equals(null)){    		
     		Intent goToLoginScreen = new Intent(SplashActivity.this,LoginActivity.class);
     		startActivity(goToLoginScreen);
     		finish();

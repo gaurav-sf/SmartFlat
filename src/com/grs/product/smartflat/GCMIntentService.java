@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.grs.product.smartflat.activities.DashBoardActivity;
+import com.grs.product.smartflat.activities.RequestDetailsActivity;
 import com.grs.product.smartflat.apicall.JSONSingleObjectDecode;
 import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.RequestMessages;
@@ -22,6 +23,7 @@ import android.util.Log;
 public class GCMIntentService extends GCMBaseIntentService {
 	
 	public static String registerid="";
+	public static int uniqueid = 0;
 
 	
 	public GCMIntentService() {
@@ -39,7 +41,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		// TODO Auto-generated method stub
 		
 		String message = intent.getExtras().getString("message");
-		if(message.equalsIgnoreCase("New Message"))
+		if(message.contains("New Message"))
 		{
 			JSONObject json;
 			try {
@@ -80,9 +82,10 @@ public class GCMIntentService extends GCMBaseIntentService {
 	/**
 	 * Issues a notification to inform the user that server has sent a message.
 	 */
+	@SuppressWarnings("deprecation")
 	private static void generateNotification(Context context, String message) {
 		
-		Intent notificationIntent;
+		Intent notificationIntent = null;
 		int icon = R.drawable.ic_launcher;
 		long when = System.currentTimeMillis();
 		
@@ -95,15 +98,20 @@ public class GCMIntentService extends GCMBaseIntentService {
 		  
 		String title = context.getString(R.string.app_name);
 
-		     notificationIntent = new Intent(context, DashBoardActivity.class);
-		
-		//Intent notificationIntent = new Intent(context, OrderReceivedActivity.class);
+		if(message.contains("New Message")){
+			 notificationIntent = new Intent(context, RequestDetailsActivity.class);
+			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
+		}else if(message.contains("New Notice")){
+			notificationIntent = new Intent(context, DashBoardActivity.class);
+		}
+			
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		PendingIntent intent = PendingIntent.getActivity(context, 0,
 				notificationIntent, 0);
 		notification.setLatestEventInfo(context, title, message, intent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		uniqueid++;
 		notificationManager.notify(0, notification);
 	}
 	
