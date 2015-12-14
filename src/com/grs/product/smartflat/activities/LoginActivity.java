@@ -256,7 +256,8 @@ public class LoginActivity extends Activity{
 
 		if (NetworkDetector.init(getApplicationContext()).isNetworkAvailable()) 
 		{
-			new SendPushTokenToServerTask(getApplicationContext(), new SendPushTokenToServerTaskListener(),regId )
+			new SendPushTokenToServerTask(getApplicationContext(), new SendPushTokenToServerTaskListener(),regId, 
+					mEditTextUsername.getText().toString(),mEditTextOwnerCode.getText().toString())
 			.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 		} 
 		else 

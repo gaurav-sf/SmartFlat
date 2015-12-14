@@ -63,6 +63,17 @@ public class Utilities {
 		return dateTime;
 	}
 	
+	public static String getUTCDateTime1() {
+
+		String dateTime="";
+		Date date = new Date();		
+		DateFormat converter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		converter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		dateTime=converter.format(date);
+		
+		return dateTime;
+	}
+	
 	public static void ShowAlertBox(final Context context, String title,
 			String message) {
 		final Dialog mDialog = new Dialog(context,
@@ -85,8 +96,15 @@ public class Utilities {
 		mDialog.show();
 	}
 	
-	public static String getCurrentDateTime(){
-		return DateFormat.getDateTimeInstance().format(new Date());
+	public static String getCurrentDateTime()
+	{
+		String dateTime="";
+		Date date = new Date();		
+		DateFormat converter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+		converter.setTimeZone(TimeZone.getTimeZone("UTC"));
+		dateTime=converter.format(date);
+		
+		return dateTime;
 	}
 	
 	/*public static void addCustomActionBar(Activity activity){

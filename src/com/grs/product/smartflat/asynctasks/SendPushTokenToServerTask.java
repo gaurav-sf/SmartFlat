@@ -16,12 +16,18 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatE
 	private AsyncTaskCompleteListener<Response> listener = null;
 	String pushToken;
 	Response mLoginStatus;
+	private String flatOwnerCode;
+	private String societyCode;
 	
-	public SendPushTokenToServerTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String pushToken) 
+	public SendPushTokenToServerTask(Context ctx, AsyncTaskCompleteListener<Response> listener, String pushToken,
+			String flatOwnerCode, String societyCode) 
 	{
 		this.context = ctx;
 		this.listener = listener;
 		this.pushToken = pushToken;	
+		this.flatOwnerCode = flatOwnerCode;
+		this.societyCode = societyCode;
+		
 	}
 	
 	@Override
@@ -36,7 +42,7 @@ public class SendPushTokenToServerTask  extends AsyncTask<Void, Void, SmartFlatE
 		SmartFlatAPI smartFlatAPI = new SmartFlatAPI(context);
 		try 
 		{
-			mLoginStatus =  smartFlatAPI.sendPushToken(pushToken);
+			mLoginStatus =  smartFlatAPI.sendPushToken(pushToken,flatOwnerCode,societyCode);
 		}
 		catch (SmartFlatError e) 
 		{

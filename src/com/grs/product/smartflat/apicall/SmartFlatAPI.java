@@ -67,8 +67,8 @@ public class SmartFlatAPI {
 		return sendMessageCall(message, requestNumber);
 	}
 	
-	public Response sendPushToken(String pushToen) throws SmartFlatError{
-		return sendPushTokenCall(pushToen);
+	public Response sendPushToken(String pushToen,String flatOwnerCode, String societyCode) throws SmartFlatError{
+		return sendPushTokenCall(pushToen, flatOwnerCode,  societyCode);
 	}
 	
 	public List<RequestMessages> getMessages()
@@ -336,13 +336,13 @@ public class SmartFlatAPI {
 		}	
 	}
 	
-	private Response sendPushTokenCall(String pushToken)
+	private Response sendPushTokenCall(String pushToken,String flatOwnerCode, String societyCode)
 			throws SmartFlatError{
 		try{
 			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
 			object.add(new BasicNameValuePair("pushToken", pushToken));
-			object.add(new BasicNameValuePair("flatOwnerCode",SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
-			object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("flatOwnerCode",flatOwnerCode));
+			object.add(new BasicNameValuePair("societyCode", societyCode));
 			ServerConnecter serverConnecter = new ServerConnecter();
 			String URL = Param.baseURL + "saveFlatOwnerPushToken.php";
 			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
