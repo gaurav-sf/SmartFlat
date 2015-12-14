@@ -102,6 +102,7 @@ public class NewRequestFragment extends Fragment {
 		
 		if(mEditTextRequestDetails.getText().toString().equals("")){
 			mEditTextRequestDetails.setError("Please enter details");
+			return false;
 		}
 		
 		return true;
