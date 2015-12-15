@@ -2,8 +2,11 @@ package com.grs.product.smartflat.activities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -15,7 +18,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.adapter.MessageListAdapter;
 import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
@@ -29,6 +31,7 @@ import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.response.Response;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
+import com.grs.product.smartflat.utils.Param;
 import com.grs.product.smartflat.utils.Utilities;
 
 public class RequestDetailsActivity extends Activity{
@@ -53,6 +56,8 @@ public class RequestDetailsActivity extends Activity{
 		mRequestDetails = getRequestDataFromDB(mRequestNumber);
 		setUIData();
 		addListeners();
+		registerReceiver(mHandleMessageReceived, new IntentFilter(
+				Param.DISPLAY_MESSAGE_ACTION));
 	}
 	
 	private void initializeUI(){
@@ -227,5 +232,31 @@ public class RequestDetailsActivity extends Activity{
 		mMessageListAdapter = new MessageListAdapter(getApplicationContext(), mRequestDetails.getmMessageList());
 		mListViewMessages.setAdapter(mMessageListAdapter);
 		mListViewMessages.setSelection(mMessageListAdapter.getCount() - 1);
+	}
+	
+	private final BroadcastReceiver mHandleMessageReceived = new BroadcastReceiver() {
+		
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if(intent!=null)
+			{
+				String receiveMessage1 = intent.getStringExtra("Message");
+				Log.e("Message1", receiveMessage1);			
+				mRequestDetails.setmMessageList(getMessagesFromDB());
+				mMessageListAdapter = new MessageListAdapter(getApplicationContext(), mRequestDetails.getmMessageList());
+				mListViewMessages.setAdapter(mMessageListAdapter);
+				mListViewMessages.setSelection(mMessageListAdapter.getCount() - 1);
+			}
+			
+		}
+	};
+	
+	protected void onDestroy() {
+		try {
+			unregisterReceiver(mHandleMessageReceived);
+		} catch (Exception e) {
+			Log.e("UnRegister Receiver Error", "> " + e.getMessage());
+		}
+		super.onDestroy();
 	}
 }

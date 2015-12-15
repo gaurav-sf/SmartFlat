@@ -101,6 +101,9 @@ public class GCMIntentService extends GCMBaseIntentService {
 		if(message.contains("New Message")){
 			 notificationIntent = new Intent(context, RequestDetailsActivity.class);
 			 notificationIntent.putExtra("requestno", message.split("-")[1].trim());
+				Intent intent = new Intent(Param.DISPLAY_MESSAGE_ACTION);
+				intent.putExtra("Message", "newMessage");
+				context.sendBroadcast(intent);
 		}else if(message.contains("New Notice")){
 			notificationIntent = new Intent(context, DashBoardActivity.class);
 		}
@@ -108,7 +111,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 				| Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		PendingIntent intent = PendingIntent.getActivity(context, 0,
-				notificationIntent, 0);
+				notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 		notification.setLatestEventInfo(context, title, message, intent);
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 		uniqueid++;
