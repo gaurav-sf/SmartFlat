@@ -144,10 +144,10 @@ public class SmartFlatDBTables {
 		private TableSocietyNotices(){}
 		public static final String ID = "ID";	
 		public static final String NOTICE_NUMBER = "Notice_Number";	
-		public static final String SOCIETY_CODE = "Society_Code";
 		public static final String NOTICE_DATETIME = "Notice_DateTime";	
-		public static final String NOTICE_PRIORITY = "Notice_Priority";	
-		public static final String NOTICE_DETAILS = "Notice_Details";																	
+		public static final String NOTICE_TO = "Notice_To";	
+		public static final String NOTICE_SUBJECT = "Notice_Subject";
+		public static final String NOTICE_MESSAGE = "Notice_Message";
 	}
 	
 	public static final class TableContactDetails implements BaseColumns{

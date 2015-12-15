@@ -4,9 +4,11 @@ public class NoticeDetails {
 	
 	private String mNoticeNumber;	
 	private String mSocietyCode;
-	private String mNoticeDateTime;	
-	private String mNoticePriority;	
-	private String mNoticeDetails;
+	private String mNoticeDateTime;
+	private String mNoticeTo;
+	private String mNoticeSubject;
+	private String mNoticeMessage;
+
 	
 	public String getmNoticeNumber() {
 		return mNoticeNumber;
@@ -31,21 +33,29 @@ public class NoticeDetails {
 	public void setmNoticeDateTime(String mNoticeDateTime) {
 		this.mNoticeDateTime = mNoticeDateTime;
 	}
-	
-	public String getmNoticePriority() {
-		return mNoticePriority;
+
+	public String getmNoticeTo() {
+		return mNoticeTo;
 	}
-	
-	public void setmNoticePriority(String mNoticePriority) {
-		this.mNoticePriority = mNoticePriority;
+
+	public void setmNoticeTo(String mNoticeTo) {
+		this.mNoticeTo = mNoticeTo;
 	}
-	
-	public String getmNoticeDetails() {
-		return mNoticeDetails;
+
+	public String getmNoticeSubject() {
+		return mNoticeSubject;
 	}
-	
-	public void setmNoticeDetails(String mNoticeDetails) {
-		this.mNoticeDetails = mNoticeDetails;
+
+	public void setmNoticeSubject(String mNoticeSubject) {
+		this.mNoticeSubject = mNoticeSubject;
+	}
+
+	public String getmNoticeMessage() {
+		return mNoticeMessage;
+	}
+
+	public void setmNoticeMessage(String mNoticeMessage) {
+		this.mNoticeMessage = mNoticeMessage;
 	}	
 
 }

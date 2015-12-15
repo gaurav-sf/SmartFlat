@@ -8,6 +8,5 @@ public class Param {
 	  
 	  //public static final String GOOGLE_PROJ_ID = "smartflat-1146";
 		public static final String GOOGLE_PROJ_ID = "1057994784133";
-
- 
+		
 }

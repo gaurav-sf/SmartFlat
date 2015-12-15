@@ -117,9 +117,10 @@ public class SmartFlatDBTableCreation {
 			+"( "
 			+ TableSocietyNotices.ID + " INTEGER PRIMARY KEY, "
 			+ TableSocietyNotices.NOTICE_NUMBER + " TEXT, "
-			+ TableSocietyNotices.NOTICE_PRIORITY + " TEXT, "
+			+ TableSocietyNotices.NOTICE_TO + " TEXT, "
+			+ TableSocietyNotices.NOTICE_SUBJECT + " TEXT, "
 			+ TableSocietyNotices.NOTICE_DATETIME + " TEXT, "
-			+ TableSocietyNotices.NOTICE_DETAILS + " TEXT);";
+			+ TableSocietyNotices.NOTICE_MESSAGE + " TEXT);";
 	
 	public static final String TABLE_CONTACT_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.CONTACT_DETAILS
 			+"( "
