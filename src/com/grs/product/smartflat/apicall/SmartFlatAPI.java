@@ -13,6 +13,7 @@ import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.models.NoticeDetails;
 import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
@@ -106,6 +107,12 @@ public class SmartFlatAPI {
 	public Response getFlatOwnerData(String username, String ownerCode,String accessRole)
 			throws SmartFlatError{
 		return getFlatOwnerDataCall(username, ownerCode, accessRole);
+	}
+	
+	public List<NoticeDetails> getNotices()
+			throws SmartFlatError
+	{
+		return getNoticesCall();
 	}
 
 	private Response getLoginCall(String username, String password, String role, String ownerCode)
@@ -559,6 +566,30 @@ public class SmartFlatAPI {
 		{
 			throw new SmartFlatError("Please try again later", "Server Error");
 		}				
+	}
+	
+	private List<NoticeDetails> getNoticesCall() 
+			throws SmartFlatError
+	{
+		try
+		{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			object.add(new BasicNameValuePair("faltOwnerCode", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+			object.add(new BasicNameValuePair("societyCode", SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
+			ServerConnecter obj = new ServerConnecter();
+			String URL = Param.baseURL + "getNoticesForFlatOwner.php";
+			JSONObject objJson = obj.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getNotices(objJson);
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
 	}
 
 }

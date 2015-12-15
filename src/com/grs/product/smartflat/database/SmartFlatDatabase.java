@@ -508,19 +508,33 @@ public class SmartFlatDatabase {
 		boolean isAdded = false;
 		ContentValues values = new ContentValues();		
 		values.put(TableSocietyNotices.NOTICE_NUMBER, details.getmNoticeNumber());
-		values.put(TableSocietyNotices.NOTICE_PRIORITY, details.getmNoticePriority());
-		values.put(TableSocietyNotices.NOTICE_DETAILS, details.getmNoticeDetails());
+		values.put(TableSocietyNotices.NOTICE_TO, details.getmNoticeTo());
+		values.put(TableSocietyNotices.NOTICE_SUBJECT, details.getmNoticeSubject());
+		values.put(TableSocietyNotices.NOTICE_MESSAGE, details.getmNoticeMessage());
 		values.put(TableSocietyNotices.NOTICE_DATETIME, details.getmNoticeDateTime());
-		try {
+		try {			
+			if(getSingleNotice(details.getmNoticeNumber()).getCount()<=0)
+		{
 			mDb.beginTransaction();
 			isAdded = mDb.insert(TableNames.SOCIETY_NOTICES, null, values) > 0;
 			mDb.setTransactionSuccessful();
+			mDb.endTransaction();
+		}
 		} catch (Exception e) {
 			Log.e("Error in transaction", e.toString());
 		} finally {
-			mDb.endTransaction();
+			//mDb.endTransaction();
 		}	
 		return isAdded;
+	}
+	
+	private Cursor getSingleNotice(String noticeNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES + " WHERE " + TableSocietyNotices.NOTICE_NUMBER +"= '"+ noticeNumber+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
 	}
 
 	public Cursor getAllSocietyNoticeDetails(){

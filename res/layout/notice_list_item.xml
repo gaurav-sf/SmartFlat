@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/imageViewNotice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/request_listview_icon" />
+
+        <TextView
+            android:id="@+id/textViewNoticeNo"
+            android:layout_width="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:text="Notice no"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/theme_color"
+            android:textSize="18sp"
+            android:textStyle="bold" 
+            android:layout_weight="9"/>
+    </LinearLayout>
+    <View
+                android:id="@+id/viewLineNotice"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="2dp"
+                android:background="@color/theme_color" />
+
+    <!-- <TextView
+        android:id="@+id/textViewRecipient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recipient :- "
+        android:textColor="#ff847979"
+        android:textSize="16sp" /> -->
+
+    <TextView
+        android:id="@+id/textViewSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject :"
+        android:textColor="#ff847979"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewDatetime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        android:textColor="#adadad"
+        android:layout_gravity="right"
+        android:textSize="14sp" />
+
+</LinearLayout>

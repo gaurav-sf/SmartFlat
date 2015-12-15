@@ -15,6 +15,7 @@
         <item>Visitors</item>
         <item>Notices</item>
         <item>Contacts</item>
+        <item>Buy/Sale</item>
         <item>About Society</item>
         <item>About Builder</item>
         <item>About App</item>
@@ -29,6 +30,7 @@
         <item>@drawable/ic_vehicle</item>
         <item>@drawable/ic_request</item>
         <item>@drawable/ic_notice</item>
+        <item>@drawable/ic_contact</item>
         <item>@drawable/ic_contact</item>
         <item>@drawable/ic_aboutapp</item>
         <item>@drawable/ic_help</item>

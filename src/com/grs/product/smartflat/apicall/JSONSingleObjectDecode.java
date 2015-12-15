@@ -13,6 +13,7 @@ import com.grs.product.smartflat.database.SmartFlatDBManager;
 import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
+import com.grs.product.smartflat.models.NoticeDetails;
 import com.grs.product.smartflat.models.RequestDetails;
 import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.models.SocietyDetails;
@@ -608,6 +609,39 @@ public class JSONSingleObjectDecode {
 		} 	
 	
 		
+	}
+	
+	public List<NoticeDetails> getNotices(JSONObject json)
+			throws JSONException{
+		JSONArray noticesArray = new JSONArray(json.getString("notices"));
+		if(noticesArray!=null && noticesArray.length()>0)
+		{
+			if(noticesArray.getString(0)==null||
+					noticesArray.getString(0).equalsIgnoreCase(null)||
+					noticesArray.getString(0).equalsIgnoreCase("null"))
+			{
+				return null;
+			}
+			List<NoticeDetails> listNotices= new ArrayList<NoticeDetails>();
+			for (int i = 0; i < noticesArray.length(); i++) 
+			{
+				listNotices.add(getSingleNotice(noticesArray.getJSONObject(i)));
+			}
+			return listNotices;			
+		}
+		return null;
+	}
+	
+	private NoticeDetails getSingleNotice(JSONObject json) 
+			throws JSONException{
+		
+		NoticeDetails singleNotice = new NoticeDetails();
+		singleNotice.setmNoticeNumber(json.getString("Notice_Number"));
+		singleNotice.setmNoticeTo(json.getString("Notice_To"));
+		singleNotice.setmNoticeSubject(json.getString("Notice_Subject"));
+		singleNotice.setmNoticeMessage(json.getString("Notice_Message"));
+		singleNotice.setmNoticeDateTime(json.getString("Notice_DateTime"));
+		return singleNotice;
 	}
 
 }

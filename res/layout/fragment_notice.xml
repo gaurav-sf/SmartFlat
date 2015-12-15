@@ -8,12 +8,11 @@
     
     <!-- List View -->
     <ListView
-        android:id="@+id/list_view"
+        android:id="@+id/listViewNotice"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:divider="#ffffff"
-        android:dividerHeight="10dp" 
-        android:layout_weight="92"/>
+        android:dividerHeight="10dp"/>
     
     
 

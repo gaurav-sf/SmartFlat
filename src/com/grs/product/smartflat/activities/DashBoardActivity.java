@@ -96,17 +96,20 @@ public class DashBoardActivity extends FragmentActivity {
 		//Contacts
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
-		//About Society
+		//Buy/Sale
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
 
-		//About Builder
+		//About Society
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
 
+		//About Builder
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
+
 		//About App
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));		
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(6, -1)));		
 
 		//Sign Out
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], navMenuIcons.getResourceId(6, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -254,18 +257,23 @@ public class DashBoardActivity extends FragmentActivity {
 			.replace(R.id.fragment_container, contactsFragment).commit();
 			break;
 
-			//	About Society
+			//Buy/Sale
 		case 7:
 			status = "created";
 			break;
-
-			//	About Builder
+			
+			//About Society
 		case 8:
 			status = "created";
 			break;
 
-			//	AboutApp
+			//About Builder
 		case 9:
+			status = "created";
+			break;
+
+			//AboutApp
+		case 10:
 			status = "created";
 			AboutAppFragment aboutAppFragment = new AboutAppFragment();
 			getSupportFragmentManager().beginTransaction()
@@ -273,7 +281,7 @@ public class DashBoardActivity extends FragmentActivity {
 			break;
 
 			//Sign Out
-		case 10:
+		case 11:
 			status = "created";
 			overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
 			SmartFlatApplication.saveFlatOwnerAccessCodeInSharedPreferences(null);
