@@ -31,12 +31,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
+            android:button="@drawable/custom_radio_button"
             android:text="Request" />
 
         <RadioButton
             android:id="@+id/radioButtonComplaint"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:button="@drawable/custom_radio_button"
             android:layout_weight="1"
             android:text="Complaint" />
     </RadioGroup>
@@ -56,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20sp"
+        android:textColor="@color/label_color"
         android:text="Priority" />
 
     <RadioGroup
@@ -71,6 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
+            android:button="@drawable/custom_radio_button"
             android:text="Low" />
 
          <RadioButton
@@ -78,6 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:button="@drawable/custom_radio_button"
             android:text="Medium" />
 
         
@@ -86,6 +91,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:button="@drawable/custom_radio_button"
             android:text="High" />
 
        
@@ -97,7 +103,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20sp"
-        android:text="Request Details" />
+        android:textColor="@color/label_color"
+        android:text="Details" />
 
     <EditText
         android:id="@+id/editTextRequestDetails"
@@ -106,7 +113,10 @@
         android:layout_marginTop="5sp"
         android:background="@drawable/edittext_bg"
         android:ems="10"
-        android:hint="Request Details"
+        android:minLines="3"
+        android:inputType="textCapSentences"
+        android:hint="Details"
+        android:singleLine="false"
         android:padding="10sp" />
 
     

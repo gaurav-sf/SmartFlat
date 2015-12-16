@@ -43,6 +43,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/label_color"
         android:text="From : " 
         android:textSize="18sp"/>
 
@@ -51,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Whatever"
+        android:textColor="@color/label_color"
         android:layout_marginLeft="10sp" 
         android:textSize="18sp"/>
 
@@ -67,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Subject : " 
+        android:textColor="@color/label_color"
         android:textSize="18sp"/>
 
     <TextView
@@ -75,6 +78,7 @@
         android:layout_height="wrap_content"
         android:text="Subject title"
         android:layout_marginLeft="10sp" 
+        android:textColor="@color/label_color"
         android:textSize="18sp"/>
 
 </LinearLayout>
@@ -85,7 +89,7 @@
         android:layout_height="wrap_content"
         android:text="	India is my country, all Indians are gaurav's brother and sister. our first product is smart flat android application, where we are gives many facilities to users. GRS is a palangtod team.  "
         android:textSize="18sp"
-        android:textColor="#595959"
+        android:textColor="@color/label_color"
         android:layout_marginTop="20dp"/>
 
 </LinearLayout>

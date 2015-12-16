@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
+                android:inputType="textCapWords"
                 android:hint="Name"
                 android:padding="10sp"
                 android:textColor="@color/text_color"
@@ -51,10 +52,10 @@
                 android:id="@+id/editTextDOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="DOB --- dd/mm/yyyy"
+                android:hint="DOB"
                 android:padding="10sp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -76,7 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" 
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/trans_edittext_bg">
 
             <TextView
@@ -102,6 +103,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:text="Male" 
+                    android:button="@drawable/custom_radio_button"
                     android:textColor="@color/white"/>
 
                 <RadioButton
@@ -109,6 +111,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:button="@drawable/custom_radio_button"
                     android:text="Female"
                     android:textColor="@color/white" />
             </RadioGroup>
@@ -118,10 +121,11 @@
                 android:id="@+id/editTextContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Contact Number"
+                android:hint="Contact number"
+                android:maxLength="10"
                 android:inputType="number"
                 android:padding="10sp"
                 android:textColor="@color/text_color"
@@ -131,7 +135,7 @@
                 android:id="@+id/editTextEmailId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Email id"
@@ -144,32 +148,33 @@
                 android:id="@+id/spinnertBuildingName"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:textColor="@color/white"
                 android:background="@drawable/spinner_bg"
                 android:hint="Building Name"                
-                android:popupBackground="@drawable/trans_spinner_bg" />
+                android:popupBackground="@drawable/spinner_bg" />
 
             <Spinner
                 android:id="@+id/spinnerTextFloorNo"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
                 android:textColor="@color/white"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
                 android:hint="Floor Number"
-                android:popupBackground="@drawable/trans_spinner_bg" />
+                android:popupBackground="@drawable/spinner_bg" />
 
             <EditText
                 android:id="@+id/editTextFlatNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Flat Number"
+                android:hint="Flat number"
                 android:padding="10sp"
+                android:inputType="textCapSentences"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
 

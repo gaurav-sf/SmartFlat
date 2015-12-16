@@ -22,9 +22,10 @@
                 android:id="@+id/textViewComplaintType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="3dp"
+                android:textColor="@color/label_color"
                 android:layout_marginTop="20sp"
-                android:text="Request Details" />
+                android:text="Complaint type" />
 
             <EditText
                 android:id="@+id/editTextComplaintType"
@@ -33,16 +34,18 @@
                 android:layout_marginTop="5sp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:hint="Complaint Type"
-                android:padding="10sp" />
+                android:inputType="textCapSentences"
+                android:hint="Complaint type"
+                android:padding="7sp" />
 
             <TextView
                 android:id="@+id/textViewComplaintTDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="3dp"
                 android:layout_marginTop="20sp"
-                android:text="Request Details" />
+                android:textColor="@color/label_color"
+                android:text="Complaint details" />
 
             <EditText
                 android:id="@+id/editTextComplaintTDetails"
@@ -51,8 +54,12 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
-                android:hint="Complaint Details"
-                android:padding="10sp" />
+                android:inputType="textCapSentences"
+                android:gravity="top"
+                android:hint="Complaint details"
+                android:minLines="4"
+                android:padding="7sp" 
+                android:singleLine="false"/>
         </LinearLayout>
     </ScrollView>
 

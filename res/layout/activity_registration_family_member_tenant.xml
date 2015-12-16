@@ -44,6 +44,7 @@
                 android:ems="10"
                 android:hint="Name"
                 android:padding="10sp"
+                android:inputType="textCapWords"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
 
@@ -51,10 +52,10 @@
                 android:id="@+id/editTextDOB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="DOB --- dd/mm/yyyy"
+                android:hint="DOB"
                 android:padding="10sp"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
@@ -63,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" 
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/trans_edittext_bg">
 
             <TextView
@@ -87,6 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:button="@drawable/custom_radio_button"
                     android:checked="true"
                     android:text="Male" 
                     android:textColor="@color/white"/>
@@ -95,6 +97,7 @@
                     android:id="@+id/radioButtonFemale"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:button="@drawable/custom_radio_button"
                     android:layout_weight="1"
                     android:text="Female"
                     android:textColor="@color/white" />
@@ -105,12 +108,13 @@
                 android:id="@+id/editTextContactNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="Contact Number"
+                android:hint="Contact number"
                 android:inputType="number"
                 android:padding="10sp"
+                android:maxLength="10"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color" />
 
@@ -118,7 +122,7 @@
                 android:id="@+id/editTextEmailId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
                 android:hint="Email id"
@@ -131,7 +135,7 @@
                 android:id="@+id/editTextUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:editable="false"
                 android:ems="10"
@@ -149,7 +153,7 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="password"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10sp" 
                 android:textColor="@color/text_color"
@@ -159,7 +163,7 @@
                 android:id="@+id/spinnerSecurityQue"
                 android:layout_width="match_parent"
                 android:layout_height="40sp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="15dp"
                 android:textColor="@color/white"
                 android:background="@drawable/spinner_bg"
                 android:ems="10"
@@ -173,8 +177,9 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/trans_edittext_bg"
                 android:ems="10"
-                android:hint="answer"
+                android:hint="Answer"
                 android:padding="10sp" 
+                android:inputType="textCapSentences"
                 android:textColor="@color/text_color"
                 android:textColorHint="@color/text_hint_color"/>
         </LinearLayout>

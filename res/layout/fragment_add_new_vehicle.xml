@@ -25,7 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:text="Vehicle Type" />
+        android:text="Vehicle type" 
+        android:textColor="@color/label_color"
+        android:textSize="16sp"/>
 
     <RadioGroup
         android:id="@+id/RadioGroupVehicleType"
@@ -40,11 +42,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="2 Wheeler"
+            android:button="@drawable/custom_radio_button"
              android:checked="true" />
 
         <RadioButton
             android:id="@+id/radioButton4Wheeler"
             android:layout_width="0dp"
+            android:button="@drawable/custom_radio_button"
             android:layout_height="wrap_content"
             android:layout_weight="1"
            
@@ -55,9 +59,11 @@
         android:id="@+id/textViewVehicleNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/label_color"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:text="Vehicle Number" />
+        android:textSize="16sp"
+        android:text="Vehicle number" />
 
     <EditText
         android:id="@+id/editTextVehicleNumber"
@@ -65,7 +71,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Vehicle Number" 
+        android:hint="Vehicle number" 
+        android:inputType="textCapCharacters"
         android:padding="10sp"
         android:background="@drawable/edittext_bg"/>
 
@@ -74,15 +81,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:textColor="@color/label_color"
+        android:textSize="16sp"
         android:layout_marginTop="20dp"
-        android:text="Manufacturer Name" />
+        android:text="Manufacturer name" />
     <EditText
         android:id="@+id/editTextManfaturerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Manufacturer Name" 
+        android:hint="Manufacturer name" 
+        android:inputType="textCapWords"
         android:padding="10sp"
         android:background="@drawable/edittext_bg"/>
     
@@ -91,8 +101,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:textColor="@color/label_color"
+        android:textSize="16sp"
         android:layout_marginTop="20dp"
-        android:text="Model Name" />
+        android:text="Model name" />
 
     <EditText
         android:id="@+id/editTextModelName"
@@ -100,7 +112,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Model Name" 
+        android:hint="Model name" 
+        android:inputType="textCapWords"
         android:padding="10sp"
         android:background="@drawable/edittext_bg"/>
     
@@ -109,8 +122,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:textSize="16sp"
+        android:textColor="@color/label_color"
         android:layout_marginTop="20dp"
-        android:text="Vehicle Color" />
+        android:text="Vehicle color" />
 
     <EditText
         android:id="@+id/editTextVehicleColor"
@@ -118,8 +133,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="Vehicle Color" 
+        android:hint="Vehicle color" 
         android:padding="10sp"
+        android:inputType="textCapSentences"
         android:background="@drawable/edittext_bg"/>
     
     </LinearLayout>
