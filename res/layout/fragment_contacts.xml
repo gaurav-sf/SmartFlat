@@ -4,13 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" 
     android:background="#e6e6e6"
-    android:paddingTop="10dp">
+    android:padding="10dp">
     
         <ListView
         android:id="@+id/listViewContacts"
         android:layout_width="match_parent"
         android:layout_height="match_parent" 
-        android:dividerHeight="10dp">
+        android:dividerHeight="10dp"
+        android:divider="#e6e6e6">
     </ListView>
     
 

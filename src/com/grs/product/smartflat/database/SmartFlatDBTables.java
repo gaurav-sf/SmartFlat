@@ -168,6 +168,7 @@ public class SmartFlatDBTables {
 		public static final String FLAT_OWNER_CODE = "Flat_Owner_Code";
 		public static final String SOCIETY_CODE = "Society_Code";
 		public static final String IS_SOCIETY_MESSAGE = "Is_Society_Message";
+		public static final String IS_READ = "Is_Read";
 		public static final String MESSAGE_DATETIME = "Message_DateTime";
 	}
 	

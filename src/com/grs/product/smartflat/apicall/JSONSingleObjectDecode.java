@@ -113,9 +113,12 @@ public class JSONSingleObjectDecode {
 		singleMessage.setmFlatOwnerCode(json.getString("Flat_Owner_Code"));
 		if(json.getString("Is_Society_Message").equals("0")){
 			singleMessage.setmIsSocietyMessage(false);
+			singleMessage.setmIsRead(true);
 		}else{
-			singleMessage.setmIsSocietyMessage(true);			
+			singleMessage.setmIsSocietyMessage(true);	
+			singleMessage.setmIsRead(false);
 		}
+		singleMessage.setmIsRead(false);
 		singleMessage.setmMessageDateTime(json.getString("Message_DateTime"));
 		singleMessage.setmSocietyCode(json.getString("Society_Code"));
 
@@ -182,8 +185,11 @@ public class JSONSingleObjectDecode {
 		VisitorDetails singleVisitor = new VisitorDetails();	
 		singleVisitor.setmVisitorCode(json.getString("Visitor_Code"));
 		singleVisitor.setmVisitorName(json.getString("Visitor_Name"));
-		singleVisitor.setmVisitorInTime(json.getString("Visitor_In_Time"));
-
+		singleVisitor.setmVisitorInTime(json.getString("Visitor_In_Time"));	
+		singleVisitor.setmVisitorContacNo(json.getString("Visitor_Contac_No"));
+		singleVisitor.setmVisitorVehicleNo(json.getString("Visitor_Vehicle_No"));
+		singleVisitor.setmNoofVisitors(json.getString("No_of_Visitors"));
+		singleVisitor.setmVisitPurpose(json.getString("Visit_Purpose"));
 		return singleVisitor;		
 	}
 
@@ -197,6 +203,7 @@ public class JSONSingleObjectDecode {
 		List<RequestDetails> listRequestComplaint= new ArrayList<RequestDetails>();
 		List<RequestMessages> listMessages= new ArrayList<RequestMessages>();
 		List<VisitorDetails> listVisitors= new ArrayList<VisitorDetails>();
+		List<NoticeDetails> listNoticeDetails = new ArrayList<NoticeDetails>();
 		String status = "";
 		if (!json.isNull("status"))
 			status = json.getString("status");
@@ -230,6 +237,10 @@ public class JSONSingleObjectDecode {
 			listVisitors = getVisitors(json);
 			if (listVisitors!=null)
 				saveVisitorInLocalDB(listVisitors);
+			listNoticeDetails = getNotices(json);
+			if(listNoticeDetails!=null)
+			saveNoticeInDB(listNoticeDetails);
+			
 		}
 		response.setStatus(status);
 		return response;
@@ -517,6 +528,7 @@ public class JSONSingleObjectDecode {
 		List<RequestDetails> listRequestComplaint= new ArrayList<RequestDetails>();
 		List<RequestMessages> listMessages= new ArrayList<RequestMessages>();
 		List<VisitorDetails> listVisitors= new ArrayList<VisitorDetails>();
+		List<NoticeDetails> listNoticeDetails = new ArrayList<NoticeDetails>();
 		String status = "";
 		if (!json.isNull("status"))
 			status = json.getString("status");
@@ -550,6 +562,9 @@ public class JSONSingleObjectDecode {
 			listVisitors = getVisitors(json);
 			if (listVisitors!=null)
 				saveVisitorInLocalDB(listVisitors);
+			listNoticeDetails = getNotices(json);
+			if(listNoticeDetails!=null)
+			saveNoticeInDB(listNoticeDetails);
 		}
 		response.setStatus(status);
 		return response;
@@ -642,6 +657,18 @@ public class JSONSingleObjectDecode {
 		singleNotice.setmNoticeMessage(json.getString("Notice_Message"));
 		singleNotice.setmNoticeDateTime(json.getString("Notice_DateTime"));
 		return singleNotice;
+	}
+	
+	private void saveNoticeInDB(List<NoticeDetails> listNotices){
+
+		SmartFlatDBManager dbManager = new SmartFlatDBManager();
+		for (int i = 0; i < listNotices.size(); i++) {
+			boolean isAdded = dbManager.saveSocietyNoticeDetails(listNotices.get(i));
+			if (isAdded) {
+				Log.e("Notice Details", "Inserted Successfully");
+			}
+		}
+	
 	}
 
 }

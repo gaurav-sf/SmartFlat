@@ -654,6 +654,7 @@ public class SmartFlatDatabase {
 		values.put(TableMessageDetails.MESSAGE_CONTENT,message.getmMessageContent());
 		values.put(TableMessageDetails.REQUEST_NUMBER,message.getmRequestNumber());
 		values.put(TableMessageDetails.IS_SOCIETY_MESSAGE,message.ismIsSocietyMessage());
+		values.put(TableMessageDetails.IS_READ,message.ismIsRead());
 		values.put(TableMessageDetails.MESSAGE_DATETIME,message.getmMessageDateTime());
 
 		try {
@@ -905,5 +906,37 @@ public class SmartFlatDatabase {
 			mDb.endTransaction();
 		}				
 	}
+	
+	public Cursor getUnreadMessageCountForRequest(String requestNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.MESSAGE_DETAILS + " WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"' AND "+TableMessageDetails.IS_READ+" = '0'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
+	public void setMessagesRead(String requestNumber){
+		try {
+			mDb.beginTransaction();
+			String selectQuery = "UPDATE "+ TableNames.MESSAGE_DETAILS +" SET "+TableMessageDetails.IS_READ +" = '1' WHERE " + TableMessageDetails.REQUEST_NUMBER +"= '"+ requestNumber+"'";
+			mDb.execSQL(selectQuery);
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			mDb.endTransaction();
+		}					
+	}
+	
+	public Cursor getNoticeDetails(String noticeNumber){
+		String selectQuery = "SELECT  * FROM " + TableNames.SOCIETY_NOTICES + " WHERE " + TableSocietyNotices.NOTICE_NUMBER +"= '"+ noticeNumber+"'";
+		Cursor cursor = mDb.rawQuery(selectQuery, null);	
+		if (cursor != null && cursor.getCount()>0) {
+			cursor.moveToNext();
+		}
+		return cursor;			
+	}
+	
 
 }

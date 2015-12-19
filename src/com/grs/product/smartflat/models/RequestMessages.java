@@ -9,6 +9,7 @@ public class RequestMessages {
 	private String mFlatOwnerCode;	
 	private String mMessageDateTime;
 	private boolean mIsSocietyMessage;
+	private boolean mIsRead;
 	
 	public String getmMessageNumber() {
 		return mMessageNumber;
@@ -64,6 +65,13 @@ public class RequestMessages {
 	public void setmIsSocietyMessage(boolean mIsSocietyMessage) {
 		this.mIsSocietyMessage = mIsSocietyMessage;
 	}
+	
+	public boolean ismIsRead() {
+		return mIsRead;
+	}
 
+	public void setmIsRead(boolean mIsRead) {
+		this.mIsRead = mIsRead;
+	}
 
 }

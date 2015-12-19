@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:orientation="vertical"
-    android:padding="5dp" >
+    android:padding="10dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="2dp"
-                android:background="#e6e6e6" />
+                android:background="@color/theme_color" />
 
     <TextView
         android:id="@+id/textViewCategory"
@@ -72,6 +72,18 @@
         android:text="Large Text"
         android:textColor="#adadad"
         android:layout_gravity="right"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
+    
+        <TextView
+        android:id="@+id/textViewUnreadMessageCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="23"
+        android:textColor="@color/white"
+        android:layout_gravity="right"
+        android:textSize="14sp" 
+        android:background="@drawable/btnbg"
+        android:textStyle="bold"
+        android:visibility="gone"/>
 
 </LinearLayout>

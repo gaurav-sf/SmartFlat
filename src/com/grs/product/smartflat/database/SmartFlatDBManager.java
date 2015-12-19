@@ -1,7 +1,6 @@
 package com.grs.product.smartflat.database;
 
 import android.database.Cursor;
-
 import com.grs.product.smartflat.models.ContactDetails;
 import com.grs.product.smartflat.models.FamilyDetails;
 import com.grs.product.smartflat.models.FlatOwnerDetails;
@@ -267,5 +266,26 @@ public class SmartFlatDBManager {
 		SmartFlatDatabase.getInstance().open();
 		SmartFlatDatabase.getInstance().deleteDataFromSocietyDetails();
 		SmartFlatDatabase.getInstance().close();
+	}
+	
+	public Cursor getUnreadMessageCountForRequest(String requestNumber){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getUnreadMessageCountForRequest(requestNumber);
+		SmartFlatDatabase.getInstance().close();
+		return details;
+	}
+	
+	public void setMessagesRead(String requestNumber)
+	{
+		SmartFlatDatabase.getInstance().open();
+		SmartFlatDatabase.getInstance().setMessagesRead(requestNumber);
+		SmartFlatDatabase.getInstance().close();
+	}
+	
+	public Cursor getNoticeDetails(String noticeNumber){
+		SmartFlatDatabase.getInstance().open();
+		Cursor details = SmartFlatDatabase.getInstance().getNoticeDetails(noticeNumber);
+		SmartFlatDatabase.getInstance().close();
+		return details;
 	}
 }

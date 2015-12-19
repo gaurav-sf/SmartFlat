@@ -2,7 +2,6 @@ package com.grs.product.smartflat.fragments;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.activities.RequestDetailsActivity;
 import com.grs.product.smartflat.adapter.RaisedRequestListAdapter;
@@ -16,7 +15,6 @@ import com.grs.product.smartflat.models.RequestMessages;
 import com.grs.product.smartflat.utils.CustomProgressDialog;
 import com.grs.product.smartflat.utils.NetworkDetector;
 import com.grs.product.smartflat.utils.Utilities;
-
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -107,6 +105,7 @@ public class RaisedRequestFragment extends Fragment {
 					tempRequestDetails.setmRequestType(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_TYPE)));
 					tempRequestDetails.setmRequestStatus(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_STATUS)));
 					tempRequestDetails.setmRequestDateTime(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_DATETIME)));
+					tempRequestDetails.setmUnreadMessageCount(getUnreadMessageCount(requestDetailsCursor.getString(requestDetailsCursor.getColumnIndex(TableFlatOwnerRequestDetails.REQUEST_COMPLAINT_NUMBER))));
 					listRequestDetails.add(tempRequestDetails);
 				}
 			}
@@ -326,6 +325,15 @@ public class RaisedRequestFragment extends Fragment {
 				Log.e("Message Details", " Insertion Successful");
 			}
 		}		
+	}
+	
+	private int getUnreadMessageCount(String requestNumber){
+		SmartFlatDBManager dbManager = new SmartFlatDBManager();
+		Cursor details = dbManager.getUnreadMessageCountForRequest(requestNumber);
+		if (details!=null && details.getCount()>0) {
+			return details.getCount();			
+		}
+		return 0;
 	}
 
 }

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#99000000" 
+    android:background="#f7f4f4" 
     android:paddingLeft="15dp"
     android:paddingRight="15dp"
     android:paddingTop="20dp"
@@ -33,6 +33,16 @@
         android:textSize="22sp"
         android:textStyle="bold" />
     
+        <TextView
+        android:id="@+id/textViewNoticeDateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DateTime"
+        android:textColor="@color/label_color"
+        android:layout_gravity="right"
+        android:textSize="15sp" 
+        android:layout_marginTop="10dp"/>
+    
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -44,11 +54,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/label_color"
-        android:text="From : " 
-        android:textSize="18sp"/>
+        android:text="Notice No : " 
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewNoticeNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Whatever"
@@ -70,10 +81,11 @@
         android:layout_height="wrap_content"
         android:text="Subject : " 
         android:textColor="@color/label_color"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewNoticeSubject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Subject title"
@@ -84,7 +96,7 @@
 </LinearLayout>
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewNoticeMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="	India is my country, all Indians are gaurav's brother and sister. our first product is smart flat android application, where we are gives many facilities to users. GRS is a palangtod team.  "

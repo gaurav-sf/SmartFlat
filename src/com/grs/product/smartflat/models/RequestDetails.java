@@ -12,6 +12,7 @@ public class RequestDetails {
 	private String mRequestStatus;
 	private String mRequestDetails;
 	private List<RequestMessages> mMessageList;
+	private int mUnreadMessageCount;
 	
 	public String getmRequestNumber() {
 		return mRequestNumber;
@@ -75,6 +76,14 @@ public class RequestDetails {
 
 	public void setmMessageList(List<RequestMessages> mMessageList) {
 		this.mMessageList = mMessageList;
+	}
+
+	public int getmUnreadMessageCount() {
+		return mUnreadMessageCount;
+	}
+
+	public void setmUnreadMessageCount(int mUnreadMessageCount) {
+		this.mUnreadMessageCount = mUnreadMessageCount;
 	}
 
 }

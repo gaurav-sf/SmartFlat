@@ -78,6 +78,7 @@ public class RequestDetailsActivity extends Activity{
 			
 			@Override
 			public void onClick(View arg0) {
+				setallMessagesRead();
 				finish();
 			}
 		});
@@ -190,6 +191,7 @@ public class RequestDetailsActivity extends Activity{
 		tempMessages.setmMessageContent(mEditTextMessage.getText().toString());
 		tempMessages.setmRequestNumber(mRequestNumber);
 		tempMessages.setmIsSocietyMessage(false);
+		tempMessages.setmIsRead(true);
 		tempMessages.setmMessageDateTime(Utilities.getCurrentDateTime());
 		
 		SmartFlatDBManager objDbManager = new SmartFlatDBManager();
@@ -258,5 +260,11 @@ public class RequestDetailsActivity extends Activity{
 			Log.e("UnRegister Receiver Error", "> " + e.getMessage());
 		}
 		super.onDestroy();
+	}
+	
+	private void setallMessagesRead()
+	{
+		SmartFlatDBManager objDbManager = new SmartFlatDBManager();
+		objDbManager.setMessagesRead(mRequestNumber);
 	}
 }

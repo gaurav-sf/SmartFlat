@@ -139,6 +139,7 @@ public class SmartFlatDBTableCreation {
 			+ TableMessageDetails.FLAT_OWNER_CODE + " TEXT, "
 			+ TableMessageDetails.SOCIETY_CODE + " TEXT, "
 			+ TableMessageDetails.IS_SOCIETY_MESSAGE + " BOOLEAN, "
+			+ TableMessageDetails.IS_READ + " BOOLEAN, "
 			+ TableMessageDetails.MESSAGE_DATETIME + " TEXT);";
 	
 	public static final String TABLE_VISITOR_DETAILS_CREATION_QUERY = "Create table if not exists "+TableNames.VISITOR_DETAILS

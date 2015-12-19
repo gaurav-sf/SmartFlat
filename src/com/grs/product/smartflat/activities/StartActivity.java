@@ -71,7 +71,8 @@ public class StartActivity extends Activity {
 
 	private void saveSocietyDetailsInDB(SocietyDetails societyDetails)
 	{
-		SmartFlatDBManager objManager = new SmartFlatDBManager();
+		deleteSocietyDataFromDB();
+		SmartFlatDBManager objManager = new SmartFlatDBManager();		
 		boolean result = objManager.saveSocietyDetails(societyDetails);
 		if(result){
 			Log.e(LOG, "Society Details Insertion Successful");
@@ -121,6 +122,11 @@ public class StartActivity extends Activity {
 			Utilities.ShowAlertBox(StartActivity.this, "Error", e.getMessage());		
 		}
 
+	}
+	
+	private void deleteSocietyDataFromDB(){
+		SmartFlatDBManager dbManager =  new SmartFlatDBManager();
+		dbManager.deleteDataFromSocietyDetails();
 	}
 
 }
