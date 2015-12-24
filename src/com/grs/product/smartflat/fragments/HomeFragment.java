@@ -23,10 +23,10 @@ public class HomeFragment extends Fragment {
 	      "Unread Notice"} ;
 	  
 	  int[] imageId = {
-		      R.drawable.user_profile,
-		      R.drawable.pending_request_icon,
-		      R.drawable.request_icon,
-		      R.drawable.notice_icon} ;
+		      R.drawable.ic_user_icon,
+		      R.drawable.ic_pending_request_icon,
+		      R.drawable.ic_request_icon,
+		      R.drawable.ic_notice_icon} ;
 
 
 	@Override

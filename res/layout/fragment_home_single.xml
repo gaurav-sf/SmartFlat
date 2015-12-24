@@ -1,16 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="200dp"
     android:layout_height="200dp"
-    android:padding="20dp"   
+    android:padding="10dp"   
     android:gravity="center">
     
     <ImageView
         android:id="@+id/grid_image"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-       >
+        >
     </ImageView>
 
     <TextView
@@ -19,12 +19,45 @@
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/grid_image"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:gravity="center"
         android:textColor="#585e5e"
         android:textSize="15sp"
         android:textStyle="italic"
-        android:typeface="serif" >
+        android:typeface="serif">
 
     </TextView>
-</RelativeLayout>
+</RelativeLayout> -->
+
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+android:orientation="vertical">
+    
+    <ImageView
+        android:id="@+id/grid_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_pending_request_icon">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/grid_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_gravity="center"
+        android:textColor="#585e5e"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:typeface="serif"
+        android:text="bfjhjhc bg bg ">
+
+    </TextView>
+</LinearLayout>

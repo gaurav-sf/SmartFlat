@@ -7,6 +7,9 @@ import com.grs.product.smartflat.R;
 import com.grs.product.smartflat.SmartFlatApplication;
 import com.grs.product.smartflat.adapter.NavDrawerItem;
 import com.grs.product.smartflat.adapter.NavDrawerListAdapter;
+import com.grs.product.smartflat.apicall.AsyncTaskCompleteListener;
+import com.grs.product.smartflat.asynctasks.SignOutTask;
+import com.grs.product.smartflat.error.SmartFlatError;
 import com.grs.product.smartflat.fragments.AboutAppFragment;
 import com.grs.product.smartflat.fragments.ContactsFragment;
 import com.grs.product.smartflat.fragments.FamilyMainFragment;
@@ -15,10 +18,14 @@ import com.grs.product.smartflat.fragments.MainRequestFragment;
 import com.grs.product.smartflat.fragments.MainVehicleFragment;
 import com.grs.product.smartflat.fragments.NoticeFragment;
 import com.grs.product.smartflat.fragments.VisitorsFragment;
+import com.grs.product.smartflat.response.Response;
+import com.grs.product.smartflat.utils.CustomProgressDialog;
+import com.grs.product.smartflat.utils.Utilities;
 
 import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -85,13 +92,13 @@ public class DashBoardActivity extends FragmentActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
 
 		// Requests
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(4, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
 
 		//Visitor
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 
 		//Notices
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 
 		//Contacts
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
@@ -100,16 +107,16 @@ public class DashBoardActivity extends FragmentActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(6, -1)));
 
 		//About Society
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(7, -1)));
 
 		//About Builder
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(8, -1)));
 
 		//About App
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(6, -1)));		
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(8, -1)));		
 
 		//Sign Out
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[11], navMenuIcons.getResourceId(9, -1)));
 
 		// Recycle the typed array
 		navMenuIcons.recycle();
@@ -282,10 +289,8 @@ public class DashBoardActivity extends FragmentActivity {
 
 			//Sign Out
 		case 11:
-			status = "created";
-			overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
-			SmartFlatApplication.savePushTokenInSharedPreferences(null);
-			finish();
+			status = "created";		
+			signOutCall();
 			break;
 
 
@@ -343,6 +348,47 @@ public class DashBoardActivity extends FragmentActivity {
             doubleBackToExitPressedOnce=false;                       
         }
     }, 2000);}
+	
+	private void signOutCall(){
+		new SignOutTask(DashBoardActivity.this, new SignOutTaskListener(), SmartFlatApplication.getApplicationAccessRoleFromSharedPreferences())
+		.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+	}
+	
+	public class SignOutTaskListener implements AsyncTaskCompleteListener<Response> {
+
+		@Override
+		public void onStarted() {
+			CustomProgressDialog.showProgressDialog(DashBoardActivity.this, "", false);		
+		}
+
+		@Override
+		public void onTaskComplete(Response result) {
+			if (result != null) 
+			{
+				if (result.getStatus().equalsIgnoreCase("success")) 
+				{
+					overridePendingTransition(R.animator.slide_in_bottom, R.animator.slide_out_bottom);
+					SmartFlatApplication.savePushTokenInSharedPreferences(null);
+					finish();
+					
+				}else{
+					
+				}
+			}	
+		}
+
+		@Override
+		public void onStoped() {
+			CustomProgressDialog.removeDialog();	
+		}
+
+		@Override
+		public void onStopedWithError(SmartFlatError e) {
+			Utilities.ShowAlertBox(DashBoardActivity.this,"Error",e.getMessage());		
+			CustomProgressDialog.removeDialog();	
+		}
+		
+	}
 
 }
 

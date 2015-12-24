@@ -4,7 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView
+    <ImageView
+        android:id="@+id/imageViewSmartFlatLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo_smartflat"/>
+<!--     <TextView
         android:id="@+id/textViewAppNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +22,7 @@
         android:text="SmartFlat"
         android:textSize="28sp"
         android:textColor="@color/theme_color"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic" /> -->
     
     <GridView
          android:id="@+id/grid"
@@ -22,8 +30,8 @@
        	 android:layout_height="wrap_content"
    		 android:padding="5dp"
     	 android:numColumns="2"
-    	 android:layout_marginTop="20dp"
-    	 android:layout_below="@+id/textViewAppNameLabel"
+    	 android:layout_marginTop="10dp"
+    	 android:layout_below="@+id/imageViewSmartFlatLogo"
     	 android:layout_above="@+id/relativeLayoutPoweredBy"
     	 android:verticalSpacing="5dp"
     	 android:horizontalSpacing="5dp"

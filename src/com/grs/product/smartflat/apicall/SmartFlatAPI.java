@@ -114,6 +114,11 @@ public class SmartFlatAPI {
 	{
 		return getNoticesCall();
 	}
+	
+	public Response getSignOut(String role)
+			throws SmartFlatError{
+		return getSignOutCall(role);
+	}
 
 	private Response getLoginCall(String username, String password, String role, String ownerCode)
 			throws SmartFlatError{
@@ -581,6 +586,46 @@ public class SmartFlatAPI {
 			JSONObject objJson = obj.getJSONFromUrl(URL, object);
 			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
 			return objectjson.getNotices(objJson);
+		} 
+		catch (JSONException e) 
+		{
+			throw new SmartFlatError("Server error occured. Please try again later", "Server Error");
+		}
+		catch (Exception e)
+		{
+			throw new SmartFlatError("Please try again later", "Server Error");
+		}
+	}
+	
+	private Response getSignOutCall(String role)
+			throws SmartFlatError{
+		try{
+			ArrayList<NameValuePair> object = new ArrayList<NameValuePair>();
+			//object.add(new BasicNameValuePair("totalFloorNo", societyDetails.getmTotalFloorNumber()+""));
+			String URL = "";
+			ServerConnecter serverConnecter = new ServerConnecter();
+			
+			if(role.equalsIgnoreCase("Family Member")){
+				object.add(new BasicNameValuePair("familyMemeberUsername", SmartFlatApplication.getUserCodeFromSharedPreferences()));
+				object.add(new BasicNameValuePair("flatOwnerCode",SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+				URL = Param.baseURL + "signOutFamilyMember.php";
+			}
+			
+			else if(role.equalsIgnoreCase("Tenant")){
+			//	object.add(new BasicNameValuePair("flatOwnerCode",ownerCode));
+				//URL = Param.baseURL + "familyMemberLogin.php";
+			}
+			
+			else{
+				object.add(new BasicNameValuePair("flatOwnerCode",SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
+				object.add(new BasicNameValuePair("societyCode",SmartFlatApplication.getSocietyCodeFromSharedPreferences()));
+			   URL = Param.baseURL + "signOutFlatOwner.php";
+			}
+			
+			JSONObject objJson = serverConnecter.getJSONFromUrl(URL, object);
+			JSONSingleObjectDecode objectjson = new JSONSingleObjectDecode();
+			return objectjson.getStatus(objJson);	
+
 		} 
 		catch (JSONException e) 
 		{
