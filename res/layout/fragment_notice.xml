@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="10dp"
+    android:padding="10dp"
     android:background="#e6e6e6">
     
     <!-- List View -->
@@ -11,7 +11,7 @@
         android:id="@+id/listViewNotice"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:divider="#ffffff"
+        android:divider="#e6e6e6"
         android:dividerHeight="10dp"/>
     
     
