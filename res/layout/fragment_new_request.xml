@@ -118,7 +118,7 @@
         android:inputType="textCapSentences"
         android:hint="Details"
         android:singleLine="false"
-        android:padding="10sp" />
+        android:padding="5sp" />
 
     
 

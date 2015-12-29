@@ -188,7 +188,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="3sp" 
                 android:textColor="#000000"/>
@@ -230,7 +229,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:ems="10"
-                android:hint="Answer"
                 android:padding="5sp" 
                 android:inputType="textCapSentences"
                 android:textColor="#000000"/>
