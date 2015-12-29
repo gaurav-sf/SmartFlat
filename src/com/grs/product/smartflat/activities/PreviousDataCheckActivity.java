@@ -33,7 +33,7 @@ public class PreviousDataCheckActivity extends Activity {
 		setContentView(R.layout.activity_previous_data_check);
 		dbManager = new SmartFlatDBManager();
 		extras = getIntent().getExtras();
-		accessRole = extras.getString("accessRole");
+		accessRole = extras.getString("accessRole").trim();
 		userCode = extras.getString("userCode");
 		ownerCode = extras.getString("ownerCode");
 		checkIfUserExists();
