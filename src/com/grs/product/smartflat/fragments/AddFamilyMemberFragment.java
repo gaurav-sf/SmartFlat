@@ -33,7 +33,7 @@ import android.widget.RadioGroup;
 
 public class AddFamilyMemberFragment extends Fragment {
 	
-	private EditText mEditTextFMemberName, mEditTextFMemberDOB,  mEditTextFMemberAge,  mEditTextFMemberContactNo,mEditTextFMemberEmailId;
+	private EditText mEditTextFMemberName, mEditTextFMemberDOB,  mEditTextFMemberContactNo,mEditTextFMemberEmailId;
 	private RadioGroup mRadioGroupLogin;
 	private RadioButton mRadioButtonYes, mRadioButtonNo;
 	private RadioButton mRadioButtonMale, mRadioButtonFemale;
@@ -57,9 +57,6 @@ public class AddFamilyMemberFragment extends Fragment {
 	private void initialiseUI(View rootView){
 		mEditTextFMemberName = (EditText) rootView.findViewById(R.id.editTextFmemberName);
 		mEditTextFMemberDOB = (EditText) rootView.findViewById(R.id.editTextFmemberDOB);
-		mEditTextFMemberAge = (EditText) rootView.findViewById(R.id.editTextFmemberAge);
-		mEditTextFMemberAge.setText("25");
-		mEditTextFMemberAge.setVisibility(View.GONE);
 		mEditTextFMemberContactNo = (EditText) rootView.findViewById(R.id.editTextFmemberContactNo);
 		mRadioGroupLogin = (RadioGroup) rootView.findViewById(R.id.RadioGroupLogin);
 		mButtonAddMember = (Button) rootView.findViewById(R.id.buttonAddMember);
@@ -99,19 +96,9 @@ public class AddFamilyMemberFragment extends Fragment {
 			mEditTextFMemberName.setError("Please enter member name");
 			return false;
 		}
-/*		if(mEditTextFMemberRelation.getText().toString().equals(""))
-		{
-			mEditTextFMemberRelation.setError("Please enter relation with member");
-			return false;
-		}*/
 		if(mEditTextFMemberDOB.getText().toString().equals(""))
 		{
 			mEditTextFMemberDOB.setError("Please enter DOB");
-			return false;
-		}
-		if(mEditTextFMemberAge.getText().toString().equals(""))
-		{
-			mEditTextFMemberAge.setError("Please enter  Age");
 			return false;
 		}
 		if(mEditTextFMemberContactNo.getText().toString().equals(""))
@@ -138,7 +125,6 @@ public class AddFamilyMemberFragment extends Fragment {
 		tempFamilyDetails.setmFamilyMemberName(mEditTextFMemberName.getText().toString());
 		//tempFamilyDetails.setmFamilyMemberRelation(mEditTextFMemberRelation.getText().toString());
 		tempFamilyDetails.setmFamilyMemberDOB(mEditTextFMemberDOB.getText().toString());
-		tempFamilyDetails.setmFamilyMemberAge(mEditTextFMemberAge.getText().toString());
 		tempFamilyDetails.setmFamilyMemberContactno(mEditTextFMemberContactNo.getText().toString());
 		tempFamilyDetails.setmFamilyMemberEmailId(mEditTextFMemberEmailId.getText().toString());
 		String gender = "Male";
@@ -163,7 +149,6 @@ public class AddFamilyMemberFragment extends Fragment {
 		mEditTextFMemberName.setText("");
 		mEditTextFMemberEmailId.setText("");
 		mEditTextFMemberDOB.setText("");
-		mEditTextFMemberAge.setText("");
 		mEditTextFMemberContactNo.setText("");
 		mRadioButtonNo.setChecked(true);
 	}

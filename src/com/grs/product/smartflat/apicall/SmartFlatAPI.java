@@ -258,7 +258,7 @@ public class SmartFlatAPI {
 			object.add(new BasicNameValuePair("flatOwnerCode", SmartFlatApplication.getFlatOwnerCodeFromSharedPreferences()));
 			object.add(new BasicNameValuePair("familyMemberName",familyDetails.getmFamilyMemberName() ));
 			object.add(new BasicNameValuePair("familyMemberDOB",familyDetails.getmFamilyMemberDOB() ));
-			object.add(new BasicNameValuePair("familyMemberAge", familyDetails.getmFamilyMemberAge()));
+			object.add(new BasicNameValuePair("familyMemberAge", "25"));
 			object.add(new BasicNameValuePair("familyMemberContactNo", familyDetails.getmFamilyMemberContactno()));
 			object.add(new BasicNameValuePair("familyMemberEmailId", familyDetails.getmFamilyMemberEmailId()));
 

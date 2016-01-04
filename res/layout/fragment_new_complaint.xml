@@ -36,7 +36,6 @@
                 android:background="@drawable/edittext_bg"
                 android:ems="10"
                 android:inputType="textCapSentences"
-                android:hint="Complaint type"
                 android:padding="7sp" />
 
             <TextView
@@ -57,7 +56,6 @@
                 android:ems="10"
                 android:inputType="textCapSentences"
                 android:gravity="top"
-                android:hint="Complaint details"
                 android:minLines="4"
                 android:padding="7sp" 
                 android:singleLine="false"/>

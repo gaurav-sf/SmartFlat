@@ -155,6 +155,19 @@ public class DashBoardActivity extends FragmentActivity {
 			// on first time display view for first nav item
 			displayView(0);
 		}
+		
+		Bundle extras = getIntent().getExtras();
+		if(extras!=null)
+		{
+			if(!extras.getString("fromHome").equals(null) || extras.getString("fromHome")!=null){
+				if(extras.getString("fromHome").equals("1"))
+				{
+					displayView(1);
+				}
+			}
+		}
+		
+		
 	}
 
 	/**
@@ -205,7 +218,7 @@ public class DashBoardActivity extends FragmentActivity {
 	/**
 	 * Diplaying fragment view for selected nav drawer list item
 	 * */
-	private void displayView(int position) {
+	public void displayView(int position) {
 		String status = "";
 		switch (position) {
 		//Home

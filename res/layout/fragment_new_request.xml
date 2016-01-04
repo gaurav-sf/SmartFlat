@@ -116,7 +116,6 @@
         android:ems="10"
         android:minLines="3"
         android:inputType="textCapSentences"
-        android:hint="Details"
         android:singleLine="false"
         android:padding="5sp" />
 
