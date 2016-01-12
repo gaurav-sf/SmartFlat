@@ -47,7 +47,7 @@
     <Spinner
         android:id="@+id/spinnertRequestType"
         android:layout_width="match_parent"
-        android:layout_height="40sp"
+        android:layout_height="35dp"
         android:layout_marginTop="20sp"
         android:background="@drawable/spinner_bg"
         android:ems="10"
@@ -117,7 +117,7 @@
         android:minLines="3"
         android:inputType="textCapSentences"
         android:singleLine="false"
-        android:padding="5sp" />
+        android:padding="5dp" />
 
     
 

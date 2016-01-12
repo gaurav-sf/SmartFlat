@@ -48,6 +48,7 @@
                 android:layout_marginTop="3dp"
                 android:ems="10"
                 android:padding="5sp"
+                android:inputType="textCapCharacters"
                 android:textColor="#000000"/>
 
             <TextView

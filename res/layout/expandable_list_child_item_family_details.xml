@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="5dp" 
     android:background="@drawable/expandable_square_bg">
     
     <TextView
         android:id="@+id/textViewName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:textColor="#595959"
-        android:layout_marginTop="5dp"/>
-    
-        <TextView
-        android:id="@+id/textViewRelation"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:textColor="#595959"
-        android:layout_marginTop="5dp"/>
-        
-        <TextView
-        android:id="@+id/textViewAge"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="17sp"
@@ -39,7 +23,7 @@
         android:layout_marginTop="5dp"/>
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editTextContactNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -50,7 +34,7 @@
             android:padding="5dp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editTextEmailId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

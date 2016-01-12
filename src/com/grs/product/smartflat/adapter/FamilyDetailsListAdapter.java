@@ -12,16 +12,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 public class FamilyDetailsListAdapter extends BaseExpandableListAdapter {
 
 	private Context mContext;
 	private List<FamilyDetails> listFamilyDetails;
+	private ExpandableListView mExpListViewFamilyDetails;
 	
-	public FamilyDetailsListAdapter(Context mContext, List<FamilyDetails> listFamilyDetails) {
+	public FamilyDetailsListAdapter(Context mContext, List<FamilyDetails> listFamilyDetails, ExpandableListView expListViewFamilyDetails) {
 		this.mContext = mContext;
 		this.listFamilyDetails = listFamilyDetails;
+		this.mExpListViewFamilyDetails = expListViewFamilyDetails;
 	}
 
 
@@ -46,11 +50,17 @@ public class FamilyDetailsListAdapter extends BaseExpandableListAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = infalInflater.inflate(R.layout.expandable_list_child_item_family_details, null);
 		}
+		mExpListViewFamilyDetails.setDividerHeight(0);
 		FamilyDetails temp = listFamilyDetails.get(groupPosition);
 		TextView textViewName = (TextView) convertView.findViewById(R.id.textViewName);
 		textViewName.setText(temp.getmFamilyMemberName());
-		TextView textViewRelation = (TextView) convertView.findViewById(R.id.textViewRelation);
-		textViewRelation.setText(temp.getmFamilyMemberRelation());
+		TextView textViewDob = (TextView) convertView.findViewById(R.id.textViewDob);
+		textViewDob.setText(temp.getmFamilyMemberDOB());
+		EditText editTextContactNo = (EditText) convertView.findViewById(R.id.editTextContactNo);
+		editTextContactNo.setText(temp.getmFamilyMemberContactno());
+		EditText editTextEmailId = (EditText) convertView.findViewById(R.id.editTextEmailId);
+		editTextEmailId.setText(temp.getmFamilyMemberEmailId());
+
 		return convertView;
 	}
 
@@ -85,7 +95,7 @@ public class FamilyDetailsListAdapter extends BaseExpandableListAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = infalInflater.inflate(R.layout.expandable_list_group_item, null);
 		}
-
+		mExpListViewFamilyDetails.setDividerHeight(20);
 		FamilyDetails temp = listFamilyDetails.get(groupPosition);
 		TextView lblListHeader = (TextView) convertView
 				.findViewById(R.id.textViewFMName);

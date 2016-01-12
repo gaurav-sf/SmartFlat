@@ -25,7 +25,6 @@ public class FamilyDetailsFragment extends Fragment{
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 	
@@ -34,7 +33,7 @@ public class FamilyDetailsFragment extends Fragment{
 		View rootView = inflater.inflate(R.layout.fragment_family_details, container, false);
 		initialiseUI(rootView);
 		createDataForList();
-		mFamilyDetailsLIstAdapter = new FamilyDetailsListAdapter(getActivity(), mListFamilyDetails);
+		mFamilyDetailsLIstAdapter = new FamilyDetailsListAdapter(getActivity(), mListFamilyDetails,mExpListViewFamilyDetails);
 		mExpListViewFamilyDetails.setAdapter(mFamilyDetailsLIstAdapter);
 		mExpListViewFamilyDetails.setOnGroupExpandListener(new OnGroupExpandListener() {
 			
@@ -42,7 +41,7 @@ public class FamilyDetailsFragment extends Fragment{
 			public void onGroupExpand(int position) {
 				for (int i = 0; i < mListFamilyDetails.size(); i++) {
 					if(i!=position){
-						mExpListViewFamilyDetails.collapseGroup(i);
+						mExpListViewFamilyDetails.collapseGroup(i);						
 					}
 				}
 			}

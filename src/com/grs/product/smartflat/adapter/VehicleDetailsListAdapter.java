@@ -45,7 +45,7 @@ public class VehicleDetailsListAdapter extends BaseExpandableListAdapter {
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) mContext
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflater.inflate(R.layout.expandable_list_child_item_family_details, null);
+			convertView = infalInflater.inflate(R.layout.expandable_list_child_item_vehicle_details, null);
 		}
 		VehicleDetails temp = listVehicleDetails.get(groupPosition);
 		TextView textViewVehicleType = (TextView) convertView.findViewById(R.id.textViewName);
